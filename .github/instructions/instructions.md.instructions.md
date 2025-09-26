@@ -1,5 +1,5 @@
 ---
-applyTo: '**'
+applyTo: '**, **.tsx, **.ts, **.md'
 ---
 
 # Safari Culture - Wilderness Namibia Platform Instructions
@@ -9,9 +9,11 @@ Building a luxury safari tourism platform for Wilderness Namibia showcasing 4 pr
 
 ## 🎯 Project Scope & Complexity
 - **Complexity Level**: Medium - robust but maintainable
-- **Focus**: Clean, professional, performant
+- **Focus**: Clean, professional, performant, preferably with a luxury aesthetic
 - **Avoid**: Over-engineering, feature creep, excessive complexity
 - **Goal**: Showcase modern development skills within manageable scope
+- **Must Use**: Auth0 + NextAuth.js (Pages Router pattern for auth) and AWS Amplify Gen 2, RDS MySQL, S3 (as per test requirements)
+- **Preference**: Always try implement server components and server-side rendering where possible
 
 ## 🏗️ Architecture Guidelines
 
@@ -382,5 +384,33 @@ When working on this project:
 6. **Code Quality**: Write clean, documented, type-safe code
 7. **Performance**: Optimize for mobile and fast loading
 8. **User Experience**: Prioritize beauty and usability
+9. **Use Context7 MCP**: When uncertain about implementations, deprecations, or best practices, always reference context7 MCP for current documentation and standards
 
-Remember: This is a **technical assessment**. Balance following requirements exactly with showcasing modern development skills.
+## 🔍 Context7 MCP Usage Guidelines
+
+### When to Use Context7 MCP
+- **Latest API patterns**: Verify current Next.js, React, or AWS implementation patterns
+- **Deprecation checks**: Ensure no deprecated methods or patterns are used
+- **Best practices validation**: Cross-reference architectural decisions with current standards
+- **Library updates**: Check for new features in shadcn/ui, Framer Motion, Tailwind, etc.
+- **TypeScript patterns**: Validate modern TypeScript and Zod implementation approaches
+- **Performance optimizations**: Reference latest optimization techniques and patterns
+
+### Examples of Context7 MCP Queries
+```typescript
+// Instead of guessing, query context7 for:
+- "Latest Next.js 15 Image optimization patterns"
+- "Current Auth0 + NextAuth.js integration best practices"
+- "Modern Prisma connection pooling patterns"
+- "New shadcn/ui components for data tables"
+- "Current AWS Amplify Gen 2 configuration patterns"
+- "Latest React Server Components patterns"
+```
+
+### Integration Strategy
+- Use context7 MCP proactively during development
+- Reference real-time documentation rather than assumptions
+- Validate implementation patterns before coding
+- Ensure compatibility with latest versions of all dependencies
+
+Remember: This is a **technical assessment**. Balance following requirements exactly with showcasing modern development skills using the most current and reliable patterns.

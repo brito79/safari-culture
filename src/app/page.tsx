@@ -1,103 +1,94 @@
-import Image from "next/image";
+import Navigation from "@/components/ui/Navigation";
+import HeroSection from "@/components/ui/HeroSection";
+import CampCarousel from "@/components/ui/CampCarousel";
+import Footer from "@/components/ui/Footer";
+import WhatYouNeedToKnow from "@/components/WhatYouNeedToKnow";
+import FAQ from "@/components/FaQ";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
+      <Navigation />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <HeroSection
+        title="Discover Namibia's<span class='block text-black-500'>Wilderness</span>"
+        subtitle="Four Extraordinary Desert Camps"
+        description="Experience the raw beauty of ancient dunes, desert-adapted wildlife, and endless horizons. Our luxury camps offer unparalleled comfort in Namibia's most pristine wilderness areas."
+        primaryCTA={{
+          text: "Explore Our Camps",
+          href: "/camps"
+        }}
+        secondaryCTA={{
+          text: "Plan Your Journey", 
+          href: "/contact"
+        }}
+      />
+      
+
+      {/* Featured Camps Carousel */}
+      <section className="py-20 bg-gradient-to-b from-transparent to-sand-50">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="text-center mb-16">
+            <h2 className="safari-heading text-3xl sm:text-5xl text-neutral-900 mb-4">
+              Our Desert Sanctuaries
+            </h2>
+            <p className="safari-body text-lg text-stone-600 max-w-2xl mx-auto">
+              Four unique camps, each offering intimate encounters with Namibia&apos;s extraordinary landscapes and wildlife
+            </p>
+          </div>
+           <CampCarousel />
+          
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Experience Highlights */}
+      <section className="py-20 bg-white/50">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="text-center mb-16">
+            <h2 className="safari-heading text-3xl sm:text-5xl text-neutral-900 mb-4">
+              Extraordinary Experiences
+            </h2>
+            <p className="safari-body text-lg text-stone-600 max-w-2xl mx-auto">
+              Every moment in Namibia&apos;s wilderness offers profound connection with pristine nature
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-sunset-400 to-sunset-600 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-2xl">🦏</span>
+              </div>
+              <h3 className="safari-heading text-xl text-neutral-900">Wildlife Tracking</h3>
+              <p className="safari-body text-stone-600">
+                Track desert-adapted elephants and endangered black rhinos with expert guides
+              </p>
+            </div>
+
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-sand-400 to-sand-600 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-2xl">🏜️</span>
+              </div>
+              <h3 className="safari-heading text-xl text-neutral-900">Dune Exploration</h3>
+              <p className="safari-body text-stone-600">
+                Climb the towering red dunes of Sossusvlei and witness ancient desert landscapes
+              </p>
+            </div>
+
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-earth-400 to-earth-600 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-2xl">🎨</span>
+              </div>
+              <h3 className="safari-heading text-xl text-neutral-900">Cultural Heritage</h3>
+              <p className="safari-body text-stone-600">
+                Discover ancient San rock art and connect with local Damara communities
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <WhatYouNeedToKnow />
+      <FAQ/>
+      <Footer />
     </div>
   );
 }
