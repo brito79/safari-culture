@@ -52,10 +52,10 @@ export default function Navigation({ className = "" }: NavigationProps) {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-900 dark:text-neutral-100">
+          <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-900 dark:text-neutral-700">
             Namibian Wilderness
           </h1>
-          <span className="safari-accent text-sm text-earth-500 dark:text-earth-400">Namibia</span>
+          <span className="safari-accent text-sm text-black dark:text-earth-400">Namibia</span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -5,27 +5,6 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
       {/* Navigation */}
-      {/* <nav className="relative z-10 p-6 sm:p-8 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-900">
-              Safari Culture
-            </h1>
-            <span className="safari-accent text-sm text-earth-500">Namibia</span>
-          </Link>
-          <div className="hidden md:flex space-x-8">
-            <Link href="/camps" className="safari-body text-stone-600 hover:text-sunset-500 transition-colors">
-              Camps
-            </Link>
-            <Link href="/experiences" className="safari-body text-stone-600 hover:text-sunset-500 transition-colors">
-              Experiences
-            </Link>
-            <Link href="/contact" className="safari-body text-sunset-600 font-medium">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </nav> */}
       <Navigation />
 
       {/* Hero Section */}
@@ -57,7 +36,7 @@ export default function ContactPage() {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                    <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                       FIRST NAME *
                     </label>
                     <input
@@ -68,7 +47,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                    <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                       LAST NAME *
                     </label>
                     <input
@@ -81,7 +60,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                  <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                     EMAIL ADDRESS *
                   </label>
                   <input
@@ -93,7 +72,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                  <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                     PHONE NUMBER
                   </label>
                   <input
@@ -104,7 +83,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                  <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                     COUNTRY OF RESIDENCE
                   </label>
                   <select className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:border-sunset-500 focus:ring-1 focus:ring-sunset-500 safari-body">
@@ -120,7 +99,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                  <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                     PREFERRED TRAVEL DATES
                   </label>
                   <input
@@ -131,7 +110,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                  <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                     INTERESTED CAMPS
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -153,7 +132,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
+                  <label className="safari-accent text-xs text-black tracking-wider block mb-2">
                     MESSAGE
                   </label>
                   <textarea
@@ -181,7 +160,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="space-y-6">
                   <div>
-                    <h4 className="safari-accent text-xs text-earth-500 tracking-wider mb-2">
+                    <h4 className="safari-accent text-xs text-black tracking-wider mb-2">
                       EMAIL
                     </h4>
                     <p className="safari-body text-neutral-900">
@@ -189,7 +168,7 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <div>
-                    <h4 className="safari-accent text-xs text-earth-500 tracking-wider mb-2">
+                    <h4 className="safari-accent text-xs text-black tracking-wider mb-2">
                       PHONE
                     </h4>
                     <p className="safari-body text-neutral-900">
@@ -197,7 +176,7 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <div>
-                    <h4 className="safari-accent text-xs text-earth-500 tracking-wider mb-2">
+                    <h4 className="safari-accent text-xs text-black tracking-wider mb-2">
                       OFFICE HOURS
                     </h4>
                     <p className="safari-body text-neutral-900">
@@ -219,7 +198,7 @@ export default function ContactPage() {
                     <h4 className="safari-heading text-lg text-neutral-900 mb-2">
                       Best Time to Visit
                     </h4>
-                    <p className="safari-body text-stone-600 text-sm">
+                    <p className="safari-body text-black text-sm">
                       Namibia is a year-round destination. Dry season (May-October) offers excellent wildlife viewing, 
                       while green season (November-April) brings dramatic landscapes and fewer crowds.
                     </p>
@@ -228,7 +207,7 @@ export default function ContactPage() {
                     <h4 className="safari-heading text-lg text-neutral-900 mb-2">
                       Advance Booking
                     </h4>
-                    <p className="safari-body text-stone-600 text-sm">
+                    <p className="safari-body text-black text-sm">
                       We recommend booking 6-12 months in advance, especially for peak season travel (June-October).
                     </p>
                   </div>
@@ -236,7 +215,7 @@ export default function ContactPage() {
                     <h4 className="safari-heading text-lg text-neutral-900 mb-2">
                       Multi-Camp Journeys
                     </h4>
-                    <p className="safari-body text-stone-600 text-sm">
+                    <p className="safari-body text-black text-sm">
                       Combine 2-4 camps for the ultimate Namibian experience. Our travel designers will create 
                       seamless itineraries with private air transfers.
                     </p>

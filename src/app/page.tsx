@@ -7,7 +7,7 @@ import FAQ from "@/components/FaQ";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50">
       <Navigation />
 
       <HeroSection

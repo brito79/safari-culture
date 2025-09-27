@@ -55,7 +55,7 @@ const camps = [
     fromPrice: "R19,055"
   },
   {
-    id: "damaraland",
+    id: "damaraland-camp",
     name: "Wilderness Damaraland Camp",
     region: "Damaraland",
     description: "Cultural immersion in ancient landscapes. Discover San rock art, learn from local communities, and witness wildlife thriving in this remarkable semi-desert environment.",
@@ -75,30 +75,8 @@ const camps = [
 
 export default function CampsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-sand to-neutral-50">
       {/* Navigation */}
-      {/* <nav className="relative z-10 p-6 sm:p-8 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-900">
-              Safari Culture
-            </h1>
-            <span className="safari-accent text-sm text-earth-500">Namibia</span>
-          </Link>
-          <div className="hidden md:flex space-x-8">
-            <Link href="/camps" className="safari-body text-sunset-600 font-medium">
-              Camps
-            </Link>
-            <Link href="/experiences" className="safari-body text-stone-600 hover:text-sunset-500 transition-colors">
-              Experiences
-            </Link>
-            <Link href="/contact" className="safari-body text-stone-600 hover:text-sunset-500 transition-colors">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </nav> */}
-
       {/* Page Header */}
       <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -214,7 +192,7 @@ export default function CampsPage() {
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
                     <Link 
                       href={`/camps/${camp.id}`}
-                      className="safari-body px-8 py-3 bg-sunset-500 text-white rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-md hover:shadow-lg text-center"
+                      className="safari-body px-8 py-3 bg-sunset-500 text-stone-700 rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-md hover:shadow-lg text-center"
                     >
                       Explore Camp
                     </Link>
