@@ -201,7 +201,7 @@ const DamaralandGallery = () => {
           <p className="text-black mb-6">
             Experience these moments for yourself at Damaraland Camp
           </p>
-          <button className="px-8 py-4 bg-sunset-500 hover:bg-sunset-600 text-white rounded-full font-medium transition-colors duration-300 shadow-lg">
+          <button className="px-8 py-4 bg-sunset-500 hover:bg-sunset-600 text-neutral-900 rounded-full font-medium transition-colors duration-300 shadow-lg">
             Plan Your Adventure
           </button>
         </motion.div>

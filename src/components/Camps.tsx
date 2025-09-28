@@ -76,7 +76,6 @@ const camps = [
 export default function CampsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-sand to-neutral-50">
-      {/* Navigation */}
       {/* Page Header */}
       <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -222,7 +221,7 @@ export default function CampsPage() {
           </p>
           <Link 
             href="/contact"
-            className="inline-block safari-body px-8 py-4 bg-sunset-500 text-white rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-block safari-body px-8 py-4 bg-sunset-500 text-neutral-900 rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Start Planning
           </Link>

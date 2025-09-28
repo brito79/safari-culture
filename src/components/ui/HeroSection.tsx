@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface HeroSectionProps {
     title: string;
@@ -12,6 +13,7 @@ interface HeroSectionProps {
         text: string;
         href: string;
     };
+    backgroundImage?: string;
     className?: string;
 }
 
@@ -21,25 +23,48 @@ export default function HeroSection({
     description,
     primaryCTA,
     secondaryCTA,
+    backgroundImage,
     className = ""
 }: HeroSectionProps) {
     return (
-        <section className={`relative py-20 sm:py-32 ${className}`}>
-            <div className="max-w-7xl mx-auto px-6 sm:px-8">
-                <div className="text-center space-y-8">
+        <section className={`relative min-h-screen flex items-center overflow-hidden ${className}`}>
+            {/* Background Image */}
+            {backgroundImage && (
+                <>
+                    <div className="absolute inset-0">
+                        <Image
+                            src={backgroundImage}
+                            alt="Namibian wilderness landscape"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                    <div className="absolute inset-0 bg-black/50"></div>
+                </>
+            )}
+            
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8">
+                <div className={`text-center space-y-8 ${backgroundImage ? 'text-white' : ''}`}>
                     <div className="space-y-4">
                         <h1 
-                            className="safari-heading text-4xl sm:text-6xl lg:text-8xl text-neutral-900 leading-tight"
+                            className={`safari-heading text-4xl sm:text-6xl lg:text-8xl leading-tight ${
+                                backgroundImage ? 'text-white' : 'text-neutral-900'
+                            }`}
                             dangerouslySetInnerHTML={{ __html: title }}
                         />
                         {subtitle && (
-                            <p className="safari-accent text-lg sm:text-xl text-black tracking-widest">
+                            <p className={`safari-accent text-lg sm:text-xl tracking-widest ${
+                                backgroundImage ? 'text-sand-200' : 'text-black'
+                            }`}>
                                 {subtitle}
                             </p>
                         )}
                     </div>
                     
-                    <p className="safari-body text-xl sm:text-2xl text-stone-600 max-w-4xl mx-auto leading-relaxed">
+                    <p className={`safari-body text-xl sm:text-2xl max-w-4xl mx-auto leading-relaxed ${
+                        backgroundImage ? 'text-white/90' : 'text-stone-600'
+                    }`}>
                         {description}
                     </p>
 
@@ -48,7 +73,11 @@ export default function HeroSection({
                             {primaryCTA && (
                                 <Link 
                                     href={primaryCTA.href}
-                                    className="safari-body px-8 py-4 bg-sunset-500 text-black rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                                    className={`safari-body px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl ${
+                                        backgroundImage 
+                                            ? 'bg-sunset-500 text-white hover:bg-sunset-600'
+                                            : 'bg-sunset-500 text-black hover:bg-sunset-600'
+                                    }`}
                                 >
                                     {primaryCTA.text}
                                 </Link>
@@ -56,7 +85,11 @@ export default function HeroSection({
                             {secondaryCTA && (
                                 <Link 
                                     href={secondaryCTA.href}
-                                    className="safari-body px-8 py-4 border-2 border-stone-300 text-black rounded-full hover:border-sunset-500 hover:text-sunset-500 transition-all duration-300"
+                                    className={`safari-body px-8 py-4 border-2 rounded-full transition-all duration-300 ${
+                                        backgroundImage
+                                            ? 'border-white/80 text-white hover:bg-white/10 backdrop-blur-sm'
+                                            : 'border-stone-300 text-black hover:border-sunset-500 hover:text-sunset-500'
+                                    }`}
                                 >
                                     {secondaryCTA.text}
                                 </Link>

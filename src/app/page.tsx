@@ -11,9 +11,10 @@ export default function Home() {
       <Navigation />
 
       <HeroSection
-        title="Discover Namibia's<span class='block text-black-500'>Wilderness</span>"
+        title="Discover Namibia's<span class='block text-sand-200'>Wilderness</span>"
         subtitle="Four Extraordinary Desert Camps"
         description="Experience the raw beauty of ancient dunes, desert-adapted wildlife, and endless horizons. Our luxury camps offer unparalleled comfort in Namibia's most pristine wilderness areas."
+        backgroundImage="/images/hero-home/1741347488261_Final-Hoanib-11.jpg"
         primaryCTA={{
           text: "Explore Our Camps",
           href: "/camps"

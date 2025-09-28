@@ -6,7 +6,7 @@ function CampsLayout( { children } : Readonly<
 {children : ReactNode}>) {
   return (
     <header className=''>
-        <Navigation />
+        <Navigation className='bg-white shadow-md sticky' />
         {children}
         <Footer />
     </header>

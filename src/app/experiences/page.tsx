@@ -1,354 +1,350 @@
-import Navigation from "@/components/ui/Navigation";
+"use client";
+
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import Footer from "@/components/ui/Footer";
+import Navigation from "@/components/ui/Navigation";
+import ExperiencesHero from "@/components/experiences/ExperiencesHero";
 
 export default function ExperiencesPage() {
-  const experiences = [
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedExperience, setSelectedExperience] = useState<number | null>(null);
+
+  const natureExperiences = [
     {
-      category: "Wildlife Encounters",
-      color: "earth",
-      experiences: [
-        {
-          name: "Desert-Adapted Elephant Tracking",
-          description: "Follow ancient migration paths to encounter the legendary desert elephants of Namibia",
-          locations: ["Doro Nawas", "Hoanib Skeleton Coast", "Damaraland Camp"],
-          difficulty: "Moderate",
-          duration: "Half Day"
-        },
-        {
-          name: "Black Rhino Conservation",
-          description: "Support and witness rhino conservation efforts in their natural habitat",
-          locations: ["Doro Nawas", "Damaraland Camp"],
-          difficulty: "Easy",
-          duration: "Full Day"
-        },
-        {
-          name: "Cape Cross Seal Colony",
-          description: "Visit one of the world's largest fur seal colonies along the dramatic coastline",
-          locations: ["Hoanib Skeleton Coast"],
-          difficulty: "Easy",
-          duration: "Half Day"
-        }
-      ]
+      id: 1,
+      title: "Nature Drives",
+      subtitle: "Desert Wildlife Encounters", 
+      description: "Get close to rare wildlife, explore otherworldly landscapes and immerse yourself in uncharted territory on a nature drive through Namibia's pristine wilderness.",
+      longDescription: "Experience the thrill of tracking desert-adapted elephants, black rhinos, and other wildlife in their natural habitat. Our expert guides navigate ancient riverbeds and dramatic landscapes, sharing intimate knowledge of animal behavior and desert survival strategies.",
+      image: "/images/experiences/Wilderness Doro Nawas_1.jpg",
+      duration: "3-4 hours",
+      difficulty: "Easy to Moderate",
+      bestTime: "Early morning & late afternoon",
+      highlights: [
+        "Desert-adapted elephant tracking", 
+        "Black rhino conservation encounters",
+        "Geological formation exploration",
+        "Ancient riverbed navigation"
+      ],
+      camps: ["Doro Nawas", "Damaraland Camp", "Hoanib Skeleton Coast"]
     },
     {
-      category: "Desert Adventures",
-      color: "sunset",
-      experiences: [
-        {
-          name: "Sossusvlei Dune Climbing",
-          description: "Scale the iconic red dunes including Big Daddy and Dune 45 at sunrise",
-          locations: ["Little Kulala"],
-          difficulty: "Challenging",
-          duration: "Full Day"
-        },
-        {
-          name: "Hot Air Ballooning",
-          description: "Float silently over the ancient Namib Desert for breathtaking aerial views",
-          locations: ["Little Kulala", "Doro Nawas"],
-          difficulty: "Easy",
-          duration: "Half Day"
-        },
-        {
-          name: "Shipwreck Coast Exploration",
-          description: "Discover haunting maritime history along the treacherous Skeleton Coast",
-          locations: ["Hoanib Skeleton Coast"],
-          difficulty: "Easy",
-          duration: "Full Day"
-        }
-      ]
+      id: 2,
+      title: "Skeleton Coast Expeditions",
+      subtitle: "Where Desert Meets Ocean",
+      description: "Explore the dramatic Skeleton Coast where the ancient Namib Desert meets the wild Atlantic Ocean, discovering shipwrecks and massive seal colonies.",
+      longDescription: "Journey to one of the world's most remote coastlines, where powerful ocean currents have claimed countless vessels. Witness Cape fur seals in their thousands at Cape Cross, explore shipwreck sites, and marvel at the stark beauty of this untamed wilderness.",
+      image: "/images/experiences/Wilderness Hoanib Skeleton Coast_1.jpg",
+      duration: "Full day",
+      difficulty: "Easy",
+      bestTime: "Year-round",
+      highlights: [
+        "Cape Cross seal colony (200,000+ seals)",
+        "Historic shipwreck sites",
+        "Dramatic coastal landscapes", 
+        "Marine wildlife observation"
+      ],
+      camps: ["Hoanib Skeleton Coast"]
     },
     {
-      category: "Cultural Immersion",
-      color: "stone",
-      experiences: [
-        {
-          name: "Himba Cultural Visits",
-          description: "Meet the semi-nomadic Himba people and learn about their traditional lifestyle",
-          locations: ["Hoanib Skeleton Coast", "Damaraland Camp"],
-          difficulty: "Easy",
-          duration: "Half Day"
-        },
-        {
-          name: "Ancient Rock Art Tours",
-          description: "Explore prehistoric rock engravings at UNESCO World Heritage sites",
-          locations: ["Damaraland Camp"],
-          difficulty: "Easy",
-          duration: "Half Day"
-        },
-        {
-          name: "Traditional Craft Workshops",
-          description: "Learn traditional skills from local artisans and take home unique creations",
-          locations: ["All Camps"],
-          difficulty: "Easy",
-          duration: "2-3 Hours"
-        }
-      ]
+      id: 3,
+      title: "Sossusvlei Dune Adventures", 
+      subtitle: "Ancient Sand Seas",
+      description: "Scale the world's highest sand dunes in the heart of the Namib Desert, witnessing sunrise over landscapes unchanged for millions of years.",
+      longDescription: "Climb the iconic red dunes of Sossusvlei, including the famous Big Daddy and Dune 45. Experience the ethereal beauty of Dead Vlei's ancient camel thorn trees, perfectly preserved by the desert's dry climate for over 600 years.",
+      image: "/images/experiences/Wilderness Little Kulala_1.jpg",
+      duration: "Full day",
+      difficulty: "Moderate to Challenging",
+      bestTime: "Sunrise",
+      highlights: [
+        "Big Daddy dune climbing",
+        "Dead Vlei ancient trees",
+        "Sunrise photography",
+        "Sand sea exploration"
+      ],
+      camps: ["Little Kulala"]
     },
     {
-      category: "Scenic Journeys",
-      color: "sky",
-      experiences: [
-        {
-          name: "Scenic Flights",
-          description: "Aerial perspectives of dramatic landscapes, coastlines, and desert formations",
-          locations: ["All Camps"],
-          difficulty: "Easy",
-          duration: "1-2 Hours"
-        },
-        {
-          name: "Canyon Explorations",
-          description: "Discover ancient canyons carved by rivers over millions of years",
-          locations: ["Little Kulala", "Doro Nawas"],
-          difficulty: "Moderate",
-          duration: "Half Day"
-        },
-        {
-          name: "Geological Formations Tour",
-          description: "Visit unique rock formations including Burnt Mountain and Organ Pipes",
-          locations: ["Damaraland Camp", "Hoanib Skeleton Coast"],
-          difficulty: "Easy",
-          duration: "Half Day"
-        }
-      ]
+      id: 4,
+      title: "Hot Air Balloon Safaris",
+      subtitle: "Aerial Desert Perspectives", 
+      description: "Float silently over the ancient Namib Desert for unparalleled aerial views of this moonlike landscape, followed by a champagne breakfast in the wilderness.",
+      longDescription: "Rise with the sun for a magical hot air balloon journey over the world's oldest desert. Drift silently above red dunes, ancient riverbeds, and desert plains while spotting wildlife from a unique vantage point. Land for a champagne breakfast in the wilderness.",
+      image: "/images/experiences/Wilderness Little Kulala_2.jpg",
+      duration: "Half day", 
+      difficulty: "Easy",
+      bestTime: "Early morning",
+      highlights: [
+        "Silent flight over desert",
+        "Aerial wildlife viewing",
+        "Champagne breakfast",
+        "Sunrise desert vistas"
+      ],
+      camps: ["Little Kulala", "Doro Nawas"]
     },
     {
-      category: "Wellness & Relaxation",
-      color: "sand",
-      experiences: [
-        {
-          name: "Desert Stargazing",
-          description: "Experience some of the clearest night skies on Earth with expert guides",
-          locations: ["All Camps"],
-          difficulty: "Easy",
-          duration: "Evening"
-        },
-        {
-          name: "Spa Treatments",
-          description: "Rejuvenating treatments inspired by desert botanicals and traditional healing",
-          locations: ["All Camps"],
-          difficulty: "Easy",
-          duration: "1-2 Hours"
-        },
-        {
-          name: "Meditation & Mindfulness",
-          description: "Find inner peace in the profound silence of the desert wilderness",
-          locations: ["All Camps"],
-          difficulty: "Easy",
-          duration: "1 Hour"
-        }
-      ]
+      id: 5,
+      title: "Cultural Nature Walks",
+      subtitle: "Living Heritage Encounters",
+      description: "Walk with Himba communities through their ancestral lands, learning traditional tracking skills and desert survival techniques passed down through generations.",
+      longDescription: "Join Himba guides for authentic cultural exchanges in their natural environment. Learn traditional plant uses, animal tracking, and survival skills while supporting community-based conservation efforts in this pristine wilderness.",
+      image: "/images/experiences/Wilderness Doro Nawas_2.jpg",
+      duration: "Half day",
+      difficulty: "Easy",
+      bestTime: "Morning or afternoon", 
+      highlights: [
+        "Traditional tracking skills",
+        "Medicinal plant knowledge",
+        "Cultural exchange",
+        "Community conservation support"
+      ],
+      camps: ["Hoanib Skeleton Coast", "Damaraland Camp"]
+    },
+    {
+      id: 6,
+      title: "Geological Expeditions",
+      subtitle: "Ancient Earth Stories",
+      description: "Explore Namibia's fascinating geological heritage, from petrified forests to dramatic mountain formations that tell Earth's ancient stories.",
+      longDescription: "Discover the Petrified Forest with trees over 280 million years old, explore the Burnt Mountain's colorful mineral deposits, and marvel at the Organ Pipes' geometric basalt columns. Each site reveals chapters of Earth's geological history.",
+      image: "/images/experiences/Wilderness Doro Nawas_3.jpg",
+      duration: "Half day", 
+      difficulty: "Easy to Moderate",
+      bestTime: "Morning or afternoon",
+      highlights: [
+        "280-million-year-old petrified trees",
+        "Burnt Mountain mineral formations",
+        "Organ Pipes basalt columns", 
+        "Geological history interpretation"
+      ],
+      camps: ["Damaraland Camp", "Doro Nawas"]
     }
   ];
 
-  const getColorClasses = (color: string) => {
-    const colorMap = {
-      earth: "bg-earth-50/80 border-earth-200 text-earth-600",
-      sunset: "bg-sunset-50/80 border-sunset-200 text-sunset-600", 
-      stone: "bg-stone-50/80 border-stone-200 text-stone-600",
-      sky: "bg-sky-50/80 border-sky-200 text-sky-600",
-      sand: "bg-sand-50/80 border-sand-200 text-sand-600"
-    };
-    return colorMap[color as keyof typeof colorMap] || colorMap.earth;
-  };
-
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case "Easy": return "text-green-600 bg-green-50";
-      case "Moderate": return "text-yellow-600 bg-yellow-50";
-      case "Challenging": return "text-red-600 bg-red-50";
-      default: return "text-stone-600 bg-stone-50";
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
-      {/* Navigation */}
-      {/* <nav className="relative z-10 p-6 sm:p-8 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-900">
-              Safari Culture
-            </h1>
-            <span className="safari-accent text-sm text-earth-500">Namibia</span>
-          </Link>
-          <div className="hidden md:flex space-x-8">
-            <Link href="/camps" className="safari-body text-stone-600 hover:text-sunset-500 transition-colors">
-              Camps
-            </Link>
-            <Link href="/experiences" className="safari-body text-sunset-600 font-medium">
-              Experiences
-            </Link>
-            <Link href="/contact" className="safari-body text-stone-600 hover:text-sunset-500 transition-colors">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </nav> */}
-
+    <div className="min-h-screen bg-white">
       <Navigation />
+      
+      {/* Hero Section with ExperiencesHero Component */}
+      <ExperiencesHero />
 
-      {/* Hero Section */}
-      <section className="py-16 sm:py-24">
-        <div className="max-w-4xl mx-auto px-6 sm:px-8 text-center">
-          <h1 className="safari-heading text-4xl sm:text-6xl lg:text-7xl text-neutral-900 mb-6">
-            Desert Experiences
-          </h1>
-          <p className="safari-accent text-lg sm:text-xl text-earth-500 tracking-widest mb-6">
-            Adventure Awaits in Every Direction
-          </p>
-          <p className="safari-body text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
-            From tracking desert elephants to climbing ancient dunes, from cultural encounters 
-            to scenic flights over dramatic landscapes - discover the full spectrum of Namibian adventures.
-          </p>
+      {/* Experiences Grid */}
+      <section ref={ref} id="experiences" className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-light text-stone-900 mb-6">
+              Wilderness Adventures
+            </h2>
+            <p className="text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+              From desert drives to coastal expeditions, each experience offers intimate encounters 
+              with Namibia&apos;s pristine wilderness and remarkable wildlife.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {natureExperiences.map((experience, index) => (
+              <motion.div
+                key={experience.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className="group cursor-pointer"
+                onClick={() => setSelectedExperience(experience.id)}
+              >
+                <div className="relative overflow-hidden rounded-sm mb-6">
+                  <div className="aspect-[4/3] relative">
+                    <Image
+                      src={experience.image}
+                      alt={experience.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-2xl font-light text-stone-900 mb-2 group-hover:text-sunset-600 transition-colors">
+                      {experience.title}
+                    </h3>
+                    <p className="text-sunset-600 font-medium text-sm tracking-wide uppercase">
+                      {experience.subtitle}
+                    </p>
+                  </div>
+                  
+                  <p className="text-stone-600 leading-relaxed">
+                    {experience.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-4">
+                    <div className="flex items-center space-x-4 text-sm text-stone-500">
+                      <span>{experience.duration}</span>
+                      <span>•</span>
+                      <span>{experience.difficulty}</span>
+                    </div>
+                    <button className="text-sunset-600 hover:text-sunset-700 font-medium text-sm transition-colors">
+                      Learn More →
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Experiences by Category */}
-      <section className="pb-20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          {experiences.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="mb-16">
-              <div className="flex items-center mb-8">
-                <h2 className="safari-heading text-3xl text-neutral-900 mr-4">
-                  {category.category}
-                </h2>
-                <div className={`px-4 py-2 rounded-full ${getColorClasses(category.color)}`}>
-                  <span className="safari-accent text-xs tracking-wider">
-                    {category.experiences.length} EXPERIENCES
-                  </span>
+      {/* Experience Detail Modal */}
+      {selectedExperience && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelectedExperience(null)}
+        >
+          {(() => {
+            const experience = natureExperiences.find(exp => exp.id === selectedExperience);
+            if (!experience) return null;
+            
+            return (
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-sm"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative h-80 lg:h-96">
+                  <Image
+                    src={experience.image}
+                    alt={experience.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <button
+                    onClick={() => setSelectedExperience(null)}
+                    className="absolute top-6 right-6 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
+                  >
+                    ×
+                  </button>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {category.experiences.map((experience, index) => (
-                  <div key={index} className="bg-white/80 p-8 rounded-2xl border border-stone-200 hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="safari-heading text-xl text-neutral-900 leading-tight">
-                        {experience.name}
-                      </h3>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(experience.difficulty)}`}>
-                        {experience.difficulty}
-                      </span>
-                    </div>
-                    
-                    <p className="safari-body text-stone-600 leading-relaxed mb-6">
-                      {experience.description}
+                
+                <div className="p-8 lg:p-12">
+                  <div className="mb-8">
+                    <h2 className="text-3xl lg:text-4xl font-light text-stone-900 mb-2">
+                      {experience.title}
+                    </h2>
+                    <p className="text-sunset-600 font-medium tracking-wide uppercase text-sm">
+                      {experience.subtitle}
                     </p>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <span className="safari-accent text-xs text-earth-500 tracking-wider block mb-2">
-                          AVAILABLE AT
-                        </span>
-                        <div className="flex flex-wrap gap-2">
-                          {experience.locations.map((location, locIndex) => (
-                            <span key={locIndex} className="safari-body text-xs px-3 py-1 bg-sand-100 text-stone-700 rounded-full">
-                              {location}
-                            </span>
-                          ))}
+                  </div>
+                  
+                  <p className="text-lg text-stone-600 leading-relaxed mb-8">
+                    {experience.longDescription}
+                  </p>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <div>
+                      <h4 className="font-medium text-stone-900 mb-4">Experience Details</h4>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Duration:</span>
+                          <span className="text-stone-900">{experience.duration}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Difficulty:</span>
+                          <span className="text-stone-900">{experience.difficulty}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Best Time:</span>
+                          <span className="text-stone-900">{experience.bestTime}</span>
                         </div>
                       </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="safari-accent text-xs text-earth-500 tracking-wider block">
-                            DURATION
-                          </span>
-                          <span className="safari-body text-stone-700 text-sm">
-                            {experience.duration}
-                          </span>
-                        </div>
-                        <Link 
-                          href="/contact"
-                          className="safari-body text-sunset-600 hover:text-sunset-500 text-sm font-medium transition-colors"
-                        >
-                          Book Experience →
-                        </Link>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-stone-900 mb-4">Available At</h4>
+                      <div className="space-y-2">
+                        {experience.camps.map((camp, idx) => (
+                          <div key={idx} className="text-sm text-stone-600">
+                            {camp}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+                  
+                  <div className="mb-8">
+                    <h4 className="font-medium text-stone-900 mb-4">Experience Highlights</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {experience.highlights.map((highlight, idx) => (
+                        <div key={idx} className="flex items-center">
+                          <div className="w-2 h-2 bg-sunset-500 rounded-full mr-3 flex-shrink-0"></div>
+                          <span className="text-stone-600 text-sm">{highlight}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link 
+                      href="/contact"
+                      className="flex-1 bg-sunset-500 text-white text-center py-4 px-6 hover:bg-sunset-600 transition-colors font-medium"
+                    >
+                      BOOK THIS EXPERIENCE
+                    </Link>
+                    <Link 
+                      href="/camps"
+                      className="flex-1 border border-stone-300 text-stone-900 text-center py-4 px-6 hover:bg-stone-50 transition-colors font-medium"
+                    >
+                      VIEW CAMPS
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })()
+          }
+        </motion.div>
+      )}
 
-      {/* Experience Planning */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-6 sm:px-8">
-          <div className="text-center mb-12">
-            <h2 className="safari-heading text-4xl text-neutral-900 mb-6">
-              Plan Your Adventure
+      {/* Call to Action */}
+      <section className="py-20 bg-stone-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-light text-stone-900 mb-6">
+              Ready for Adventure?
             </h2>
-            <p className="safari-body text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
-              Our experienced guides will help you create the perfect itinerary based on your interests, 
-              fitness level, and preferred camps.
+            <p className="text-xl text-stone-600 mb-8 leading-relaxed">
+              Our curated experiential journeys offer you a taste of once-in-a-lifetime adventures 
+              filled with intimate encounters and dramatic landscapes.
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-white rounded-2xl border border-stone-200">
-              <div className="w-16 h-16 bg-earth-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🗺️</span>
-              </div>
-              <h3 className="safari-heading text-xl text-neutral-900 mb-4">
-                Multi-Camp Journeys
-              </h3>
-              <p className="safari-body text-stone-600 text-sm leading-relaxed">
-                Combine 2-4 camps for the ultimate Namibian experience. Each camp offers unique landscapes 
-                and activities for a comprehensive desert adventure.
-              </p>
-            </div>
-            
-            <div className="text-center p-8 bg-white rounded-2xl border border-stone-200">
-              <div className="w-16 h-16 bg-sunset-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">👥</span>
-              </div>
-              <h3 className="safari-heading text-xl text-neutral-900 mb-4">
-                Private Experiences
-              </h3>
-              <p className="safari-body text-stone-600 text-sm leading-relaxed">
-                All activities are conducted with your personal guide for intimate, personalized experiences 
-                tailored to your interests and pace.
-              </p>
-            </div>
-            
-            <div className="text-center p-8 bg-white rounded-2xl border border-stone-200">
-              <div className="w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🌟</span>
-              </div>
-              <h3 className="safari-heading text-xl text-neutral-900 mb-4">
-                Seasonal Highlights
-              </h3>
-              <p className="safari-body text-stone-600 text-sm leading-relaxed">
-                Different seasons offer unique experiences - from green season photography to dry season 
-                wildlife concentrations around water sources.
-              </p>
-            </div>
-          </div>
-          
-          <div className="text-center mt-12">
             <Link 
               href="/contact"
-              className="safari-body px-8 py-4 bg-sunset-500 text-white rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-lg hover:shadow-xl inline-block"
+              className="inline-block px-8 py-4 bg-sunset-500 text-white hover:bg-sunset-600 transition-colors font-medium tracking-wide"
             >
-              Plan My Journey
+              PLAN YOUR JOURNEY
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-neutral-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="text-center">
-            <p className="safari-body text-neutral-400">
-              © 2025 Safari Culture - Wilderness Namibia. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
