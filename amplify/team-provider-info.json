@@ -10,6 +10,14 @@
       "StackName": "amplify-namibiawilderness-dev-22972",
       "StackId": "arn:aws:cloudformation:us-east-1:352579054201:stack/amplify-namibiawilderness-dev-22972/be1cc5c0-9977-11f0-9bba-123a3734dc75",
       "AmplifyAppId": "d30fngzgv4r9dp"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d30fngzgv4r9dp",
+          "type": "cicd"
+        }
+      }
     }
   }
 }

@@ -42,7 +42,7 @@ export default function DoroNawasPage() {
       <DoroGallery />
       <DoroContact />
       
-      <Footer />
+    
     </div>
   );
 }

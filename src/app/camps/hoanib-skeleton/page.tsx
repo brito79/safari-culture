@@ -43,7 +43,7 @@ export default function HoanibSkeletonCoastPage() {
       <HoanibGallery />
       <HoanibContact />
       
-      <Footer />
+      
     </div>
   );
 }

@@ -42,7 +42,7 @@ export default function DamaralandCampPage() {
       <DamaralandGallery />
       <DamaralandContact />
       
-      <Footer />
+      
     </div>
   );
 }
