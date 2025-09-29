@@ -372,7 +372,7 @@ export default function FAQ() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-sunset-500 to-sunset-600 text-white font-semibold rounded-xl hover:from-sunset-600 hover:to-sunset-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-sunset-500 to-sunset-600 text-neutral-700 font-medium rounded-xl hover:from-sunset-600 hover:to-sunset-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
               Contact Our Experts
             </motion.button>
