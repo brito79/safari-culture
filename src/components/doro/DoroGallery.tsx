@@ -12,47 +12,47 @@ const DoroGallery = () => {
 
   const galleryImages = [
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_2.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_2.jpg`,
       alt: "Doro Nawas camp overview in Damaraland",
       category: "Camp"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_3.jpg", 
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg`, 
       alt: "Luxury suite with desert views",
       category: "Accommodation"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_4.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`,
       alt: "Camp facilities and communal areas", 
       category: "Facilities"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_5.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_5.jpg`,
       alt: "Cultural excursion with local community",
       category: "Culture"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_6.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_6.jpg`,
       alt: "Nature drive in Damaraland landscape",
       category: "Wildlife"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_7.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_7.jpg`,
       alt: "Ancient rock art at Twyfelfontein",
       category: "Culture"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_8.JPG",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_8.JPG`,
       alt: "Stargazing deck and night sky",
       category: "Activities"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_9.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_9.jpg`,
       alt: "Desert landscape and geological formations",
       category: "Landscape"
     },
     {
-      src: "/images/doro-nawas/Wilderness Doro Nawas_10.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_10.jpg`,
       alt: "Damaraland wilderness and wildlife",
       category: "Wildlife"
     }

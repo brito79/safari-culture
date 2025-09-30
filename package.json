@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.5.0",
+    "@auth0/nextjs-auth0": "^4.10.0",
     "@aws-amplify/ui-react": "^6.12.0",
     "@radix-ui/react-slot": "^1.2.3",
     "aws-amplify": "^6.15.6",

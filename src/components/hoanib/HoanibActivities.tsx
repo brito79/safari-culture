@@ -12,42 +12,42 @@ const HoanibActivities = () => {
   const activities = [
     {
       title: "Nature Drives",
-      image: "/images/hoanib-skeleton/nature-drives/1741348647312_Activities_Hiking_007-1.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/nature-drives/1741348647312_Activities_Hiking_007-1.jpg`,
       description: "Explore the Hoanib River valley in search of desert-adapted elephants, gemsbok, giraffe, and springbok. These specialized game drives reveal how wildlife has adapted to survive in this harsh desert environment.",
       duration: "3-4 hours",
       highlights: ["Desert-adapted elephants", "Gemsbok & springbok", "Desert-adapted giraffe", "Unique ecosystem"]
     },
     {
       title: "Guided Nature Walks",
-      image: "/images/hoanib-skeleton/guided-nature-walks/1741348647312_Activities_Hiking_007-1.jpg", 
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/guided-nature-walks/1741348647312_Activities_Hiking_007-1.jpg`, 
       description: "Discover the intricate desert ecosystem on foot with expert guides who share insights into Strandloper history, desert plant adaptations, and the remarkable survival strategies of local wildlife.",
       duration: "2-3 hours",
       highlights: ["Strandloper history", "Desert plant life", "Tracking skills", "Cultural insights"]
     },
     {
       title: "Skeleton Coast Excursions",
-      image: "/images/hoanib-skeleton/skeleton-coast-excursions/1741348847441_Activities_SkeletonCoast_SealColony_021.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/skeleton-coast-excursions/1741348847441_Activities_SkeletonCoast_SealColony_021.jpg`,
       description: "For guests staying 3+ nights, embark on a 4x4 journey to the legendary Skeleton Coast. Witness massive seal colonies and explore haunting shipwreck remains, with return flights offering aerial perspectives.",
       duration: "Full day",
       highlights: ["Cape Cross seal colony", "Shipwreck exploration", "4x4 adventure", "Return scenic flights"]
     },
     {
       title: "Day Excursions",
-      image: "/images/hoanib-skeleton/day-excursions/1741347436974_Final-Hoanib-64.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/day-excursions/1741347436974_Final-Hoanib-64.jpg`,
       description: "Journey to Mudorib Springs and explore Damaraland&apos;s geological wonders. These excursions often include opportunities to track desert-adapted black rhino in their natural habitat.",
       duration: "Full day", 
       highlights: ["Mudorib Springs", "Damaraland geology", "Desert-adapted rhino", "Rock formations"]
     },
     {
       title: "Wildlife Research Encounters",
-      image: "/images/hoanib-skeleton/wilderlife-researchers/desert_rhino_camp_2014-08-108e.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/wilderlife-researchers/desert_rhino_camp_2014-08-108e.jpg`,
       description: "Meet researchers from the Hoanib Research Centre and learn about Dr Philip Stander&apos;s groundbreaking work with desert-adapted lions and the ongoing conservation efforts in this unique ecosystem.",
       duration: "2-3 hours",
       highlights: ["Desert lion research", "Conservation projects", "Research center visit", "Wildlife tracking"]
     },
     {
       title: "Birding Expeditions", 
-      image: "/images/hoanib-skeleton/birding/korhaan-1.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/birding/korhaan-1.jpg`,
       description: "Discover endemic species including Rüppell&apos;s korhaan, Benguela long-billed lark, and Verreaux&apos;s eagle. The diverse habitats from desert to coast create exceptional birding opportunities.",
       duration: "3-4 hours",
       highlights: ["Endemic species", "Rüppell's korhaan", "Benguela lark", "Verreaux's eagle"]

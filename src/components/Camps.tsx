@@ -5,16 +5,16 @@ import Link from "next/link";
 const camps = [
   {
     id: "doro-nawas",
-    name: "Wilderness Doro Nawas",
+    name: "Wilderness-Doro-Nawas",
     region: "Damaraland",
     description: "A fortress on a rocky outcrop with sweeping views across ancient plains. Track desert-adapted elephants and black rhinos in this UNESCO World Heritage landscape.",
     features: ["Desert-adapted wildlife", "Black rhino tracking", "Ancient rock art", "Cultural experiences"],
     images: {
-      hero: "/images/doro-nawas/Wilderness Doro Nawas_1.jpg",
+      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_1.jpg`,
       gallery: [
-        "/images/doro-nawas/Wilderness Doro Nawas_2.jpg",
-        "/images/doro-nawas/Wilderness Doro Nawas_3.jpg",
-        "/images/doro-nawas/Wilderness Doro Nawas_4.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_2.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`
       ]
     },
     accommodation: "16 suites",
@@ -22,16 +22,16 @@ const camps = [
   },
   {
     id: "little-kulala",
-    name: "Wilderness Little Kulala",
+    name: "Wilderness-Little-Kulala",
     region: "Sossusvlei",
     description: "Gateway to the towering red dunes of Sossusvlei. Wake to sunrise over the Namib Desert, the world's oldest desert stretching endlessly to the horizon.",
     features: ["Sossusvlei access", "Desert dune climbing", "Star gazing", "Desert luxury"],
     images: {
-      hero: "/images/little-kulala/Wilderness Little Kulala_1.jpg",
+      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`,
       gallery: [
-        "/images/little-kulala/Wilderness Little Kulala_2.jpg",
-        "/images/little-kulala/Wilderness Little Kulala_3.jpg",
-        "/images/little-kulala/Wilderness Little Kulala_4.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_2.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_4.jpg`
       ]
     },
     accommodation: "11 suites",
@@ -44,11 +44,11 @@ const camps = [
     description: "Remote wilderness at the edge of the world. Explore the mysterious Skeleton Coast where desert meets ocean in dramatic, windswept landscapes.",
     features: ["Skeleton Coast excursions", "Wildlife research", "Seal colonies", "Remote wilderness"],
     images: {
-      hero: "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_1.jpg",
+      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_1.jpg`,
       gallery: [
-        "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_2.jpg",
-        "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_3.jpg",
-        "/images/hoanib-skeleton/day-excursions/1741347436974_Final-Hoanib-64.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_2.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_3.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/day-excursions/1741347436974_Final-Hoanib-64.jpg`
       ]
     },
     accommodation: "8 tents",
@@ -61,11 +61,11 @@ const camps = [
     description: "Cultural immersion in ancient landscapes. Discover San rock art, learn from local communities, and witness wildlife thriving in this remarkable semi-desert environment.",
     features: ["Cultural immersion", "San rock art", "Community visits", "Desert elephants"],
     images: {
-      hero: "/images/damaraland/Wilderness Damaraland Camp_1.jpg",
+      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_1.jpg`,
       gallery: [
-        "/images/damaraland/Wilderness Damaraland Camp_2.jpg",
-        "/images/damaraland/Wilderness Damaraland Camp_3.jpg",
-        "/images/damaraland/Wilderness Damaraland Camp_4.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_2.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_3.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_4.jpg`
       ]
     },
     accommodation: "10 tents",

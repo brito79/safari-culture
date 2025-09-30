@@ -5,56 +5,56 @@ export default function CampActivities() {
     {
       title: "Hot Air Ballooning",
       description: "Experience sunrise flights over the ancient Namib Desert dunes",
-      image: "/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg`,
       duration: "3 hours",
       difficulty: "Easy"
     },
     {
       title: "Sossusvlei & Dead Vlei",
       description: "Visit the iconic red dunes and ancient fossilized forest",
-      image: "/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg`,
       duration: "Full day",
       difficulty: "Moderate"
     },
     {
       title: "Quad Biking Adventures",
       description: "Explore the desert landscapes on guided quad bike excursions",
-      image: "/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg`,
       duration: "2 hours",
       difficulty: "Moderate"
     },
     {
       title: "Guided Nature Trails",
       description: "Discover desert-adapted flora and fauna with expert guides",
-      image: "/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_0011.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_0011.jpg`,
       duration: "2-3 hours",
       difficulty: "Easy"
     },
     {
       title: "Stargazing Experience",
       description: "Professional astronomy sessions under pristine dark skies",
-      image: "/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg`,
       duration: "2 hours",
       difficulty: "Easy"
     },
     {
       title: "Scenic Sundowners",
       description: "Enjoy cocktails while watching spectacular desert sunsets",
-      image: "/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg`,
       duration: "2 hours",
       difficulty: "Easy"
     },
     {
       title: "Night Walks & Scorpion Spotting",
       description: "Discover nocturnal desert life with UV torches",
-      image: "/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg`,
       duration: "1.5 hours",
       difficulty: "Easy"
     },
     {
       title: "Sleep-Out Experience",
       description: "Spend the night on your private rooftop star bed",
-      image: "/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg`,
       duration: "Full night",
       difficulty: "Easy"
     }
@@ -149,7 +149,7 @@ export default function CampActivities() {
             </div>
             <div className="relative h-96 rounded-xl overflow-hidden">
               <Image
-                src="/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg`}
                 alt="Hot Air Balloon over Sossusvlei"
                 fill
                 className="object-cover"

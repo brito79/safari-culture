@@ -12,42 +12,42 @@ const DoroActivities = () => {
   const activities = [
     {
       title: "Cultural Excursions",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_5.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_5.jpg`,
       description: "Gain rewarding insights into the local Damara community. Visit traditional villages, learn about ancient customs, and engage with local artisans who maintain centuries-old traditions.",
       duration: "Half day",
       highlights: ["Village visits", "Traditional crafts", "Local cuisine", "Cultural stories"]
     },
     {
       title: "Nature Drives",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_6.jpg", 
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_6.jpg`, 
       description: "Combine game drives with scenic river lunches and guided walks. Track desert-adapted elephants and black rhinos while exploring the unique geology of Damaraland.",
       duration: "3-4 hours",
       highlights: ["Desert elephants", "Black rhino tracking", "Scenic lunches", "Geological wonders"]
     },
     {
       title: "Twyfelfontein Rock Art",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_7.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_7.jpg`,
       description: "Explore Namibia&apos;s first UNESCO World Heritage Site featuring over 6,000 ancient rock engravings and paintings created by San people thousands of years ago.",
       duration: "Half day",
       highlights: ["UNESCO World Heritage", "Ancient engravings", "Archaeological insights", "San culture"]
     },
     {
       title: "Stargazing Sessions",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_8.JPG",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_8.JPG`,
       description: "Look up at the cosmic ocean high above from our dedicated stargazing deck. The clear Damaraland skies offer exceptional views of constellations and celestial phenomena.",
       duration: "Evening", 
       highlights: ["Dark sky viewing", "Constellation tours", "Telescope access", "Astronomy guides"]
     },
     {
       title: "Scorpion Walks",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_9.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_9.jpg`,
       description: "Discover fascinating desert critters at night using UV lights. Learn about the remarkable adaptations of desert insects, arachnids, and small mammals.",
       duration: "1-2 hours",
       highlights: ["UV light exploration", "Desert adaptations", "Nocturnal wildlife", "Conservation education"]
     },
     {
       title: "Geological Excursions", 
-      image: "/images/doro-nawas/Wilderness Doro Nawas_10.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_10.jpg`,
       description: "Explore the incredible geological phenomena of Damaraland including ancient volcanic formations, petrified forests, and unique mineral deposits.",
       duration: "Full day",
       highlights: ["Volcanic formations", "Petrified forest", "Mineral specimens", "Earth history"]

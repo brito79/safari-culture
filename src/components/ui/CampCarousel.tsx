@@ -23,11 +23,11 @@ const camps: Camp[] = [
     region: "DAMARALAND",
     description: "A fortress on a rocky outcrop with sweeping views across ancient plains. Track desert-adapted elephants and black rhinos in this UNESCO World Heritage landscape.",
     images: [
-      "/images/doro-nawas/Wilderness Doro Nawas_1.jpg",
-      "/images/doro-nawas/Wilderness Doro Nawas_2.jpg",
-      "/images/doro-nawas/Wilderness Doro Nawas_3.jpg",
-      "/images/doro-nawas/Wilderness Doro Nawas_4.jpg",
-      "/images/doro-nawas/Wilderness Doro Nawas_5.jpg"
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_1.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_2.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_5.jpg`
     ],
     href: "/camps/doro-nawas",
     highlights: ["Desert-adapted elephants", "Black rhino tracking", "Ancient rock art", "Luxury suites"]
@@ -39,11 +39,11 @@ const camps: Camp[] = [
     region: "SOSSUSVLEI",
     description: "Gateway to the towering red dunes of Sossusvlei. Wake to sunrise over the Namib Desert, the world's oldest desert stretching endlessly to the horizon.",
     images: [
-      "/images/little-kulala/Wilderness Little Kulala_1.jpg",
-      "/images/little-kulala/Wilderness Little Kulala_2.jpg",
-      "/images/little-kulala/Wilderness Little Kulala_3.jpg",
-      "/images/little-kulala/Wilderness Little Kulala_4.jpg",
-      "/images/little-kulala/Wilderness Little Kulala.jpg"
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_2.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_4.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala.jpg`
     ],
     href: "/camps/little-kulala",
     highlights: ["Sossusvlei dunes", "Hot air ballooning", "Desert activities", "Climate-controlled suites"]
@@ -55,10 +55,10 @@ const camps: Camp[] = [
     region: "SKELETON COAST", 
     description: "Remote wilderness at the edge of the world. Explore the mysterious Skeleton Coast where desert meets ocean in dramatic fashion.",
     images: [
-      "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_1.jpg",
-      "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_2.jpg",
-      "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_3.jpg",
-      "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp.jpg"
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_1.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_2.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_3.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp.jpg`
     ],
     href: "/camps/hoanib-skeleton-coast",
     highlights: ["Seal colonies", "Shipwreck exploration", "Desert elephants", "Coastal wilderness"]
@@ -70,11 +70,11 @@ const camps: Camp[] = [
     region: "DAMARALAND",
     description: "A luxury camp in the heart of ancient Damaraland, famous for desert-adapted elephants and rich cultural heritage with stunning mountain views.",
     images: [
-      "/images/damaraland/Wilderness Damaraland Camp_1.jpg",
-      "/images/damaraland/Wilderness Damaraland Camp_2.jpg",
-      "/images/damaraland/Wilderness Damaraland Camp_3.jpg",
-      "/images/damaraland/Wilderness Damaraland Camp_4.jpg",
-      "/images/damaraland/Wilderness Damaraland Camp_5.jpg"
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_1.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_2.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_3.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_4.jpg`,
+      `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_5.jpg`
     ],
     href: "/camps/damaraland-camp",
     highlights: ["Cultural encounters", "Mountain landscapes", "Elephant tracking", "Rock art sites"]

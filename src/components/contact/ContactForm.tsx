@@ -45,8 +45,8 @@ const ContactForm = () => {
   };
 
   const camps = [
-    "Wilderness Doro Nawas",
-    "Wilderness Little Kulala", 
+    "Wilderness-Doro-Nawas",
+    "Wilderness-Little-Kulala", 
     "Wilderness Hoanib Skeleton Coast",
     "Wilderness Damaraland Camp"
   ];
@@ -66,7 +66,7 @@ const ContactForm = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-8"
         style={{ 
-          backgroundImage: 'url(/images/experiences/skeleton-coast.jpg)' 
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/skeleton-coast.jpg)` 
         }}
       />
       <div className="absolute inset-0 bg-white/85" />

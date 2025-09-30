@@ -14,7 +14,7 @@ const ContactInfo = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-10"
         style={{ 
-          backgroundImage: 'url(/images/experiences/nature-drives.jpg)' 
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/nature-drives.jpg)` 
         }}
       />
       <div className="absolute inset-0 bg-white/80" />

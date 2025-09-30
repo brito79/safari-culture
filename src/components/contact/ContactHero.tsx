@@ -13,7 +13,7 @@ const ContactHero = () => {
             {/* Background Image */}
             <div className="absolute inset-0">
                 <Image
-                    src="/images/hero-home/1741347488261_Final-Hoanib-11.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hero-home/1741347488261_Final-Hoanib-11.jpg`}
                     alt="Contact us about your Namibian wilderness adventure"
                     fill
                     className="object-cover"

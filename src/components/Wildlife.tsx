@@ -32,7 +32,7 @@ const wildlifeData: WildlifeSpecies[] = [
     id: 1,
     title: 'Desert Elephants',
     description: 'Magnificent giants specially adapted to traverse vast desert landscapes in search of water and food.',
-    image: '/images/doro-nawas/Wilderness Doro Nawas_4.jpg',
+    image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`,
     keyFeatures: ['Desert-adapted physiology', 'Long-distance migrations', 'Small family groups', 'Water-dependent behavior'],
     detailedInfo: {
       scientificName: 'Loxodonta africana',
@@ -56,7 +56,7 @@ const wildlifeData: WildlifeSpecies[] = [
     id: 2,
     title: 'Black Rhino',
     description: 'Critically endangered giants that have found sanctuary in Namibia&apos;s world-renowned conservation areas.',
-    image: '/images/doro-nawas/Wilderness Doro Nawas_5.jpg',
+    image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_5.jpg`,
     keyFeatures: ['Critically endangered status', 'Browser feeding habits', 'Solitary behavior', 'Conservation success story'],
     detailedInfo: {
       scientificName: 'Diceros bicornis',
@@ -80,7 +80,7 @@ const wildlifeData: WildlifeSpecies[] = [
     id: 3,
     title: 'Desert-Adapted Wildlife',
     description: 'Remarkable species that have evolved extraordinary adaptations to thrive in one of Earth&apos;s harshest environments.',
-    image: '/images/little-kulala/Wilderness Little Kulala_3.jpg',
+    image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`,
     keyFeatures: ['Extreme desert adaptations', 'Water conservation abilities', 'Temperature regulation', 'Unique behavioral patterns'],
     detailedInfo: {
       scientificName: 'Various species including Oryx gazella, Aepyceros melampus',

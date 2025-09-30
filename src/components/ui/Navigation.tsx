@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { useAuth, usePermissions } from '@/lib/auth-context';
 
 interface NavigationProps {
   className?: string;
@@ -14,6 +16,8 @@ export default function Navigation({ className = "" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { isLoading, isAuthenticated, user, logout } = useAuth();
+  const { isAdmin } = usePermissions();
 
   const navigationItems = [
     { href: "/camps", label: "Camps" },
@@ -21,110 +25,183 @@ export default function Navigation({ className = "" }: NavigationProps) {
     { href: "/contact", label: "Contact" }
   ];
 
+  // Admin link that triggers authentication
+  const adminItem = { href: "/admin", label: "Admin" };
+
   // Avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Theme cycling function
   const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else if (theme === "dark") {
-      setTheme("system");
+    if (theme === 'light') {
+      setTheme('dark');
+    } else if (theme === 'dark') {
+      setTheme('system');
     } else {
-      setTheme("light");
+      setTheme('light');
     }
   };
 
+  // Theme icon component
   const getThemeIcon = () => {
-    if (theme === "dark") {
+    if (theme === 'light') {
+      return <Sun className="h-4 w-4" />;
+    } else if (theme === 'dark') {
       return <Moon className="h-4 w-4" />;
     } else {
-      return <Sun className="h-4 w-4" />;
+      return (
+        <div className="h-4 w-4 relative">
+          <Sun className="h-3 w-3 absolute top-0 left-0" />
+          <Moon className="h-2 w-2 absolute bottom-0 right-0" />
+        </div>
+      );
     }
   };
 
-  // Debug logging
-  console.log('Theme debug:', { theme, mounted });
-
   return (
-    <nav className={`relative z-10 p-6 sm:p-8 ${className}`}>
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-900 dark:text-neutral-700">
-            Namibian Wilderness
-          </h1>
-          <span className="safari-accent text-sm text-black dark:text-earth-400">Namibia</span>
-        </Link>
+    <nav className={`sticky top-0 z-50 bg-neutral-600 dark:bg-neutral-900/90 backdrop-blur-md border-b border-stone-200 dark:border-stone-700 ${className}`}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-100 dark:text-neutral-100">
+              Namibian Wilderness
+            </h1>
+            <span className="safari-accent text-sm text-black- dark:text-earth-400">Namibia</span>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8 hover:text-sunset-500">
-          {navigationItems.map((item) => (
-            <Link key={item.href} href={item.href}>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {/* Main Navigation */}
+            <nav className="flex space-x-6">
+              {navigationItems.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  <Button
+                    variant="ghost"
+                    className="safari-body text-stone-100 text-lg hover:text-sunset-500 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md"
+                  >
+                    {item.label}
+                  </Button>
+                </Link>
+              ))}
+            </nav>
+            
+            {/* Admin Link - Always visible, triggers auth when clicked */}
+            <div className="border-l border-stone-200 pl-6">
+              <Link href={adminItem.href}>
+                <Button
+                  variant="ghost"
+                  className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
+                >
+                  {adminItem.label}
+                </Button>
+              </Link>
+            </div>
+            
+            {/* Auth Status - Only show if authenticated */}
+            {!isLoading && isAuthenticated && (
+              <div className="flex items-center space-x-4 border-l border-stone-200 pl-6">
+                {/* User Info */}
+                {user && (
+                  <div className="flex items-center space-x-3">
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
+                        {user.name || user.email || 'User'}
+                      </p>
+                      {isAdmin && (
+                        <span className="text-xs text-sunset-600 dark:text-sunset-400 font-medium">
+                          Admin
+                        </span>
+                      )}
+                    </div>
+                    {user.picture && (
+                      <Image
+                        src={user.picture}
+                        alt="Profile"
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 rounded-full border border-stone-200"
+                      />
+                    )}
+                  </div>
+                )}
+                
+                <Button 
+                  variant="outline" 
+                  onClick={logout}
+                  className="border-stone-300 text-stone-700 hover:bg-stone-50"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            )}
+
+            {/* Loading State */}
+            {isLoading && (
+              <div className="flex items-center space-x-2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-stone-900"></div>
+                <span className="text-stone-600 text-sm">Loading...</span>
+              </div>
+            )}
+
+            {/* Theme Toggle */}
+            {mounted ? (
               <Button
-                variant="ghost"
-                className="safari-body text-stone-600 text-2xl font-black-500 hover:text-sunset-500 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md"
+                variant="outline"
+                size="sm"
+                onClick={toggleTheme}
+                className="border-blue-500 bg-blue-50 text-blue-900 hover:bg-blue-100 transition-all shadow-md min-w-[100px]"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} theme`}
               >
-                {item.label}
+                {getThemeIcon()}
+                <span className="ml-2 text-xs capitalize">{theme || 'system'}</span>
               </Button>
-            </Link>
-          ))}
-          
-          {/* Theme Toggle */}
-          {mounted ? (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleTheme}
-              className="border-blue-500 bg-blue-50 text-blue-900 hover:bg-blue-100 transition-all shadow-md min-w-[100px]"
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} theme`}
-            >
-              {getThemeIcon()}
-              <span className="ml-2 text-xs capitalize">{theme || 'system'}</span>
-            </Button>
-          ) : (
-            <div className="w-[100px] h-8 bg-gray-200 animate-pulse rounded"></div>
-          )}
-        </div>
+            ) : (
+              <div className="w-[100px] h-8 bg-gray-200 animate-pulse rounded"></div>
+            )}
+          </div>
 
-        {/* Mobile Menu & Theme Toggle */}
-        <div className="md:hidden flex items-center space-x-2">
-          {/* Theme Toggle Button */}
-          {mounted ? (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleTheme}
-              className="border-blue-500 bg-blue-50 text-blue-900 hover:bg-blue-100 transition-all shadow-md"
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} theme`}
+          {/* Mobile Menu & Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Theme Toggle Button */}
+            {mounted ? (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleTheme}
+                className="border-blue-500 bg-blue-50 text-blue-900 hover:bg-blue-100 transition-all shadow-md"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} theme`}
+              >
+                {getThemeIcon()}
+              </Button>
+            ) : (
+              <div className="w-8 h-8 bg-gray-200 animate-pulse rounded"></div>
+            )}
+            
+            {/* Mobile Menu Button */}
+            <button
+              className="p-2 text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
             >
-              {getThemeIcon()}
-            </Button>
-          ) : (
-            <div className="w-8 h-8 bg-gray-200 animate-pulse rounded"></div>
-          )}
-          
-          {/* Mobile Menu Button */}
-          <button
-            className="p-2 text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border-t border-stone-200 dark:border-stone-700 md:hidden">
-            <div className="px-6 py-4 space-y-3">
+          <div className="md:hidden border-t border-stone-200 dark:border-stone-700">
+            <div className="px-4 py-4 space-y-3">
+              {/* Main Navigation */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.href}
@@ -136,6 +213,41 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 </Link>
               ))}
               
+              {/* Admin Link - Always visible */}
+              <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                <Link
+                  href={adminItem.href}
+                  className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {adminItem.label}
+                </Link>
+              </div>
+              
+              {/* Auth Status - Only show if authenticated */}
+              {!isLoading && isAuthenticated && (
+                <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                  {user && (
+                    <div className="mb-3">
+                      <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
+                        {user.name || user.email || 'User'}
+                      </p>
+                      {isAdmin && (
+                        <span className="text-xs text-sunset-600 dark:text-sunset-400 font-medium">
+                          Admin
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <button 
+                    onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                    className="block safari-body text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors py-2 text-left"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+
               {/* Mobile Theme Options */}
               <div className="pt-3 border-t border-stone-200 dark:border-stone-700">
                 <p className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2">Theme</p>

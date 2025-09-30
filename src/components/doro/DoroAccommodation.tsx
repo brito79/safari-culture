@@ -12,14 +12,14 @@ const DoroAccommodation = () => {
   const accommodationFeatures = [
     {
       type: "Luxury Suites",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_3.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg`,
       description: "Wood, canvas, and thatch suites with panoramic desert views",
       guests: "32 guests maximum",
       features: ["Private outdoor shower", "Spacious verandas", "Desert views", "En-suite bathroom"]
     },
     {
       type: "Camp Facilities",
-      image: "/images/doro-nawas/Wilderness Doro Nawas_4.jpg", 
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`, 
       description: "Central areas designed for relaxation and stargazing",
       guests: "Shared spaces",
       features: ["Inviting swimming pool", "Star gazing deck", "Communal dining", "Fire pit areas"]

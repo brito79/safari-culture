@@ -16,7 +16,7 @@ const DamaralandActivities = () => {
       duration: "Half Day",
       difficulty: "Easy",
       highlights: ["Desert-adapted elephants", "Dramatic scenery", "Huab River wildlife", "Morning & afternoon options"],
-      image: "/images/damaraland/Wilderness Damaraland Camp_4.jpg"
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_4.jpg`
     },
     {
       title: "Guided Nature Walks",
@@ -24,7 +24,7 @@ const DamaralandActivities = () => {
       duration: "2-3 Hours",
       difficulty: "Moderate",
       highlights: ["Geological wonders", "Adapted flora & fauna", "Birds & reptiles", "Weather dependent"],
-      image: "/images/damaraland/Wilderness Damaraland Camp_7.jpg"
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_7.jpg`
     },
     {
       title: "Full Day Twyfelfontein Excursion",
@@ -32,7 +32,7 @@ const DamaralandActivities = () => {
       duration: "Full Day", 
       difficulty: "Easy",
       highlights: ["Ancient rock art", "UNESCO World Heritage", "Picnic lunch included", "3+ night stays only"],
-      image: "/images/damaraland/Wilderness Damaraland Camp_6.jpg"
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_6.jpg`
     },
     {
       title: "Cultural Excursion",
@@ -40,7 +40,7 @@ const DamaralandActivities = () => {
       duration: "Half Day",
       difficulty: "Easy",
       highlights: ["Local heritage", "Community engagement", "School visits", "Cultural respect"],
-      image: "/images/damaraland/Wilderness Damaraland Camp_5.jpg"
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_5.jpg`
     }
   ];
 

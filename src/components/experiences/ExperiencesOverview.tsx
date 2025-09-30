@@ -14,28 +14,28 @@ const ExperiencesOverview = () => {
       title: "Wildlife Encounters",
       description: "Track desert-adapted elephants, witness black rhino conservation, and discover unique desert wildlife.",
       icon: "🐘",
-      image: "/images/experiences/1758190858744doronawas-namibia07-25n-rix61.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/1758190858744doronawas-namibia07-25n-rix61.jpg`,
       features: ["Desert Elephant Tracking", "Black Rhino Conservation", "Seal Colony Visits", "Desert Giraffe"]
     },
     {
       title: "Cultural Heritage",
       description: "Experience authentic encounters with local communities and discover ancient rock art treasures.",
       icon: "🎨",
-      image: "/images/experiences/1758191665162oevans-1636.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/1758191665162oevans-1636.jpg`,
       features: ["Himba Cultural Visits", "Ancient Rock Art", "Traditional Crafts", "Community School Visits"]
     },
     {
       title: "Desert Adventures",
       description: "Scale towering dunes, explore dramatic landscapes, and experience the raw beauty of the Namib.",
       icon: "🏔️",
-      image: "/images/experiences/doronawas_02-19-27e.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/doronawas_02-19-27e.jpg`,
       features: ["Dune Climbing", "Hot Air Ballooning", "Canyon Exploration", "Geological Tours"]
     },
     {
       title: "Scenic Journeys", 
       description: "Witness breathtaking landscapes from unique perspectives through drives and scenic flights.",
       icon: "✈️",
-      image: "/images/experiences/Wilderness Doro Nawas_2.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/Wilderness-Doro-Nawas_2.jpg`,
       features: ["Scenic Flights", "Nature Drives", "Sunset Views", "Coastal Exploration"]
     }
   ];

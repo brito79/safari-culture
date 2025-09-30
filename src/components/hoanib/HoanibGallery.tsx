@@ -12,47 +12,47 @@ const HoanibGallery = () => {
 
   const galleryImages = [
     {
-      src: "/images/hoanib-skeleton/nature-drives/1741348647313_Activities_Hiking_008-1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/nature-drives/1741348647313_Activities_Hiking_008-1.jpg`,
       alt: "Desert elephants in the Hoanib valley",
       category: "Wildlife"
     },
     {
-      src: "/images/hoanib-skeleton/skeleton-coast-excursions/1741348847438_Activities_SkeletonCoast_Graveyard_001.jpg", 
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/skeleton-coast-excursions/1741348847438_Activities_SkeletonCoast_Graveyard_001.jpg`, 
       alt: "Skeleton Coast landscape",
       category: "Landscapes"
     },
     {
-      src: "/images/hoanib-skeleton/standard-twin/Hoanib_Skeleton_Coast_2014-08-95e1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/standard-twin/Hoanib_Skeleton_Coast_2014-08-95e1.jpg`,
       alt: "Pavilion interior with desert views", 
       category: "Accommodation"
     },
     {
-      src: "/images/hoanib-skeleton/guided-nature-walks/1741348647313_Activities_Hiking_008-1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/guided-nature-walks/1741348647313_Activities_Hiking_008-1.jpg`,
       alt: "Desert landscape during guided walk",
       category: "Activities"
     },
     {
-      src: "/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_1.jpg`,
       alt: "Gemsbok in desert landscape",
       category: "Wildlife"
     },
     {
-      src: "/images/hoanib-skeleton/family-accomodation/familytent_hoanib_088.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/family-accomodation/familytent_hoanib_088.jpg`,
       alt: "Family pavilion with mountain views",
       category: "Accommodation"
     },
     {
-      src: "/images/hoanib-skeleton/day-excursions/1741347488261_Final-Hoanib-11.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/day-excursions/1741347488261_Final-Hoanib-11.jpg`,
       alt: "Damaraland rock formations",
       category: "Landscapes"
     },
     {
-      src: "/images/hoanib-skeleton/birding/b_lark-1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/birding/b_lark-1.jpg`,
       alt: "Bird watching in desert environment",
       category: "Activities"
     },
     {
-      src: "/images/hoanib-skeleton/wilderlife-researchers/b_lark-1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/wilderlife-researchers/b_lark-1.jpg`,
       alt: "Wildlife research in action",
       category: "Conservation"
     }

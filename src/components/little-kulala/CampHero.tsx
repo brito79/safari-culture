@@ -7,8 +7,8 @@ export default function CampHero() {
       <div className="absolute inset-0">
         <div className="relative w-full h-full">
           <Image
-            src="/images/little-kulala/Wilderness Little Kulala.jpg"
-            alt="Wilderness Little Kulala - Sossusvlei Desert Views"
+            src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala.jpg`}
+            alt="Wilderness-Little-Kulala - Sossusvlei Desert Views"
             fill
             className="object-cover"
             priority

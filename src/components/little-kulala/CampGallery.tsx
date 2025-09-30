@@ -17,65 +17,65 @@ export default function CampGallery() {
   const galleryImages = [
     // Accommodation
     {
-      src: "/images/little-kulala/Wilderness Little Kulala_1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`,
       alt: "Little Kulala Villa Exterior",
       category: "accommodation"
     },
     {
-      src: "/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_064.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_064.jpg`,
       alt: "Family Villa Interior",
       category: "accommodation"
     },
     {
-      src: "/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_039.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_039.jpg`,
       alt: "Star Bed Experience",
       category: "accommodation"
     },
     // Activities
     {
-      src: "/images/little-kulala/hot-air-balloon/03_little_kulala_balloon_on_board_1094.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/03_little_kulala_balloon_on_board_1094.jpg`,
       alt: "Hot Air Balloon Flight",
       category: "activities"
     },
     {
-      src: "/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0804.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0804.jpg`,
       alt: "Quad Biking Adventure",
       category: "activities"
     },
     {
-      src: "/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg`,
       alt: "Guided Nature Walk",
       category: "activities"
     },
     // Landscapes
     {
-      src: "/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg`,
       alt: "Aerial View of Sossusvlei",
       category: "landscapes"
     },
     {
-      src: "/images/little-kulala/stargazing/kulala-namib_2014-12-121e.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/kulala-namib_2014-12-121e.jpg`,
       alt: "Night Sky over Little Kulala",
       category: "landscapes"
     },
     {
-      src: "/images/little-kulala/scenic-sundowner/nam2019-1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/nam2019-1.jpg`,
       alt: "Desert Sunset",
       category: "landscapes"
     },
     // More images
     {
-      src: "/images/little-kulala/Wilderness Little Kulala_2.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_2.jpg`,
       alt: "Desert Villa with Pool",
       category: "accommodation"
     },
     {
-      src: "/images/little-kulala/nature-drives/sociable_weaver.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/nature-drives/sociable_weaver.jpg`,
       alt: "Sociable Weaver Bird",
       category: "wildlife"
     },
     {
-      src: "/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg`,
       alt: "Barking Gecko",
       category: "wildlife"
     }

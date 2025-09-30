@@ -12,52 +12,52 @@ const DamaralandGallery = () => {
 
   const galleryImages = [
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_1.jpg`,
       alt: "Damaraland Camp mountain setting",
       category: "Camp"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_2.jpg", 
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_2.jpg`, 
       alt: "Mountain landscape views from camp",
       category: "Landscape"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_3.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_3.jpg`,
       alt: "Tented suite with mountain views",
       category: "Accommodation"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_4.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_4.jpg`,
       alt: "Desert elephants in Damaraland",
       category: "Wildlife"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_5.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_5.jpg`,
       alt: "Traditional Himba culture encounter",
       category: "Culture"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_6.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_6.jpg`,
       alt: "Ancient rock art at Twyfelfontein",
       category: "Culture"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_7.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_7.jpg`,
       alt: "Geological formations and mountain landscapes",
       category: "Landscape"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_8.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_8.jpg`,
       alt: "Camp facilities and dining area",
       category: "Facilities"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_9.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_9.jpg`,
       alt: "Adventure activities and excursions",
       category: "Activities"
     },
     {
-      src: "/images/damaraland/Wilderness Damaraland Camp_10.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_10.jpg`,
       alt: "Scenic mountain vistas and wilderness",
       category: "Landscape"
     }

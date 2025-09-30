@@ -20,7 +20,7 @@ const ContactResources = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-8"
         style={{ 
-          backgroundImage: 'url(/images/experiences/hot-air-balloon.jpg)' 
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/hot-air-balloon.jpg)` 
         }}
       />
       <div className="absolute inset-0 bg-stone-50/90" />

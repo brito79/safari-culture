@@ -59,7 +59,7 @@ const DoroOverview = () => {
           >
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="/images/doro-nawas/Wilderness Doro Nawas_2.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_2.jpg`}
                 alt="Doro Nawas camp in Damaraland landscape"
                 fill
                 className="object-cover"

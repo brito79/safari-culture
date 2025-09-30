@@ -9,7 +9,7 @@ const DoroHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/doro-nawas/Wilderness Doro Nawas_1.jpg"
+          src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_1.jpg`}
           alt="Doro Nawas wilderness landscape in Damaraland"
           fill
           className="object-cover"

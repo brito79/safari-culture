@@ -22,7 +22,7 @@ export default function CampAbout() {
             </h2>
             <div className="space-y-6 text-stone-700 text-lg leading-relaxed">
               <p>
-                Wilderness Little Kulala is an elegant sanctuary on the dry Auab riverbed in the 
+                Wilderness-Little-Kulala is an elegant sanctuary on the dry Auab riverbed in the 
                 27,000-hectare Kulala Wilderness Reserve – the ideal setting from which to savour 
                 the splendour and solitude of the Namib Desert.
               </p>
@@ -37,7 +37,7 @@ export default function CampAbout() {
           <div className="space-y-6">
             <div className="relative h-80 rounded-xl overflow-hidden">
               <Image
-                src="/images/little-kulala/Wilderness Little Kulala_1.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`}
                 alt="Little Kulala Desert Villa with Pool"
                 fill
                 className="object-cover"
@@ -46,7 +46,7 @@ export default function CampAbout() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative h-40 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg`}
                   alt="Aerial View of Sossusvlei"
                   fill
                   className="object-cover"
@@ -54,7 +54,7 @@ export default function CampAbout() {
               </div>
               <div className="relative h-40 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/Wilderness Little Kulala_3.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`}
                   alt="Little Kulala Villa Interior"
                   fill
                   className="object-cover"
@@ -69,7 +69,7 @@ export default function CampAbout() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 rounded-xl overflow-hidden">
               <Image
-                src="/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg`}
                 alt="Hot Air Balloon over Namib Desert"
                 fill
                 className="object-cover"
@@ -131,7 +131,7 @@ export default function CampAbout() {
             <div className="space-y-4">
               <div className="relative h-56 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg`}
                   alt="Sossusvlei Big Daddy Dune"
                   fill
                   className="object-cover"
@@ -140,7 +140,7 @@ export default function CampAbout() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-32 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg`}
                     alt="Quad Biking Adventure"
                     fill
                     className="object-cover"
@@ -148,7 +148,7 @@ export default function CampAbout() {
                 </div>
                 <div className="relative h-32 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg`}
                     alt="Guided Nature Walks"
                     fill
                     className="object-cover"
@@ -173,7 +173,7 @@ export default function CampAbout() {
           </div>
           <div className="relative h-64 rounded-xl overflow-hidden">
             <Image
-              src="/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg"
+              src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg`}
               alt="Sossusvlei Geological Formation"
               fill
               className="object-cover"
@@ -185,7 +185,7 @@ export default function CampAbout() {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="relative h-80 rounded-xl overflow-hidden">
             <Image
-              src="/images/little-kulala/nature-drives/sociable_weaver.jpg"
+              src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/nature-drives/sociable_weaver.jpg`}
               alt="Desert Wildlife Conservation"
               fill
               className="object-cover"
@@ -234,7 +234,7 @@ export default function CampAbout() {
             <div className="space-y-4">
               <div className="relative h-48 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg`}
                   alt="Barking Gecko"
                   fill
                   className="object-cover"
@@ -243,7 +243,7 @@ export default function CampAbout() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-32 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/scorpion-night-walks/white_lady_house_2.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/white_lady_house_2.jpg`}
                     alt="Desert Spider"
                     fill
                     className="object-cover"
@@ -251,7 +251,7 @@ export default function CampAbout() {
                 </div>
                 <div className="relative h-32 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg`}
                     alt="Night Wildlife"
                     fill
                     className="object-cover"
@@ -267,7 +267,7 @@ export default function CampAbout() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="safari-heading text-3xl mb-6">
-                Wilderness Little Kulala
+                Wilderness-Little-Kulala
               </h3>
               <div className="space-y-4 leading-relaxed">
                 <p>
@@ -291,7 +291,7 @@ export default function CampAbout() {
             <div className="space-y-4">
               <div className="relative h-48 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg`}
                   alt="Rooftop Sleep-out Experience"
                   fill
                   className="object-cover"
@@ -300,7 +300,7 @@ export default function CampAbout() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-28 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg`}
                     alt="Sundowner Experience"
                     fill
                     className="object-cover"
@@ -308,7 +308,7 @@ export default function CampAbout() {
                 </div>
                 <div className="relative h-28 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg`}
                     alt="Stargazing"
                     fill
                     className="object-cover"

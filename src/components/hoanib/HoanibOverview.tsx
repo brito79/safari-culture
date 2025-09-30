@@ -59,7 +59,7 @@ const HoanibOverview = () => {
           >
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="/images/hoanib-skeleton/guided-nature-walks/1741348647313_Activities_Hiking_008-1.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/guided-nature-walks/1741348647313_Activities_Hiking_008-1.jpg`}
                 alt="Hoanib landscape with desert and mountains"
                 fill
                 className="object-cover"

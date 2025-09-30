@@ -59,7 +59,7 @@ const DamaralandOverview = () => {
           >
             <div className="relative h-96 rounded-2xl overflow-hidden">
               <Image
-                src="/images/damaraland/Wilderness Damaraland Camp_2.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_2.jpg`}
                 alt="Damaraland Camp mountain views"
                 fill
                 className="object-cover"

@@ -15,14 +15,14 @@ const DamaralandAccommodation = () => {
       description: "Nine spacious adobe-style twin en-suite rooms under thatch, each built on a raised wooden platform with large deck to relax and soak in the endless desert landscape.",
       features: ["Twin or double beds", "En-suite facilities", "Raised wooden platform", "Large private deck", "Thatch roofing", "Gravel pathway access"],
       guests: "9 Rooms Available",
-      image: "/images/damaraland/Wilderness Damaraland Camp_3.jpg"
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_3.jpg`
     },
     {
       title: "Family Accommodation",
       description: "One family unit consisting of two bedrooms, each with two three-quarter beds and own en-suite facilities. Separate entrances with a shared outdoor deck connecting both units.",
       features: ["Two bedrooms", "Two three-quarter beds per room", "Separate en-suite facilities", "Individual entrances", "Shared outdoor deck"],
       guests: "1 Family Unit (4 guests)",
-      image: "/images/damaraland/Wilderness Damaraland Camp_8.jpg"
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_8.jpg`
     }
   ];
 

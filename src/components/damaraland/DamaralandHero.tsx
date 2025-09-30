@@ -14,7 +14,7 @@ const DamaralandHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/damaraland/Wilderness Damaraland Camp_1.jpg"
+          src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_1.jpg`}
           alt="Wilderness Damaraland Camp in ancient mountain landscape"
           fill
           className="object-cover"

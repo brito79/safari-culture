@@ -12,14 +12,14 @@ const HoanibAccommodation = () => {
   const accommodationTypes = [
     {
       type: "Family Accommodation",
-      image: "/images/hoanib-skeleton/family-accomodation/familytent_hoanib_081.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/family-accomodation/familytent_hoanib_081.jpg`,
       description: "Spacious family pavilion with interconnecting areas",
       guests: "Up to 4 guests",
       features: ["Two bedrooms", "Shared living area", "Family activities", "Child-friendly amenities"]
     },
     {
       type: "Standard Twin",
-      image: "/images/hoanib-skeleton/standard-twin/Hoanib_Skeleton_Coast_2014-08-76e1.jpg", 
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/standard-twin/Hoanib_Skeleton_Coast_2014-08-76e1.jpg`, 
       description: "Elevated pavilion with twin beds and panoramic views",
       guests: "2 guests",
       features: ["Twin beds", "Private deck", "Desert views", "En-suite bathroom"]

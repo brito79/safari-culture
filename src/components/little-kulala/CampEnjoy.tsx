@@ -5,10 +5,10 @@ export default function CampEnjoy() {
     {
       title: "Hot Air Ballooning",
       description: "Experience sunrise flights over the ancient Namib Desert dunes with champagne breakfast celebration",
-      image: "/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg`,
       additionalImages: [
-        "/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg",
-        "/images/little-kulala/hot-air-balloon/03_little_kulala_balloon_on_board_1094.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/03_little_kulala_balloon_on_board_1094.jpg`
       ],
       duration: "3-4 hours",
       difficulty: "Easy",
@@ -17,10 +17,10 @@ export default function CampEnjoy() {
     {
       title: "Sossusvlei & Dead Vlei",
       description: "Visit the iconic red dunes and ancient fossilized forest, including climbing Big Daddy dune",
-      image: "/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg`,
       additionalImages: [
-        "/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg",
-        "/images/little-kulala/sossusvlei-dead-vlei/sossusvleie074.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvleie074.jpg`
       ],
       duration: "Full day",
       difficulty: "Moderate"
@@ -28,9 +28,9 @@ export default function CampEnjoy() {
     {
       title: "Quad Biking Adventures",
       description: "Explore the spectacular gravel plains on eco-sensitive quad bike tours across the desert landscape",
-      image: "/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg`,
       additionalImages: [
-        "/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0804.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0804.jpg`
       ],
       duration: "2-3 hours",
       difficulty: "Moderate"
@@ -38,10 +38,10 @@ export default function CampEnjoy() {
     {
       title: "Guided Nature Trails",
       description: "Discover desert-adapted flora and fauna with expert guides in the Kulala Wilderness Reserve",
-      image: "/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_0011.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_0011.jpg`,
       additionalImages: [
-        "/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg",
-        "/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_032.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_032.jpg`
       ],
       duration: "2-3 hours",
       difficulty: "Easy to Moderate"
@@ -49,10 +49,10 @@ export default function CampEnjoy() {
     {
       title: "Stargazing Experience",
       description: "Professional astronomy sessions under pristine dark skies from your private rooftop",
-      image: "/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg`,
       additionalImages: [
-        "/images/little-kulala/stargazing/kulala-namib_2014-12-121e.jpg",
-        "/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_008.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/kulala-namib_2014-12-121e.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_008.jpg`
       ],
       duration: "2 hours",
       difficulty: "Easy"
@@ -60,10 +60,10 @@ export default function CampEnjoy() {
     {
       title: "Scenic Sundowners",
       description: "Enjoy cocktails while watching spectacular desert sunsets from elevated viewpoints",
-      image: "/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg`,
       additionalImages: [
-        "/images/little-kulala/scenic-sundowner/nam2019-1.jpg",
-        "/images/little-kulala/scenic-sundowner/oevans_kdl036.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/nam2019-1.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/oevans_kdl036.jpg`
       ],
       duration: "2 hours",
       difficulty: "Easy"
@@ -71,10 +71,10 @@ export default function CampEnjoy() {
     {
       title: "Night Walks & Scorpion Spotting",
       description: "Discover nocturnal desert life with UV torches and expert naturalist guides",
-      image: "/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg`,
       additionalImages: [
-        "/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg",
-        "/images/little-kulala/scorpion-night-walks/white_lady_house_2.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/white_lady_house_2.jpg`
       ],
       duration: "1.5 hours",
       difficulty: "Easy"
@@ -82,10 +82,10 @@ export default function CampEnjoy() {
     {
       title: "Sleep-Out Experience",
       description: "Spend the night on your private rooftop star bed under the pristine Namib sky",
-      image: "/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg",
+      image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg`,
       additionalImages: [
-        "/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_039.jpg",
-        "/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0392.jpg"
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_039.jpg`,
+        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0392.jpg`
       ],
       duration: "Full night",
       difficulty: "Easy"
@@ -160,7 +160,7 @@ export default function CampEnjoy() {
             </div>
             <div className="relative h-96 rounded-xl overflow-hidden">
               <Image
-                src="/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg`}
                 alt="Hot Air Balloon over Sossusvlei"
                 fill
                 className="object-cover"
@@ -211,7 +211,7 @@ export default function CampEnjoy() {
             <div className="space-y-6">
               <div className="relative h-80 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg`}
                   alt="Aerial View of Sossusvlei"
                   fill
                   className="object-cover"
@@ -220,7 +220,7 @@ export default function CampEnjoy() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-40 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg`}
                     alt="Dead Vlei Trees"
                     fill
                     className="object-cover"
@@ -228,7 +228,7 @@ export default function CampEnjoy() {
                 </div>
                 <div className="relative h-40 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/sossusvlei-dead-vlei/sossusvleie074.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvleie074.jpg`}
                     alt="Sossusvlei Dunes"
                     fill
                     className="object-cover"
@@ -267,7 +267,7 @@ export default function CampEnjoy() {
               <div className="text-center">
                 <div className="relative h-48 rounded-xl overflow-hidden mb-6">
                   <Image
-                    src="/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_035.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_035.jpg`}
                     alt="Guided Nature Walk"
                     fill
                     className="object-cover"
@@ -281,7 +281,7 @@ export default function CampEnjoy() {
               <div className="text-center">
                 <div className="relative h-48 rounded-xl overflow-hidden mb-6">
                   <Image
-                    src="/images/little-kulala/nature-drives/sociable_weaver.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/nature-drives/sociable_weaver.jpg`}
                     alt="Wildlife Spotting"
                     fill
                     className="object-cover"
@@ -295,7 +295,7 @@ export default function CampEnjoy() {
               <div className="text-center">
                 <div className="relative h-48 rounded-xl overflow-hidden mb-6">
                   <Image
-                    src="/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg`}
                     alt="Night Wildlife"
                     fill
                     className="object-cover"
@@ -336,7 +336,7 @@ export default function CampEnjoy() {
             <div className="space-y-4">
               <div className="relative h-56 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0804.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0804.jpg`}
                   alt="Quad Biking Adventure"
                   fill
                   className="object-cover"
@@ -345,7 +345,7 @@ export default function CampEnjoy() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-32 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/hot-air-balloon/20_little_kulala_e_bikes_0934.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/20_little_kulala_e_bikes_0934.jpg`}
                     alt="E-bike Adventure"
                     fill
                     className="object-cover"
@@ -353,7 +353,7 @@ export default function CampEnjoy() {
                 </div>
                 <div className="relative h-32 rounded-xl overflow-hidden">
                   <Image
-                    src="/images/little-kulala/hot-air-balloon/25_little_kulala_game_drive_0778.jpg"
+                    src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/25_little_kulala_game_drive_0778.jpg`}
                     alt="Game Drive"
                     fill
                     className="object-cover"

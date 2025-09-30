@@ -12,56 +12,56 @@ const ExperiencesGallery = () => {
 
   const galleryImages = [
     {
-      src: "/images/experiences/Wilderness Doro Nawas_1.jpg",
-      alt: "Wilderness Doro Nawas - Desert landscape with traditional accommodation",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/1758190858744doronawas-namibia07-25n-rix61.jpg`,
+      alt: "Wilderness-Doro-Nawas - Desert landscape with traditional accommodation",
       title: "Doro Nawas Wilderness",
       category: "Desert Landscapes"
     },
     {
-      src: "/images/experiences/Wilderness Doro Nawas_2.jpg", 
-      alt: "Wilderness Doro Nawas - Cultural heritage and traditional lifestyle",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/Wilderness-Doro-Nawas_2.jpg`, 
+      alt: "Wilderness-Doro-Nawas - Cultural heritage and traditional lifestyle",
       title: "Cultural Heritage",
       category: "Local Culture"
     },
     {
-      src: "/images/experiences/Wilderness Doro Nawas_3.jpg",
-      alt: "Wilderness Doro Nawas - Mountain vistas and geological formations",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/doronawas_02-19-27e.jpg`,
+      alt: "Wilderness-Doro-Nawas - Mountain vistas and geological formations",
       title: "Ancient Mountains", 
       category: "Geological Wonders"
     },
     {
-      src: "/images/experiences/Wilderness Hoanib Skeleton Coast_1.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/1758191665162oevans-1636.jpg`,
       alt: "Wilderness Hoanib Skeleton Coast - Dramatic coastal landscapes",
       title: "Skeleton Coast Wilderness",
       category: "Coastal Adventures"
     },
     {
-      src: "/images/experiences/Wilderness Hoanib Skeleton Coast_2.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/1758190858744doronawas-namibia07-25n-rix61.jpg`,
       alt: "Wilderness Hoanib Skeleton Coast - Marine wildlife and seal colonies", 
       title: "Marine Wildlife",
       category: "Wildlife Encounters"
     },
     {
-      src: "/images/experiences/Wilderness Hoanib Skeleton Coast_3.jpg",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/doronawas_02-19-27e.jpg`,
       alt: "Wilderness Hoanib Skeleton Coast - Desert meets ocean landscape",
       title: "Desert Meets Ocean",
       category: "Unique Ecosystems"
     },
     {
-      src: "/images/experiences/Wilderness Little Kulala_1.jpg",
-      alt: "Wilderness Little Kulala - Iconic red sand dunes of Sossusvlei",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/1758191665162oevans-1636.jpg`,
+      alt: "Wilderness-Little-Kulala - Iconic red sand dunes of Sossusvlei",
       title: "Sossusvlei Dunes",
       category: "Desert Adventures"
     },
     {
-      src: "/images/experiences/Wilderness Little Kulala_2.jpg",
-      alt: "Wilderness Little Kulala - Hot air balloon over ancient desert",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/Wilderness-Doro-Nawas_2.jpg`,
+      alt: "Wilderness-Little-Kulala - Hot air balloon over ancient desert",
       title: "Aerial Perspectives",
       category: "Adventure Activities"
     },
     {
-      src: "/images/experiences/Wilderness Little Kulala_3.jpg",
-      alt: "Wilderness Little Kulala - Sunrise over red sand dunes",
+      src: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/doronawas_02-19-27e.jpg`,
+      alt: "Wilderness-Little-Kulala - Sunrise over red sand dunes",
       title: "Desert Sunrise",
       category: "Natural Phenomena"
     }

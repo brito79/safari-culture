@@ -32,7 +32,7 @@ const tabsData: TabData[] = [
       {
         title: 'Namibia Key Facts',
         description: 'Namibia is home to the last free-roaming black rhinos and desert elephants. It offers a fascinating medley of cultures and European influences in its art, exquisite cuisine and architecture. Here you can explore miles and miles of untouched land in every direction. And embrace total serenity.',
-        image: '/images/little-kulala/Wilderness Little Kulala_1.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`,
         facts: [
           'POPULATION SIZE|3 Million',
           'CURRENCY|Namibian Dollar (NAD)',
@@ -50,19 +50,19 @@ const tabsData: TabData[] = [
       {
         title: 'Ephemeral rivers',
         description: 'Marienfluss, Hoanib Skeleton Coast, Damaraland regions.',
-        image: '/images/doro-nawas/Wilderness Doro Nawas_3.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg`,
         regions: ['Marienfluss', 'Hoanib Skeleton Coast', 'Damaraland']
       },
       {
         title: 'Semi-desert',
         description: 'Doro Nawas, Kulala, Palmwag, Torra regions.',
-        image: '/images/damaraland/Wilderness Damaraland Camp_2.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_2.jpg`,
         regions: ['Doro Nawas', 'Kulala', 'Palmwag', 'Torra']
       },
       {
         title: 'Desert',
         description: 'The iconic Marienfluss and Kulala regions.',
-        image: '/images/little-kulala/Wilderness Little Kulala_2.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_2.jpg`,
         regions: ['Marienfluss', 'Kulala']
       }
     ]
@@ -74,19 +74,19 @@ const tabsData: TabData[] = [
       {
         title: 'Desert Elephants',
         description: 'Specially adapted elephants that traverse vast distances across the desert in search of water.',
-        image: '/images/doro-nawas/Wilderness Doro Nawas_4.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`,
         wildlife: ['Desert-adapted elephants', 'Small family groups', 'Long-distance migrations', 'Water-dependent']
       },
       {
         title: 'Black Rhino',
         description: 'Critically endangered black rhinos find sanctuary in Namibia\'s conservancy areas.',
-        image: '/images/doro-nawas/Wilderness Doro Nawas_5.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_5.jpg`,
         wildlife: ['Critically endangered', 'Browser feeding habits', 'Solitary animals', 'Conservation success story']
       },
       {
         title: 'Desert Wildlife',
         description: 'Unique species that have evolved to thrive in one of the world\'s harshest environments.',
-        image: '/images/little-kulala/Wilderness Little Kulala_3.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`,
         wildlife: ['Oryx (Gemsbok)', 'Springbok', 'Brown hyena', 'Desert-adapted species']
       }
     ]
@@ -98,7 +98,7 @@ const tabsData: TabData[] = [
       {
         title: 'Dry Season',
         description: 'Clear skies and mild temperatures make this the ideal time for wildlife viewing and photography.',
-        image: '/images/hoanib-skeleton/Wilderness Hoanib Skeleton Coast Camp_1.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_1.jpg`,
         weather: [
           { season: 'May - October', temperature: '20-25°C', rainfall: '< 5mm' },
           { season: 'Best for', temperature: 'Wildlife viewing', rainfall: 'Clear skies' }
@@ -107,7 +107,7 @@ const tabsData: TabData[] = [
       {
         title: 'Hot Season',
         description: 'Summer months bring higher temperatures but spectacular thunderstorms and dramatic skies.',
-        image: '/images/damaraland/Wilderness Damaraland Camp_3.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_3.jpg`,
         weather: [
           { season: 'November - April', temperature: '25-35°C', rainfall: '50-150mm' },
           { season: 'Best for', temperature: 'Dramatic skies', rainfall: 'Green landscapes' }
@@ -116,7 +116,7 @@ const tabsData: TabData[] = [
       {
         title: 'Cool Season',
         description: 'Winter brings cooler temperatures and excellent conditions for outdoor activities.',
-        image: '/images/little-kulala/Wilderness Little Kulala_4.jpg',
+        image: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_4.jpg`,
         weather: [
           { season: 'June - August', temperature: '5-20°C', rainfall: '0mm' },
           { season: 'Best for', temperature: 'Hiking & activities', rainfall: 'Star gazing' }

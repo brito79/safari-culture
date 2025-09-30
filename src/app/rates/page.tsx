@@ -21,7 +21,7 @@ export default function RatesPage() {
     {
       category: "Adventures",
       camp: "Doro Nawas",
-      name: "Wilderness Doro Nawas",
+      name: "Wilderness-Doro-Nawas",
       type: "FI",
       rates: {
         "6-Jun-26 to 31-May-26": { sharing: "R7 318", supplement: "R2 194" },
@@ -99,7 +99,7 @@ export default function RatesPage() {
     {
       category: "Classic",
       camp: "Sossusvlei",
-      name: "Wilderness Little Kulala",
+      name: "Wilderness-Little-Kulala",
       type: "FI",
       rates: {
         "6-Jun-26 to 31-May-26": { sharing: "R16 260", supplement: "R4 854" },
@@ -115,7 +115,7 @@ export default function RatesPage() {
     {
       category: "Adventures",
       camp: "Doro Nawas",
-      name: "Wilderness Doro Nawas",
+      name: "Wilderness-Doro-Nawas",
       type: "DBB",
       rates: {
         "6-Jun-26 to 31-May-26": { sharing: "R4 503", supplement: "R1 344" },

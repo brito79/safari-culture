@@ -413,4 +413,28 @@ When working on this project:
 - Validate implementation patterns before coding
 - Ensure compatibility with latest versions of all dependencies
 
+
+pages/
+├── index.tsx                    // Home with all camps overview
+├── camps/
+│   ├── [slug].tsx              // Individual camp pages
+│   └── index.tsx               // All camps listing
+├── admin/
+│   ├── index.tsx               // Admin dashboard
+│   ├── camps/
+│   │   ├── index.tsx           // Manage camps
+│   │   ├── [id]/edit.tsx       // Edit camp details
+│   │   └── new.tsx             // Create new camp
+│   └── images.tsx              // Image management
+└── api/
+    ├── camps/
+    │   ├── index.ts            // GET/POST camps
+    │   └── [id].ts             // GET/PUT/DELETE specific camp
+    ├── images/
+    │   ├── upload.ts           // S3 upload endpoint
+    │   └── [campId].ts         // Get camp images
+    └── rates/
+        └── [campId].ts         // Camp pricing
+        
+
 Remember: This is a **technical assessment**. Balance following requirements exactly with showcasing modern development skills using the most current and reliable patterns.

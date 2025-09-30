@@ -56,7 +56,7 @@ export default function CampAccommodation() {
           <div className="space-y-6">
             <div className="relative h-96 rounded-xl overflow-hidden">
               <Image
-                src="/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_064.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_064.jpg`}
                 alt="Little Kulala Villa Interior"
                 fill
                 className="object-cover"
@@ -65,7 +65,7 @@ export default function CampAccommodation() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative h-48 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_061.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_061.jpg`}
                   alt="Villa Bedroom"
                   fill
                   className="object-cover"
@@ -73,7 +73,7 @@ export default function CampAccommodation() {
               </div>
               <div className="relative h-48 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_062.jpg"
+                  src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_062.jpg`}
                   alt="Villa Bathroom"
                   fill
                   className="object-cover"

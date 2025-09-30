@@ -27,7 +27,7 @@ const habitatsData: Habitat[] = [
     id: 1,
     title: 'Ephemeral Rivers',
     description: 'Seasonal waterways that support unique desert-adapted wildlife and vegetation.',
-    image: '/images/doro-nawas/Wilderness Doro Nawas_3.jpg',
+    image: '/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg',
     regions: ['Marienfluss', 'Hoanib Skeleton Coast', 'Damaraland'],
     detailedInfo: {
       ecosystem: 'Riverine desert environment with seasonal water flow',
@@ -55,7 +55,7 @@ const habitatsData: Habitat[] = [
     id: 3,
     title: 'Pure Desert',
     description: 'Ancient sand seas and rocky outcrops representing the world\'s oldest desert.',
-    image: '/images/little-kulala/Wilderness Little Kulala_2.jpg',
+    image: '/images/little-kulala/Wilderness-Little-Kulala_2.jpg',
     regions: ['Sossusvlei', 'Marienfluss', 'Kulala'],
     detailedInfo: {
       ecosystem: 'Hyper-arid environment with specialized flora and fauna',
