@@ -48,20 +48,34 @@ Building a luxury safari tourism platform for Wilderness Namibia showcasing 4 pr
 
 ### Project Structure (HYBRID ROUTER APPROACH)
 ```
-src/
-├── app/                    # App Router (modern approach)
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   ├── camps/             # Camp catalog & details
-│   ├── admin/             # Admin dashboard
-│   └── components/        # Shared components
-├── pages/                 # Pages Router (auth only)
-│   └── api/
-│       └── auth/          # NextAuth.js (required pattern)
-│           └── [...nextauth].ts
-├── components/            # shadcn/ui components
-├── lib/                   # Utilities, Prisma client
-└── types/                 # TypeScript definitions
+safari-culture/
+├── src/
+│   ├── app/                  # Next.js App Router pages
+│   │   ├── api/              # Route handlers (Next.js API routes)
+│   │   │   ├── upload/route.ts      # S3 upload endpoint
+│   │   │   ├── logs/route.ts        # CloudWatch logs endpoint
+│   │   │   └── db/route.ts          # RDS query endpoint
+│   │   ├── dashboard/        # UI pages
+│   │   └── layout.tsx        # App layout
+│   ├── lib/                  # AWS SDK wrappers
+│   │   ├── s3.ts             # S3 upload/download logic
+│   │   ├── rds.ts            # RDS connection/query logic
+│   │   ├── amplify.ts        # Amplify config
+│   │   └── cloudwatch.ts     # CloudWatch logging
+│   ├── components/           # Reusable UI components
+│   ├── hooks/                # Custom React hooks
+│   └── types/                # TypeScript types
+├── amplify/                  # Amplify Gen 2 backend (auth, data, storage)
+│   ├── auth/
+│   ├── data/
+│   ├── storage/
+│   └── backend.ts
+├── public/                   # Static assets
+├── .env.local                # AWS credentials and config
+├── next.config.js
+├── package.json
+└── tsconfig.json
+
 ```
 
 ## 🏕️ Business Domain Understanding

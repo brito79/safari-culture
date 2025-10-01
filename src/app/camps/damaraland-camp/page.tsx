@@ -1,5 +1,4 @@
 import CampNavigation from "@/components/ui/CampNavigation";
-import Footer from "@/components/ui/Footer";
 import DamaralandHero from "@/components/damaraland/DamaralandHero";
 import DamaralandOverview from "@/components/damaraland/DamaralandOverview";
 import DamaralandAccommodation from "@/components/damaraland/DamaralandAccommodation";

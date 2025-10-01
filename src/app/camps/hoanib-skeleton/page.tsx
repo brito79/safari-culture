@@ -5,7 +5,6 @@ import HoanibGallery from "@/components/hoanib/HoanibGallery";
 import HoanibHero from "@/components/hoanib/HoanibHero";
 import HoanibOverview from "@/components/hoanib/HoanibOverview";
 import CampNavigation from "@/components/ui/CampNavigation";
-import Footer from "@/components/ui/Footer";
 
 import Link from "next/link";
 
