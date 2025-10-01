@@ -1,5 +1,4 @@
 import CampNavigation from "@/components/ui/CampNavigation";
-import Footer from "@/components/ui/Footer";
 import DoroHero from "@/components/doro/DoroHero";
 import DoroOverview from "@/components/doro/DoroOverview";
 import DoroAccommodation from "@/components/doro/DoroAccommodation";

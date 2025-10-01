@@ -4,7 +4,6 @@ import CampCarousel from "@/components/ui/CampCarousel";
 import Footer from "@/components/ui/Footer";
 import WhatYouNeedToKnow from "@/components/WhatYouNeedToKnow";
 import FAQ from "@/components/FaQ";
-import S3ImageTest from "@/components/S3ImageTest";
 
 export default function Home() {
   return (
