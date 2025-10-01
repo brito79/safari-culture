@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { useSession, signOut } from 'next-auth/react';
+import { useUser } from '@auth0/nextjs-auth0';
 
 interface NavigationProps {
   className?: string;
@@ -16,11 +16,9 @@ export default function Navigation({ className = "" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { data: session, status } = useSession();
-  const isLoading = status === 'loading';
-  const isAuthenticated = !!session;
-  const user = session?.user;
-  const userRoles = (session?.user as { roles?: string[] })?.roles || [];
+  const { user, isLoading } = useUser();
+  const isAuthenticated = !!user;
+  const userRoles = user && typeof user === 'object' ? (user['https://safari-culture.com/roles'] as string[] || []) : [];
   const isAdmin = userRoles.includes('admin');
 
   const navigationItems = [
@@ -104,15 +102,15 @@ export default function Navigation({ className = "" }: NavigationProps) {
               </Link>
             </div>
             
-            {/* Auth Status - Only show if authenticated */}
-            {!isLoading && isAuthenticated && (
-              <div className="flex items-center space-x-4 border-l border-stone-200 pl-6">
-                {/* User Info */}
-                {user && (
+            {/* Auth Status */}
+            <div className="flex items-center space-x-4 border-l border-stone-200 pl-6">
+              {!isLoading && isAuthenticated ? (
+                <>
+                  {/* User Info */}
                   <div className="flex items-center space-x-3">
                     <div className="text-right">
                       <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
-                        {user.name || user.email || 'User'}
+                        {user?.name || user?.email || 'User'}
                       </p>
                       {isAdmin && (
                         <span className="text-xs text-sunset-600 dark:text-sunset-400 font-medium">
@@ -120,9 +118,9 @@ export default function Navigation({ className = "" }: NavigationProps) {
                         </span>
                       )}
                     </div>
-                    {user.image && (
+                    {user?.picture && (
                       <Image
-                        src={user.image}
+                        src={user.picture}
                         alt="Profile"
                         width={32}
                         height={32}
@@ -130,17 +128,27 @@ export default function Navigation({ className = "" }: NavigationProps) {
                       />
                     )}
                   </div>
-                )}
-                
-                <Button 
-                  variant="outline" 
-                  onClick={() => signOut()}
-                  className="border-stone-300 text-stone-700 hover:bg-stone-50"
-                >
-                  Sign Out
-                </Button>
-              </div>
-            )}
+                  
+                  <Link href="/api/auth/logout">
+                    <Button 
+                      variant="outline" 
+                      className="border-stone-300 text-stone-700 hover:bg-stone-50"
+                    >
+                      Sign Out
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <Link href="/api/auth/login">
+                  <Button 
+                    variant="outline" 
+                    className="border-stone-300 text-stone-700 hover:bg-stone-50"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              )}
+            </div>
 
             {/* Loading State */}
             {isLoading && (
@@ -228,29 +236,32 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 </Link>
               </div>
               
-              {/* Auth Status - Only show if authenticated */}
-              {!isLoading && isAuthenticated && (
-                <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
-                  {user && (
-                    <div className="mb-3">
-                      <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
-                        {user.name || user.email || 'User'}
-                      </p>
-                      {isAdmin && (
-                        <span className="text-xs text-sunset-600 dark:text-sunset-400 font-medium">
-                          Admin
-                        </span>
-                      )}
-                    </div>
-                  )}
-                  <button 
-                    onClick={() => { signOut(); setIsMobileMenuOpen(false); }}
-                    className="block safari-body text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors py-2 text-left"
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              )}
+              {/* Auth Status */}
+              <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                {!isLoading && isAuthenticated ? (
+                  <>
+                    {user && (
+                      <div className="mb-3">
+                        <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
+                          {user.name || user.email || 'User'}
+                        </p>
+                        {isAdmin && (
+                          <span className="text-xs text-sunset-600 dark:text-sunset-400 font-medium">
+                            Admin
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <Link href="/api/auth/logout" onClick={() => setIsMobileMenuOpen(false)} className="block safari-body text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors py-2 text-left">
+                      Sign Out
+                    </Link>
+                  </>
+                ) : (
+                  <Link href="/api/auth/login" onClick={() => setIsMobileMenuOpen(false)} className="block safari-body text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors py-2 text-left">
+                    Sign In
+                  </Link>
+                )}
+              </div>
 
               {/* Mobile Theme Options */}
               <div className="pt-3 border-t border-stone-200 dark:border-stone-700">
