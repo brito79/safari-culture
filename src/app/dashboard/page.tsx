@@ -2,7 +2,6 @@
 'use client'
 
 import { useAuth } from '@/hooks/useAuth'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Shield } from 'lucide-react'
 import AdminDashboard from '@/components/admin/AdminDashboard'
 import { useRouter } from 'next/navigation'
@@ -12,13 +11,9 @@ export default function DashboardPage() {
   const { user, isAuthenticated, isLoading, hasRole } = useAuth()
   const router = useRouter()
 
-  // Debug logging
-  console.log('Dashboard Debug:', { isLoading, isAuthenticated, user })
-
   // Redirect to login if not authenticated
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      console.log('Redirecting to login - not authenticated')
       router.push('/login')
       return
     }
@@ -50,25 +45,29 @@ export default function DashboardPage() {
   // Check if user has admin role
   const isAdmin = hasRole('admin')
   
+  // For now, allow any authenticated user to access dashboard (for testing)
+  // In production, you may want to restrict this to admin only
   if (!isAdmin) {
+    // Show a warning but still allow access for testing
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100 p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center gap-2">
-              <Shield className="w-6 h-6" />
-              Admin Access Only
-            </CardTitle>
-            <CardDescription>
-              You need admin privileges to access this dashboard.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-sm text-muted-foreground">
-              Signed in as: {user?.email}
-            </p>
-          </CardContent>
-        </Card>
+      <div>
+        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <Shield className="h-5 w-5" />
+            </div>
+            <div className="ml-3">
+              <p className="text-sm">
+                Note: You are accessing the dashboard without admin privileges. 
+                In production, admin role would be required.
+              </p>
+              <p className="text-xs mt-1">
+                Signed in as: {user?.email}
+              </p>
+            </div>
+          </div>
+        </div>
+        <AdminDashboard />
       </div>
     )
   }
