@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { useAuth, usePermissions } from '@/lib/auth-context';
+import { useSession, signOut } from 'next-auth/react';
 
 interface NavigationProps {
   className?: string;
@@ -16,8 +16,12 @@ export default function Navigation({ className = "" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { isLoading, isAuthenticated, user, logout } = useAuth();
-  const { isAdmin } = usePermissions();
+  const { data: session, status } = useSession();
+  const isLoading = status === 'loading';
+  const isAuthenticated = !!session;
+  const user = session?.user;
+  const userRoles = (session?.user as { roles?: string[] })?.roles || [];
+  const isAdmin = userRoles.includes('admin');
 
   const navigationItems = [
     { href: "/camps", label: "Camps" },
@@ -116,9 +120,9 @@ export default function Navigation({ className = "" }: NavigationProps) {
                         </span>
                       )}
                     </div>
-                    {user.picture && (
+                    {user.image && (
                       <Image
-                        src={user.picture}
+                        src={user.image}
                         alt="Profile"
                         width={32}
                         height={32}
@@ -130,7 +134,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 
                 <Button 
                   variant="outline" 
-                  onClick={logout}
+                  onClick={() => signOut()}
                   className="border-stone-300 text-stone-700 hover:bg-stone-50"
                 >
                   Sign Out
@@ -240,7 +244,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
                     </div>
                   )}
                   <button 
-                    onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                    onClick={() => { signOut(); setIsMobileMenuOpen(false); }}
                     className="block safari-body text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors py-2 text-left"
                   >
                     Sign Out
