@@ -2,18 +2,21 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useAuth, usePermissions } from '@/lib/auth-context';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function AdminDashboard() {
-  const { user, logout } = useAuth();
-  const { 
-    canManageCamps, 
-    canManageRates, 
-    canManageImages, 
-    canViewInquiries, 
-    canManageUsers, 
-    canViewAnalytics 
-  } = usePermissions();
+  const { data: session } = useSession();
+  const user = session?.user;
+  const userRoles = (session?.user as { roles?: string[] })?.roles || [];
+  const isAdmin = userRoles.includes('admin');
+  
+  // Permission helpers (simplified for NextAuth)
+  const canManageCamps = isAdmin;
+  const canManageRates = isAdmin;
+  const canManageImages = isAdmin;
+  const canViewInquiries = isAdmin;
+  const canManageUsers = isAdmin;
+  const canViewAnalytics = isAdmin;
 
   const dashboardCards = [
     {
@@ -82,7 +85,7 @@ export default function AdminDashboard() {
                 View Site
               </Link>
               <button
-                onClick={logout}
+                onClick={() => signOut()}
                 className="px-6 py-2 bg-stone-900 text-white rounded-lg hover:bg-stone-800 transition-colors"
               >
                 Logout
