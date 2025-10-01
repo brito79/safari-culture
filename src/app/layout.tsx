@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
+import { Toaster } from 'sonner';
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -31,6 +32,7 @@ export default function RootLayout({
           defaultTheme="system"
             disableTransitionOnChange>
             {children}
+            <Toaster position="top-right" />
           </ThemeProvider>
         </AuthProvider>
       </body>

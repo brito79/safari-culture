@@ -1,5 +1,6 @@
 // src/lib/auth/config.ts
 import Auth0Provider from "next-auth/providers/auth0"
+import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions = {
   providers: [
@@ -13,6 +14,46 @@ export const authOptions = {
         },
       },
     }),
+    CredentialsProvider({
+      id: "credentials",
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            console.log("Missing credentials")
+            return null
+          }
+
+          console.log("Attempting to authenticate:", credentials.email)
+
+          // For demo purposes, we'll allow a test user
+          // In production, you'd validate against your database
+          if (credentials.email === "admin@wilderness-namibia.com" && credentials.password === "password123") {
+            console.log("Authentication successful for admin user")
+            return {
+              id: "1",
+              email: "admin@wilderness-namibia.com",
+              name: "Admin User",
+              roles: ["admin"]
+            }
+          }
+
+          // You can also check against a database here
+          // const user = await validateUser(credentials.email, credentials.password)
+          // if (user) return user
+
+          console.log("Authentication failed: Invalid credentials")
+          return null
+        } catch (error) {
+          console.error("Authentication error:", error)
+          return null
+        }
+      }
+    }),
   ],
   
   session: {
@@ -22,10 +63,10 @@ export const authOptions = {
   
   callbacks: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async jwt({ token, account, profile }: { token: any; account: any; profile: any }) {
+    async jwt({ token, account, profile, user }: { token: any; account: any; profile: any; user?: any }) {
       // Persist the OAuth access_token and user info to the token
       if (account && profile) {
-        // Extract roles from Auth0 custom claims
+        // Handle Auth0 users
         const profileData = profile as Record<string, unknown>
         const customClaims = profileData['https://safari-culture.com/roles'] as string[] || []
         const appMetadata = (profileData.app_metadata as Record<string, unknown>)?.roles as string[] || []
@@ -38,6 +79,10 @@ export const authOptions = {
         token.accessToken = account.access_token
         token.roles = Array.isArray(roles) ? roles : []
         token.userId = profile.sub
+      } else if (user && account?.provider === 'credentials') {
+        // Handle credentials users
+        token.userId = user.id
+        token.roles = user.roles || []
       }
       return token
     },
@@ -64,7 +109,7 @@ export const authOptions = {
   
   pages: {
     signIn: "/login",
-    error: "/error",
+    error: "/login",
   },
   
   // Enable debug in development
