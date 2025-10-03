@@ -1,0 +1,58 @@
+version: 1
+# Note: Currently using Amplify Gen 1 - migration to Gen 2 recommended
+# For Gen 2 migration, see: https://docs.amplify.aws/gen2/start/migrate-from-gen1/
+backend:
+  phases:
+    build:
+      commands:
+        - '# Amplify Gen 1 CLI deployment'
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci --cache .npm --prefer-offline
+        - '# Safari Culture - Wilderness Namibia platform'
+        - echo "Building Safari Culture for luxury tourism..."
+        - '# Ensure environment variables are available'
+        - echo "Checking environment configuration..."
+    build:
+      commands:
+        - '# Build Safari Culture - Wilderness Namibia platform'
+        - echo "Building Safari Culture application..."
+        - npm run build
+      environment:
+        variables:
+          # Next.js build optimizations
+          NEXT_TELEMETRY_DISABLED: 1
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          # Safari Culture specific environment
+          APP_ENV: production
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - .npm/**/*
+      - node_modules/**/*
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: 'X-Frame-Options'
+          value: 'DENY'
+        - key: 'X-Content-Type-Options'
+          value: 'nosniff'
+        - key: 'Referrer-Policy'
+          value: 'strict-origin-when-cross-origin'
+        - key: 'Permissions-Policy'
+          value: 'camera=(), microphone=(), geolocation=()'
+    - pattern: '/images/**'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, max-age=31536000, immutable'
+    - pattern: '**/*.{js,css,woff,woff2}'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, max-age=31536000, immutable'
