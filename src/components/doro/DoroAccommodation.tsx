@@ -134,7 +134,7 @@ const DoroAccommodation = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="text-center mt-12"
         >
-          <button className="px-8 py-4 bg-sunset-500 hover:bg-sunset-600 text-white rounded-full font-medium transition-colors duration-300 shadow-lg">
+          <button className="px-8 py-4 bg-sunset-500 hover:bg-sunset-600 text-neutral-500 rounded-full font-medium transition-colors duration-300 shadow-lg">
             Check Availability
           </button>
         </motion.div>

@@ -62,6 +62,33 @@ export const authOptions = {
   },
   
   callbacks: {
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+      // Handle production vs development URLs
+      const isProduction = process.env.NODE_ENV === 'production'
+      const productionUrl = 'https://dev.d30fngzgv4r9dp.amplifyapp.com'
+      const currentBaseUrl = isProduction ? productionUrl : baseUrl
+      
+      console.log('Redirect callback:', { url, baseUrl, currentBaseUrl, isProduction })
+      
+      // If url is relative, make it absolute
+      if (url.startsWith('/')) {
+        return `${currentBaseUrl}${url}`
+      }
+      
+      // If url is absolute and matches our domain
+      try {
+        const urlObj = new URL(url)
+        const baseUrlObj = new URL(currentBaseUrl)
+        if (urlObj.origin === baseUrlObj.origin) {
+          return url
+        }
+      } catch (error) {
+        console.error('URL parsing error:', error)
+      }
+      
+      // Default redirect to dashboard
+      return `${currentBaseUrl}/dashboard`
+    },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async jwt({ token, account, profile, user }: { token: any; account: any; profile: any; user?: any }) {
       // Persist the OAuth access_token and user info to the token
@@ -96,14 +123,6 @@ export const authOptions = {
         session.user.roles = token.roles as string[]
       }
       return session
-    },
-    
-    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
-      // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url
-      return `${baseUrl}/admin`
     },
   },
   

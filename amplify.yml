@@ -16,6 +16,10 @@ frontend:
         - echo "Building Safari Culture for luxury tourism..."
         - '# Ensure environment variables are available'
         - echo "Checking environment configuration..."
+        - echo "NODE_ENV=$NODE_ENV"
+        - echo "NEXTAUTH_URL=$NEXTAUTH_URL"
+        - echo "AUTH0_ISSUER=$AUTH0_ISSUER"
+        - echo "AUTH0_CLIENT_ID=$AUTH0_CLIENT_ID"
         - '# Verify React version compatibility'
         - node -p '"React version:" + require("./node_modules/react/package.json").version'
     build:

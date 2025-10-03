@@ -5,8 +5,8 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/ui/Footer";
-import Navigation from "@/components/ui/Navigation";
+import Footer from "@/components/shared/Footer";
+import Navigation from "@/components/shared/Navigation";
 import ExperiencesHero from "@/components/experiences/ExperiencesHero";
 
 export default function ExperiencesPage() {

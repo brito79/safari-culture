@@ -1,5 +1,5 @@
 import CampNavigation from "@/components/ui/CampNavigation";
-import Footer from "@/components/ui/Footer";
+import Footer from "@/components/shared/Footer";
 import HoanibOverview from "@/components/hoanib/HoanibOverview";
 import HoanibAccommodation from "@/components/hoanib/HoanibAccommodation";
 import HoanibActivities from "@/components/hoanib/HoanibActivities";

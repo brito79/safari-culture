@@ -1,5 +1,5 @@
-import Footer from '@/components/ui/Footer'
-import Navigation from '@/components/ui/Navigation'
+import Footer from '@/components/shared/Footer'
+import Navigation from '@/components/shared/Navigation'
 import React, { ReactNode } from 'react'
 
 function CampsLayout( { children } : Readonly<

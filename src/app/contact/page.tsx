@@ -1,8 +1,8 @@
-import Navigation from "@/components/ui/Navigation";
+import Navigation from "@/components/shared/Navigation";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
 import ContactResources from "@/components/contact/ContactResources";
-import Footer from "@/components/ui/Footer";
+import Footer from "@/components/shared/Footer";
 
 export default function ContactPage() {
   return (

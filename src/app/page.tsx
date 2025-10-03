@@ -1,7 +1,7 @@
-import Navigation from "@/components/ui/Navigation";
+import Navigation from "@/components/shared/Navigation";
 import HeroSection from "@/components/ui/HeroSection";
 import CampCarousel from "@/components/ui/CampCarousel";
-import Footer from "@/components/ui/Footer";
+import Footer from "@/components/shared/Footer";
 import WhatYouNeedToKnow from "@/components/WhatYouNeedToKnow";
 import FAQ from "@/components/FaQ";
 

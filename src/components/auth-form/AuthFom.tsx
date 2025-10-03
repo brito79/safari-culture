@@ -58,6 +58,14 @@ export function AuthForm({
                 return
             }
 
+            // Debug environment information
+            console.log('Environment check:', {
+                nodeEnv: process.env.NODE_ENV,
+                nextauthUrl: process.env.NEXTAUTH_URL,
+                currentUrl: typeof window !== 'undefined' ? window.location.href : 'server',
+                hasAuth0ClientId: !!process.env.AUTH0_CLIENT_ID
+            })
+
             console.log('Attempting login with:', email)
 
             const result = await signIn('credentials', {

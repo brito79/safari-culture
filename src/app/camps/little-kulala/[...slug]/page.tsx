@@ -1,5 +1,5 @@
 import CampNavigation from "@/components/ui/CampNavigation";
-import Footer from "@/components/ui/Footer";
+import Footer from "@/components/shared/Footer";
 import CampHero from "@/components/little-kulala/CampHero";
 import CampOverview from "@/components/little-kulala/CampOverview";
 import CampAbout from "@/components/little-kulala/CampAbout";

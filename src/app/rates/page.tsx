@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "@/components/ui/Navigation";
+import Navigation from "@/components/shared/Navigation";
 
 type RatePeriod = "6-Jun-26 to 31-May-26" | "1-Apr-26 to 31-May-26" | "1-Jun-26 to 31-Oct-26" | "1-Nov-26 to 19-Dec-26" | "20-Dec-26 to 5-Jan-27";
 
