@@ -162,7 +162,7 @@ export const authOptions = {
   
   pages: {
     signIn: "/login",
-    error: "/login",
+    error: "/error",
   },
   
   // Use environment variable or fallback for secret
