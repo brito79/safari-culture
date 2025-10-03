@@ -131,7 +131,6 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
             src={currentCamp.images[0]}
             alt={`${currentCamp.name} - ${currentCamp.description}`}
             fill
-            unoptimized
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
             className="object-cover transition-all duration-1000 ease-in-out"
             priority
@@ -243,7 +242,6 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
               src={camp.images[0]}
               alt={camp.name}
               fill
-              unoptimized
               sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-cover group-hover:scale-110 transition-transform duration-300"
             />

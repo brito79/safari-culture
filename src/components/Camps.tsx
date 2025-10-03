@@ -112,7 +112,6 @@ export default function CampsPage() {
                       src={camp.images.hero}
                       alt={`${camp.name} - ${camp.description.slice(0, 100)}...`}
                       fill
-                      unoptimized
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -132,7 +131,6 @@ export default function CampsPage() {
                           src={image}
                           alt={`${camp.name} gallery image ${imgIndex + 1}`}
                           fill
-                          unoptimized
                           sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 15vw"
                           className="object-cover hover:scale-110 transition-transform duration-500"
                         />

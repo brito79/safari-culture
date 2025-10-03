@@ -72,7 +72,6 @@ const HoanibAccommodation = () => {
                     src={accommodation.image}
                     alt={accommodation.type}
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>

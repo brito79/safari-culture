@@ -12,7 +12,6 @@ const HoanibHero = () => {
           src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp.jpg`}
           alt="Hoanib Skeleton Coast wilderness landscape"
           fill
-          unoptimized
           className="object-cover"
           priority
         />

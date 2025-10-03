@@ -40,7 +40,6 @@ export default function CampAbout() {
                 src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`}
                 alt="Little Kulala Desert Villa with Pool"
                 fill
-                unoptimized
                 className="object-cover"
               />
             </div>
@@ -50,7 +49,6 @@ export default function CampAbout() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvlei-and-deadvlei-aerial-custom.jpg`}
                   alt="Aerial View of Sossusvlei"
                   fill
-                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -59,7 +57,6 @@ export default function CampAbout() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`}
                   alt="Little Kulala Villa Interior"
                   fill
-                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -75,7 +72,6 @@ export default function CampAbout() {
                 src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/Balloon_safaris.jpg`}
                 alt="Hot Air Balloon over Namib Desert"
                 fill
-                unoptimized
                 className="object-cover"
               />
             </div>
@@ -138,7 +134,6 @@ export default function CampAbout() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/Visit_to_Sossusvlei_and_Sesriem.jpg`}
                   alt="Sossusvlei Big Daddy Dune"
                   fill
-                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -148,7 +143,6 @@ export default function CampAbout() {
                     src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/quad-bikes/11_little_kulala_quad_bikes_0208.jpg`}
                     alt="Quad Biking Adventure"
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -157,7 +151,6 @@ export default function CampAbout() {
                     src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/guided-nature-trails/ecozone_littlekulala_teagancunniffe_004.jpg`}
                     alt="Guided Nature Walks"
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -183,7 +176,6 @@ export default function CampAbout() {
               src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sossusvlei-dead-vlei/sossusvleie040.jpg`}
               alt="Sossusvlei Geological Formation"
               fill
-              unoptimized
               className="object-cover"
             />
           </div>
@@ -196,7 +188,6 @@ export default function CampAbout() {
               src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/nature-drives/sociable_weaver.jpg`}
               alt="Desert Wildlife Conservation"
               fill
-              unoptimized
               className="object-cover"
             />
           </div>
@@ -246,7 +237,6 @@ export default function CampAbout() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/barking_gecko_peeking_out_of_hole.jpg`}
                   alt="Barking Gecko"
                   fill
-                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -256,7 +246,6 @@ export default function CampAbout() {
                     src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/white_lady_house_2.jpg`}
                     alt="Desert Spider"
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -265,7 +254,6 @@ export default function CampAbout() {
                     src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scorpion-night-walks/Scorpion_night_walks.jpg`}
                     alt="Night Wildlife"
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -306,7 +294,6 @@ export default function CampAbout() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/sleep-out-experience/units_littlekulala_teagancunniffe_0131.jpg`}
                   alt="Rooftop Sleep-out Experience"
                   fill
-                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -316,7 +303,6 @@ export default function CampAbout() {
                     src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/scenic-sundowner/ginbar_littlekulala_teagancunniffe_002.jpg`}
                     alt="Sundowner Experience"
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -325,7 +311,6 @@ export default function CampAbout() {
                     src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/stargazing/starscapes_littlekulala_teagancunniffe_001.jpg`}
                     alt="Stargazing"
                     fill
-                    unoptimized
                     className="object-cover"
                   />
                 </div>

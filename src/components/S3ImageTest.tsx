@@ -58,7 +58,6 @@ export default function S3ImageTest() {
                 src={image.url}
                 alt={`Test image ${index + 1}`}
                 fill
-                unoptimized
                 className="object-cover"
                 onLoad={() => {
                   console.log(`✅ SUCCESS: ${image.name}`, image.url);

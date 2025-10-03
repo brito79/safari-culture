@@ -120,7 +120,6 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
                 src={species.image}
                 alt={species.title}
                 fill
-                unoptimized
                 sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -198,7 +197,6 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
                 src={selectedSpecies.image}
                 alt={selectedSpecies.title}
                 fill
-                unoptimized
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-black/50" />

@@ -62,7 +62,6 @@ const DoroOverview = () => {
                 src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_2.jpg`}
                 alt="Doro Nawas camp in Damaraland landscape"
                 fill
-                unoptimized
                 className="object-cover"
               />
             </div>

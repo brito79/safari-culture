@@ -125,7 +125,6 @@ const DoroGallery = () => {
                 src={image.src}
                 alt={image.alt}
                 fill
-                unoptimized
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
@@ -159,7 +158,6 @@ const DoroGallery = () => {
                 src={filteredImages[selectedImage].src}
                 alt={filteredImages[selectedImage].alt}
                 fill
-                unoptimized
                 className="object-contain"
               />
               <button

@@ -62,7 +62,6 @@ const HoanibOverview = () => {
                 src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/guided-nature-walks/1741348647313_Activities_Hiking_008-1.jpg`}
                 alt="Hoanib landscape with desert and mountains"
                 fill
-                unoptimized
                 className="object-cover"
               />
             </div>

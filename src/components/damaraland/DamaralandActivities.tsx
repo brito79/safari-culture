@@ -99,8 +99,8 @@ const DamaralandActivities = () => {
                   src={activity.image}
                   alt={activity.title}
                   fill
-                  unoptimized
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  unoptimized
                 />
               </div>
               
