@@ -11,11 +11,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci --cache --legacy-peer-deps .npm --prefer-offline
+        - npm ci --legacy-peer-deps
         - '# Safari Culture - Wilderness Namibia platform'
         - echo "Building Safari Culture for luxury tourism..."
         - '# Ensure environment variables are available'
         - echo "Checking environment configuration..."
+        - '# Verify React version compatibility'
+        - node -p '"React version:" + require("./node_modules/react/package.json").version'
     build:
       commands:
         - '# Build Safari Culture - Wilderness Namibia platform'
@@ -28,6 +30,8 @@ frontend:
           NODE_OPTIONS: "--max-old-space-size=4096"
           # Safari Culture specific environment
           APP_ENV: production
+          # Suppress peer dependency warnings for React 19
+          NPM_CONFIG_LEGACY_PEER_DEPS: true
   artifacts:
     baseDirectory: .next
     files:
