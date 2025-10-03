@@ -83,6 +83,7 @@ export default function CampActivities() {
                   src={activity.image}
                   alt={activity.title}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -152,6 +153,7 @@ export default function CampActivities() {
                 src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/02_little_kulala_sossusvlei_1593.jpg`}
                 alt="Hot Air Balloon over Sossusvlei"
                 fill
+                unoptimized
                 className="object-cover"
               />
             </div>

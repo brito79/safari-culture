@@ -36,6 +36,7 @@ export default function HeroSection({
                             src={backgroundImage}
                             alt="Namibian wilderness landscape"
                             fill
+                            unoptimized
                             className="object-cover"
                             priority
                         />

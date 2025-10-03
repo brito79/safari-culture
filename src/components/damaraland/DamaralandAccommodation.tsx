@@ -83,6 +83,7 @@ const DamaralandAccommodation = () => {
                   src={accommodation.image}
                   alt={accommodation.title}
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>

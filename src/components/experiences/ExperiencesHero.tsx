@@ -17,6 +17,7 @@ const ExperiencesHero = () => {
           src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/Wilderness-Doro-Nawas_1.jpg`}
           alt="Namibian desert experiences and adventures"
           fill
+          unoptimized
           className="object-cover"
           priority
         />

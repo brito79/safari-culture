@@ -101,6 +101,7 @@ const ExperiencesGallery = () => {
                   src={image.src}
                   alt={image.alt}
                   fill
+                  unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
@@ -158,6 +159,7 @@ const ExperiencesGallery = () => {
                 alt={galleryImages[selectedImage].alt}
                 width={1200}
                 height={800}
+                unoptimized
                 className="w-full h-auto rounded-lg"
                 priority
               />

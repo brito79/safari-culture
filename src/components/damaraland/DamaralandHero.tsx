@@ -17,6 +17,7 @@ const DamaralandHero = () => {
           src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_1.jpg`}
           alt="Wilderness Damaraland Camp in ancient mountain landscape"
           fill
+          unoptimized
           className="object-cover"
           priority
         />

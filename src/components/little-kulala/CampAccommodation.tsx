@@ -59,6 +59,7 @@ export default function CampAccommodation() {
                 src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_064.jpg`}
                 alt="Little Kulala Villa Interior"
                 fill
+                unoptimized
                 className="object-cover"
               />
             </div>
@@ -68,6 +69,7 @@ export default function CampAccommodation() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_061.jpg`}
                   alt="Villa Bedroom"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -76,6 +78,7 @@ export default function CampAccommodation() {
                   src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/family-accomodation/units_family_littlekulala_teagancunniffe_062.jpg`}
                   alt="Villa Bathroom"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
