@@ -2,59 +2,93 @@
 import Auth0Provider from "next-auth/providers/auth0"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-export const authOptions = {
-  providers: [
+// Environment variable validation
+const requiredEnvVars = {
+  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
+  AUTH0_ISSUER: process.env.AUTH0_ISSUER,
+}
+
+// Log environment status (without exposing secrets)
+console.log('NextAuth Environment Check:', {
+  hasNextAuthSecret: !!requiredEnvVars.NEXTAUTH_SECRET,
+  nextAuthUrl: requiredEnvVars.NEXTAUTH_URL,
+  hasAuth0ClientId: !!requiredEnvVars.AUTH0_CLIENT_ID,
+  hasAuth0ClientSecret: !!requiredEnvVars.AUTH0_CLIENT_SECRET,
+  hasAuth0Issuer: !!requiredEnvVars.AUTH0_ISSUER,
+  nodeEnv: process.env.NODE_ENV,
+})
+
+// Build providers array conditionally
+const providers = []
+
+// Always include credentials provider for demo
+providers.push(
+  CredentialsProvider({
+    id: "credentials",
+    name: "credentials",
+    credentials: {
+      email: { label: "Email", type: "email" },
+      password: { label: "Password", type: "password" }
+    },
+    async authorize(credentials) {
+      try {
+        if (!credentials?.email || !credentials?.password) {
+          console.log("Missing credentials")
+          return null
+        }
+
+        console.log("Attempting to authenticate:", credentials.email)
+
+        // For demo purposes, we'll allow a test user
+        // In production, you'd validate against your database
+        if (credentials.email === "admin@wilderness-namibia.com" && credentials.password === "password123") {
+          console.log("Authentication successful for admin user")
+          return {
+            id: "1",
+            email: "admin@wilderness-namibia.com",
+            name: "Admin User",
+            roles: ["admin"]
+          }
+        }
+
+        // You can also check against a database here
+        // const user = await validateUser(credentials.email, credentials.password)
+        // if (user) return user
+
+        console.log("Authentication failed: Invalid credentials")
+        return null
+      } catch (error) {
+        console.error("Authentication error:", error)
+        return null
+      }
+    }
+  })
+)
+
+// Only add Auth0 provider if environment variables are available
+if (requiredEnvVars.AUTH0_CLIENT_ID && requiredEnvVars.AUTH0_CLIENT_SECRET && requiredEnvVars.AUTH0_ISSUER) {
+  providers.push(
     Auth0Provider({
-      clientId: process.env.AUTH0_CLIENT_ID!,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET!,
-      issuer: process.env.AUTH0_ISSUER!,
+      clientId: requiredEnvVars.AUTH0_CLIENT_ID,
+      clientSecret: requiredEnvVars.AUTH0_CLIENT_SECRET,
+      issuer: requiredEnvVars.AUTH0_ISSUER,
       authorization: {
         params: {
           scope: "openid profile email",
         },
       },
-    }),
-    CredentialsProvider({
-      id: "credentials",
-      name: "credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials) {
-        try {
-          if (!credentials?.email || !credentials?.password) {
-            console.log("Missing credentials")
-            return null
-          }
+    })
+  )
+  console.log('Auth0 provider added successfully')
+} else {
+  console.warn('Auth0 provider skipped - missing environment variables')
+}
 
-          console.log("Attempting to authenticate:", credentials.email)
-
-          // For demo purposes, we'll allow a test user
-          // In production, you'd validate against your database
-          if (credentials.email === "admin@wilderness-namibia.com" && credentials.password === "password123") {
-            console.log("Authentication successful for admin user")
-            return {
-              id: "1",
-              email: "admin@wilderness-namibia.com",
-              name: "Admin User",
-              roles: ["admin"]
-            }
-          }
-
-          // You can also check against a database here
-          // const user = await validateUser(credentials.email, credentials.password)
-          // if (user) return user
-
-          console.log("Authentication failed: Invalid credentials")
-          return null
-        } catch (error) {
-          console.error("Authentication error:", error)
-          return null
-        }
-      }
-    }),
-  ],
+export const authOptions = {
+  providers,
   
   session: {
     strategy: "jwt" as const,
@@ -131,6 +165,27 @@ export const authOptions = {
     error: "/login",
   },
   
+  // Use environment variable or fallback for secret
+  secret: requiredEnvVars.NEXTAUTH_SECRET || 'fallback-secret-for-development-only',
+  
   // Enable debug in development
   debug: process.env.NODE_ENV === "development",
+  
+  // Add error logging
+  logger: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error(code: any, metadata: any) {
+      console.error('NextAuth Error:', code, metadata)
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    warn(code: any) {
+      console.warn('NextAuth Warning:', code)  
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    debug(code: any, metadata: any) {
+      if (process.env.NODE_ENV === "development") {
+        console.log('NextAuth Debug:', code, metadata)
+      }
+    }
+  }
 }
