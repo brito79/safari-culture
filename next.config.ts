@@ -1,25 +1,10 @@
 
 import type { NextConfig } from "next";
 
-// import withImages from 'next-images';
-
-// module.exports = withImages(
-//   images : {
-//     Loader : 'imgix',
-//     domains: ['namibiawilderness-image-store.s3.us-east-1.amazonaws.com'],
-//     path: ['/images/**'],
-
-//   }, 
-//   exportPathMap: async function (
-//     defaultPathMap, {dev , dir, distDir, buildId}
-// ) {
-//     return {
-//       '/': { page: '/' },
-//       '/hoanib': { page: '/hoanib' },
-// };
 
 const nextConfig: NextConfig = {
   /* config options here */
+  
   images: {
     remotePatterns: [
       {

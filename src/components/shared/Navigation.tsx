@@ -21,8 +21,10 @@ export default function Navigation({ className = "" }: NavigationProps) {
     { href: "/contact", label: "Contact" }
   ];
 
-  // Admin link that triggers authentication
-  const adminItem = { href: "/login", label: "Admin" };
+  // Admin link that triggers Auth0 authentication using v4 route
+  const handleAdminClick = () => {
+    window.location.href = '/auth/login?returnTo=/dashboard'
+  }
 
   // Avoid hydration mismatch
   useEffect(() => {
@@ -86,14 +88,13 @@ export default function Navigation({ className = "" }: NavigationProps) {
             
             {/* Admin Link */}
             <div className="border-l border-stone-200 pl-6">
-              <Link href={adminItem.href}>
-                <Button
-                  variant="ghost"
-                  className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
-                >
-                  {adminItem.label}
-                </Button>
-              </Link>
+              <Button
+                variant="ghost"
+                onClick={handleAdminClick}
+                className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
+              >
+                Admin
+              </Button>
             </div>
 
             {/* Theme Toggle */}
@@ -165,13 +166,15 @@ export default function Navigation({ className = "" }: NavigationProps) {
               
               {/* Admin Link */}
               <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
-                <Link
-                  href={adminItem.href}
+                <button
+                  onClick={() => {
+                    handleAdminClick()
+                    setIsMobileMenuOpen(false)
+                  }}
                   className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {adminItem.label}
-                </Link>
+                  Admin
+                </button>
               </div>
 
               {/* Mobile Theme Options */}

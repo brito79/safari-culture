@@ -2,15 +2,17 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react';
+import { useUser } from '@auth0/nextjs-auth0';
+
 
 export default function AdminDashboard() {
-  const { data: session } = useSession();
-  const user = session?.user;
-  const userRoles = (session?.user as { roles?: string[] })?.roles || [];
+  const { user, isLoading } = useUser();
+  
+  // Get user roles from Auth0 custom claims
+  const userRoles = user?.['https://safari-culture.com/roles'] as string[] || [];
   const isAdmin = userRoles.includes('admin');
   
-  // Permission helpers (simplified for NextAuth)
+  // Permission helpers
   const canManageCamps = isAdmin;
   const canManageRates = isAdmin;
   const canManageImages = isAdmin;
@@ -85,7 +87,7 @@ export default function AdminDashboard() {
                 View Site
               </Link>
               <button
-                onClick={() => signOut()}
+                onClick={() => window.location.href = '/auth/logout'}
                 className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
               >
                 Sign Out

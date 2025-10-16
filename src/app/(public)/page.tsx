@@ -9,10 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50">
       <Navigation />
-      
-      {/* S3 Test Component - Testing fixed image names */}
-      {/* <S3ImageTest /> */}
-
+      {/* Hero Section */}
       <HeroSection
         title="Discover Namibia's<span class='block text-sand-200'>Wilderness</span>"
         subtitle="Four Extraordinary Desert Camps"

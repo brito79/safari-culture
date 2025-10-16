@@ -1,9 +1,9 @@
 // src/hooks/useAuth.ts
 "use client";
 
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 // User roles as per business requirements
 export type UserRole = 'admin' | 'user' | 'visitor';
@@ -56,6 +56,7 @@ export interface UseAuthReturn {
   user: AuthUser | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  error?: Error;
   
   // Role & permissions
   userRole: UserRole;
@@ -64,8 +65,8 @@ export interface UseAuthReturn {
   hasRole: (role: UserRole) => boolean;
   
   // Auth actions
-  login: (provider?: string, callbackUrl?: string) => Promise<void>;
-  logout: (callbackUrl?: string) => Promise<void>;
+  login: (provider?: string, callbackUrl?: string) => void;
+  logout: (callbackUrl?: string) => void;
   
   // Navigation helpers
   redirectToLogin: () => void;
@@ -73,12 +74,21 @@ export interface UseAuthReturn {
 }
 
 export function useAuth(): UseAuthReturn {
-  const { data: session, status } = useSession();
+  const { user: auth0User, error, isLoading } = useUser();
   const router = useRouter();
   
-  const isLoading = status === 'loading';
-  const isAuthenticated = !!session?.user;
-  const user = session?.user as AuthUser || null;
+  const isAuthenticated = !!auth0User;
+  
+  // Convert Auth0 user to our AuthUser format with useMemo
+  const user: AuthUser | null = useMemo(() => {
+    return auth0User ? {
+      id: auth0User.sub,
+      name: auth0User.name,
+      email: auth0User.email,
+      image: auth0User.picture,
+      roles: auth0User['https://safari-culture.com/roles'] as string[] || []
+    } : null;
+  }, [auth0User]);
   
   // Determine user role
   const getUserRole = useCallback((): UserRole => {
@@ -103,18 +113,34 @@ export function useAuth(): UseAuthReturn {
     return userRole === role;
   }, [userRole]);
 
-  // Auth actions
-  const login = useCallback(async (provider: string = 'auth0', callbackUrl: string = '/admin') => {
-    await signIn(provider, { callbackUrl });
+  // Auth actions using Auth0 v4 routes (no /api prefix)
+  const login = useCallback((provider: string = 'auth0', callbackUrl: string = '/admin') => {
+    // For Auth0 v4, we use the auto-mounted routes without /api prefix
+    let loginUrl = '/auth/login';
+    
+    // Add provider and callback URL as query parameters
+    const params = new URLSearchParams();
+    if (callbackUrl) params.append('returnTo', callbackUrl);
+    if (provider !== 'auth0') params.append('connection', provider);
+    
+    if (params.toString()) {
+      loginUrl += `?${params.toString()}`;
+    }
+    
+    window.location.href = loginUrl;
   }, []);
 
-  const logout = useCallback(async (callbackUrl: string = '/') => {
-    await signOut({ callbackUrl });
+  const logout = useCallback((callbackUrl: string = '/') => {
+    const params = new URLSearchParams();
+    if (callbackUrl) params.append('returnTo', callbackUrl);
+    
+    const logoutUrl = `/auth/logout${params.toString() ? `?${params.toString()}` : ''}`;
+    window.location.href = logoutUrl;
   }, []);
 
   // Navigation helpers
   const redirectToLogin = useCallback(() => {
-    router.push('/auth/login');
+    router.push('/login');
   }, [router]);
 
   const redirectToAdmin = useCallback(() => {
@@ -126,6 +152,7 @@ export function useAuth(): UseAuthReturn {
     user,
     isLoading,
     isAuthenticated,
+    error,
     
     // Role & permissions
     userRole,
