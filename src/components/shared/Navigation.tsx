@@ -23,7 +23,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
 
   // Admin link that triggers Auth0 authentication using v4 route
   const handleAdminClick = () => {
-    window.location.href = '/auth/login?returnTo=/dashboard'
+    window.location.href = '/auth/login'
   }
 
   // Avoid hydration mismatch
@@ -88,13 +88,16 @@ export default function Navigation({ className = "" }: NavigationProps) {
             
             {/* Admin Link */}
             <div className="border-l border-stone-200 pl-6">
-              <Button
+
+            <Button
                 variant="ghost"
                 onClick={handleAdminClick}
                 className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
               >
                 Admin
               </Button>
+    
+          
             </div>
 
             {/* Theme Toggle */}

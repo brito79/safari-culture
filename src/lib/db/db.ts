@@ -9,6 +9,9 @@ export async function getDbConfig() {
   const client = new SecretsManagerClient({ region: 'us-east-1' });
   const command = new GetSecretValueCommand({ SecretId: 'safari-culture-db' });
   const response = await client.send(command);
+  if (!response.SecretString) {
+    throw new Error('Secret not found');
+  }
   return JSON.parse(response.SecretString);
 }
 

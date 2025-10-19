@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { Auth0Provider } from "@auth0/nextjs-auth0";
+
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from 'sonner';
 import { auth0 } from "@/lib/auth0";
+import { Auth0Provider } from "@auth0/nextjs-auth0";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -25,21 +26,23 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // Get initial user session for hydration
-  const session = await auth0.getSession();
+ 
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${montserrat.variable} font-sans antialiased`}
       >
-        <Auth0Provider user={session?.user}>
+        
           <ThemeProvider attribute="class"
           defaultTheme="system"
             disableTransitionOnChange>
-            {children}
+            <Auth0Provider>
+                {children}
+            </Auth0Provider>
             <Toaster position="top-right" />
           </ThemeProvider>
-        </Auth0Provider>
+        
       </body>
     </html>
   );

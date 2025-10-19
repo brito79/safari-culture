@@ -1,18 +1,38 @@
 "use client";
 
-import React from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
+import { isUserAdmin } from '@/app/actions/isAdmin';
 
+// Loading component to be used with Suspense
+function LoadingDashboard() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <p className="text-xl text-gray-600">Loading dashboard...</p>
+    </div>
+  );
+}
 
-export default function AdminDashboard() {
-  const { user, isLoading } = useUser();
+// The main dashboard content component
+function AdminDashboardContent() {
+  const { user } = useUser();
+  const [isAdmin, setIsAdmin] = useState(false);
   
-  // Get user roles from Auth0 custom claims
-  const userRoles = user?.['https://safari-culture.com/roles'] as string[] || [];
-  const isAdmin = userRoles.includes('admin');
+  useEffect(() => {
+    const checkAdminStatus = async () => {
+      try {
+        const adminStatus = await isUserAdmin();
+        setIsAdmin(adminStatus);
+      } catch (error) {
+        console.error("Error checking admin status:", error);
+      }
+    };
+
+    checkAdminStatus();
+  }, []);
   
-  // Permission helpers
+  // Permission helpers based on admin status
   const canManageCamps = isAdmin;
   const canManageRates = isAdmin;
   const canManageImages = isAdmin;
@@ -65,6 +85,18 @@ export default function AdminDashboard() {
     }
   ].filter(card => card.permission);
 
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6">
+        <p className="text-xl text-red-600 mb-4">Access Denied</p>
+        <p className="text-gray-600 mb-6">You don&apos;t have permission to access this area.</p>
+        <Link href="/" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          Return to Home
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Header */}
@@ -76,7 +108,7 @@ export default function AdminDashboard() {
                 Admin Dashboard
               </h1>
               <p className="text-gray-600">
-                Welcome back, {user?.name || user?.email}
+                Welcome, {user?.name || user?.email}
               </p>
             </div>
             <div className="flex items-center space-x-4">
@@ -188,5 +220,14 @@ export default function AdminDashboard() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main component that wraps the content with Suspense
+export default function AdminDashboard() {
+  return (
+    <Suspense fallback={<LoadingDashboard />}>
+      <AdminDashboardContent />
+    </Suspense>
   );
 }
