@@ -25,24 +25,25 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Get initial user session for hydration
- 
+  // Get initial user session for hydration (v4 best practice)
+  const session = await auth0.getSession();
+  const user = session?.user;
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${montserrat.variable} font-sans antialiased`}
       >
-        
-          <ThemeProvider attribute="class"
+        <ThemeProvider 
+          attribute="class"
           defaultTheme="system"
-            disableTransitionOnChange>
-            <Auth0Provider>
-                {children}
-            </Auth0Provider>
-            <Toaster position="top-right" />
-          </ThemeProvider>
-        
+          disableTransitionOnChange
+        >
+          <Auth0Provider user={user}>
+            {children}
+          </Auth0Provider>
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );

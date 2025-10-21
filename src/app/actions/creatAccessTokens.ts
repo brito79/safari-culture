@@ -1,33 +1,31 @@
 "use server";
 
-import axios from "axios";
-
-interface AccessTokenResponse {
-  access_token: string;
-  expires_in: number;
-  token_type: string;
-}
 
 // Create an access token for the Auth0 management API, this is used to fetch user roles
 export async function createAccessToken(): Promise<string> {
-  try {
-    const response = await axios.post<AccessTokenResponse>(
-      `${process.env.AUTH0_ISSUER_BASE_URL}/oauth/token`,
-      new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: process.env.AUTH0_CLIENT_ID!,
-        client_secret: process.env.AUTH0_CLIENT_SECRET!,
-        audience: `${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/`,
-      }),
-      {
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
+  const tokenUrl = `https://${process.env.AUTH0_DOMAIN}/oauth/token`;
+  const audience = `https://${process.env.AUTH0_DOMAIN}/api/v2/`;
+  
+  console.log("Requesting Auth0 Management Token from:", tokenUrl);
+  console.log("Audience:", audience);
+  console.log("Client ID:", process.env.AUTH0_CLIENT_ID);
+  
+  const response = await fetch(tokenUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      grant_type: "client_credentials",
+      client_id: process.env.AUTH0_CLIENT_ID!,
+      client_secret: process.env.AUTH0_CLIENT_SECRET!,
+      audience: audience,
+    }),
+  });
 
-    return response.data.access_token;
-  } catch (error) {
-    throw new Error("Failed to get Auth0 management token");
+  if (!response.ok) {
+    throw new Error("Failed to get Auth0 management token: " + await response.text());
   }
+
+  return (await response.json())?.access_token;
 }

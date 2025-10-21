@@ -1,9 +1,9 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense} from 'react';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
-import { isUserAdmin } from '@/app/actions/isAdmin';
+
 
 // Loading component to be used with Suspense
 function LoadingDashboard() {
@@ -15,23 +15,11 @@ function LoadingDashboard() {
 }
 
 // The main dashboard content component
-function AdminDashboardContent() {
+function AdminDashboardContent({isAdmin}: {isAdmin: boolean}) {
   const { user } = useUser();
-  const [isAdmin, setIsAdmin] = useState(false);
   
-  useEffect(() => {
-    const checkAdminStatus = async () => {
-      try {
-        const adminStatus = await isUserAdmin();
-        setIsAdmin(adminStatus);
-      } catch (error) {
-        console.error("Error checking admin status:", error);
-      }
-    };
-
-    checkAdminStatus();
-  }, []);
   
+ 
   // Permission helpers based on admin status
   const canManageCamps = isAdmin;
   const canManageRates = isAdmin;
@@ -119,7 +107,11 @@ function AdminDashboardContent() {
                 View Site
               </Link>
               <button
-                onClick={() => window.location.href = '/auth/logout'}
+                onClick={() => {
+                  // Logout and redirect to home page
+                  // This clears Auth0 session and all tokens
+                  window.location.href = '/auth/logout?returnTo=' + encodeURIComponent(window.location.origin);
+                }}
                 className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
               >
                 Sign Out
@@ -224,10 +216,10 @@ function AdminDashboardContent() {
 }
 
 // Main component that wraps the content with Suspense
-export default function AdminDashboard() {
+export default function AdminDashboard({ isAdmin }: { isAdmin: boolean }) {
   return (
     <Suspense fallback={<LoadingDashboard />}>
-      <AdminDashboardContent />
+      <AdminDashboardContent isAdmin={isAdmin} />
     </Suspense>
   );
 }

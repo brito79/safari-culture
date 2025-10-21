@@ -23,7 +23,7 @@ export async function getUsersRoles(): Promise<Role[]> {
   const token = await createAccessToken();
 
   const response = await fetch(
-    `${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/users/${user.sub}/roles`,
+    `https://${process.env.AUTH0_DOMAIN}/api/v2/users/${user.sub}/roles`,
     {
       method: "GET",
       headers: {

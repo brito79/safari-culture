@@ -1,51 +1,51 @@
-// src/app/(admin)/dashboard/page.tsx
+
 'use client'
 
-import { Shield } from 'lucide-react'
 import AdminDashboard from '@/components/admin/AdminDashboard'
+import AccessDenied from '@/components/auth/AccessDenied'
 import LogoutButton from '@/components/auth/logout-button'
 import { useEffect, useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
-import { isUserAdmin } from '@/app/actions/isAdmin'
+import { isAdmin } from '@/app/actions/isAdmin'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardPage() {
   const { user, isLoading, error } = useUser()
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [checkingAdmin, setCheckingAdmin] = useState(true)
-  
-  // Check admin status
+  const router = useRouter()
+  const [checkingPermissions, setCheckingPermissions] = useState(true)
+  const [hasAdminAccess, setHasAdminAccess] = useState(false)
+
   useEffect(() => {
-    async function checkAdminStatus() {
+    async function checkPermission() {
+      if (!user && !isLoading) {
+        // Not authenticated, redirect to login
+        router.push('/auth/login?returnTo=/dashboard')
+        return
+      }
+
       if (user) {
         try {
-          const adminStatus = await isUserAdmin()
-          setIsAdmin(adminStatus)
-        } catch (err) {
-          console.error("Failed to check admin status:", err)
+          const adminStatus = await isAdmin()
+          setHasAdminAccess(adminStatus)
+        } catch (error) {
+          console.error('Error checking admin status:', error)
+          setHasAdminAccess(false)
         } finally {
-          setCheckingAdmin(false)
+          setCheckingPermissions(false)
         }
       }
     }
-    
-    if (!isLoading && user) {
-      checkAdminStatus()
-    }
-  }, [user, isLoading])
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isLoading && !user) {
-      window.location.href = '/auth/login'
-    }
-  }, [user, isLoading])
-
-  if (isLoading || (user && checkingAdmin)) {
+    checkPermission()
+  }, [user, isLoading, router])
+  
+  // Show loading while Auth0 is loading OR while checking server permissions
+  if (isLoading || checkingPermissions) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p>Loading...</p>
+          <p>{isLoading ? 'Loading user...' : 'Checking permissions...'}</p>
         </div>
       </div>
     )
@@ -65,7 +65,7 @@ export default function DashboardPage() {
     )
   }
 
-  // If not authenticated, redirecting...
+  // Handle unauthenticated state
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -77,20 +77,22 @@ export default function DashboardPage() {
     )
   }
 
+  // Show access denied if authenticated but not admin
+  if (user && !hasAdminAccess && !checkingPermissions) {
+    return (
+      <AccessDenied
+        title="Admin Access Required"
+        message="You need admin permissions to access this dashboard. Please log in with an admin account or contact your administrator for access."
+        showLogout={true}
+        showHomeLink={true}
+        onClose={() => router.push('/')}
+      />
+    )
+  }
+
   return (
     <div> 
-      {/* Welcome bar with logout */}
-      {/* <div className="bg-white shadow-sm border-b p-4 mb-6">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-            <p className="text-gray-600">Welcome back, {user.name || user.email}</p>
-          </div>
-          <LogoutButton className="border border-gray-300" />
-        </div>
-      </div> */}
-      
-      <AdminDashboard />
+      <AdminDashboard isAdmin={hasAdminAccess} />
     </div>
   )
 }

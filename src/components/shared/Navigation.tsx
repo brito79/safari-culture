@@ -5,26 +5,39 @@ import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@auth0/nextjs-auth0";
+
 
 interface NavigationProps {
   className?: string;
 }
 
+
+
+
+
 export default function Navigation({ className = "" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { user, isLoading, error } = useUser();
+
+  const handleAdminClick = () => {
+    if (!user) {
+      // Redirect to login with returnTo dashboard
+      window.location.href = "/auth/login?returnTo=/dashboard";
+    } else {
+      // User is logged in, go to dashboard
+      window.location.href = "/dashboard";
+    }
+  };
+
 
   const navigationItems = [
     { href: "/camps", label: "Camps" },
     { href: "/experiences", label: "Experiences" },
     { href: "/contact", label: "Contact" }
   ];
-
-  // Admin link that triggers Auth0 authentication using v4 route
-  const handleAdminClick = () => {
-    window.location.href = '/auth/login'
-  }
 
   // Avoid hydration mismatch
   useEffect(() => {
@@ -86,19 +99,32 @@ export default function Navigation({ className = "" }: NavigationProps) {
               ))}
             </nav>
             
-            {/* Admin Link */}
-            <div className="border-l border-stone-200 pl-6">
-
-            <Button
-                variant="ghost"
-                onClick={handleAdminClick}
-                className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
-              >
-                Admin
-              </Button>
-    
-          
-            </div>
+            {/* Admin Link - Show for authenticated users */}
+            {user && (
+              <div className="border-l border-stone-200 pl-6">
+                <Button
+                  variant="ghost"
+                  onClick={handleAdminClick}
+                  disabled={isLoading}
+                  className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
+                >
+                  Dashboard
+                </Button>
+              </div>
+            )}
+            
+            {/* Login Button - Show for unauthenticated users */}
+            {!user && !isLoading && (
+              <div className="border-l border-stone-200 pl-6">
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
+                >
+                  <Link href="/auth/login?returnTo=/dashboard">Login</Link>
+                </Button>
+              </div>
+            )}
 
             {/* Theme Toggle */}
             {mounted ? (
@@ -167,18 +193,34 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 </Link>
               ))}
               
-              {/* Admin Link */}
-              <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
-                <button
-                  onClick={() => {
-                    handleAdminClick()
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
-                >
-                  Admin
-                </button>
-              </div>
+              {/* Admin Link - Show for authenticated users */}
+              {user && (
+                <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                  <button
+                    onClick={() => {
+                      handleAdminClick();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    disabled={isLoading}
+                    className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
+                  >
+                    Dashboard
+                  </button>
+                </div>
+              )}
+              
+              {/* Login Button - Show for unauthenticated users */}
+              {!user && !isLoading && (
+                <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                  <Link
+                    href="/auth/login?returnTo=/dashboard"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
+                  >
+                    Login
+                  </Link>
+                </div>
+              )}
 
               {/* Mobile Theme Options */}
               <div className="pt-3 border-t border-stone-200 dark:border-stone-700">
