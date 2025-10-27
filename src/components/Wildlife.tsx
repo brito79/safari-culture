@@ -135,7 +135,7 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
               
               {/* Conservation status badge */}
               <div className="absolute top-4 left-4">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
+                <span className={`px-3 py-1 rounded-full text-xs font-normal backdrop-blur-sm ${
                   species.title.includes('Black Rhino') 
                     ? 'bg-red-500/80 text-white' 
                     : species.title.includes('Desert Elephants')
@@ -170,7 +170,7 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
                 ))}
               </div>
               
-              <div className="flex items-center text-sunset-600 text-sm font-medium group-hover:text-sunset-700 transition-colors">
+              <div className="flex items-center text-sunset-600 text-sm font-normal group-hover:text-sunset-700 transition-colors">
                 <span>Learn More</span>
                 <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -217,25 +217,25 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Habitat & Population</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Habitat & Population</h3>
                     <p className="text-stone-600 text-sm leading-relaxed mb-2">{selectedSpecies.detailedInfo.habitat}</p>
                     <p className="text-stone-600 text-sm"><strong>Population:</strong> {selectedSpecies.detailedInfo.population}</p>
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Behavior & Adaptations</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Behavior & Adaptations</h3>
                     <p className="text-stone-600 text-sm leading-relaxed">{selectedSpecies.detailedInfo.behavior}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Best Viewing</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Best Viewing</h3>
                     <p className="text-stone-600 text-sm">{selectedSpecies.detailedInfo.bestViewingTime}</p>
                   </div>
                 </div>
                 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-3">Where to See</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-3">Where to See</h3>
                     <div className="grid grid-cols-1 gap-2">
                       {selectedSpecies.detailedInfo.whereToSee.map((location, idx) => (
                         <div key={idx} className="flex items-center">
@@ -247,7 +247,7 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-3">Conservation Status</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-3">Conservation Status</h3>
                     <div className="p-4 bg-stone-50 rounded-lg">
                       <p className="text-stone-600 text-sm leading-relaxed mb-2">{selectedSpecies.detailedInfo.conservation}</p>
                       <p className="text-stone-600 text-sm leading-relaxed">{selectedSpecies.detailedInfo.conservationEfforts}</p>
@@ -258,7 +258,7 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
 
               {/* Fun Facts */}
               <div className="mb-8">
-                <h3 className="text-lg font-medium text-stone-900 mb-4">Fascinating Facts</h3>
+                <h3 className="text-lg font-light text-stone-900 mb-4">Fascinating Facts</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedSpecies.detailedInfo.funFacts.map((fact, idx) => (
                     <div key={idx} className="flex items-start bg-stone-50 p-4 rounded-lg">
@@ -272,7 +272,7 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
               {/* Threats & Conservation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-lg font-medium text-stone-900 mb-3">Current Threats</h3>
+                  <h3 className="text-lg font-light text-stone-900 mb-3">Current Threats</h3>
                   <div className="space-y-2">
                     {selectedSpecies.detailedInfo.threats.map((threat, idx) => (
                       <div key={idx} className="flex items-center">
@@ -284,7 +284,7 @@ export default function Wildlife({ className = "" }: WildlifeProps) {
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-medium text-stone-900 mb-2">Key Features</h3>
+                  <h3 className="text-lg font-light text-stone-900 mb-2">Key Features</h3>
                   <div className="space-y-2">
                     {selectedSpecies.keyFeatures.map((feature, idx) => (
                       <div key={idx} className="flex items-center">

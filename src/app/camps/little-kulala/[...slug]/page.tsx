@@ -7,7 +7,7 @@ import CampStay from "@/components/little-kulala/CampStay";
 import CampEnjoy from "@/components/little-kulala/CampEnjoy";
 import CampGallery from "@/components/little-kulala/CampGallery";
 import CampContact from "@/components/little-kulala/CampContact";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 
 interface PageProps {

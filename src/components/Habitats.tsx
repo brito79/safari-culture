@@ -116,14 +116,14 @@ export default function Habitats({ className = "" }: HabitatsProps) {
                 {habitat.regions.map((region, regionIndex) => (
                   <span 
                     key={regionIndex} 
-                    className="px-3 py-1 bg-stone-100 text-stone-700 text-xs font-medium rounded-full border border-stone-200 group-hover:bg-sunset-50 group-hover:text-sunset-700 group-hover:border-sunset-200 transition-colors duration-300"
+                    className="px-3 py-1 bg-stone-100 text-stone-700 text-xs font-normal rounded-full border border-stone-200 group-hover:bg-sunset-50 group-hover:text-sunset-700 group-hover:border-sunset-200 transition-colors duration-300"
                   >
                     {region}
                   </span>
                 ))}
               </div>
               
-              <div className="flex items-center text-sunset-600 text-sm font-medium group-hover:text-sunset-700 transition-colors">
+              <div className="flex items-center text-sunset-600 text-sm font-normal group-hover:text-sunset-700 transition-colors">
                 <span>Explore Details</span>
                 <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -170,24 +170,24 @@ export default function Habitats({ className = "" }: HabitatsProps) {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Ecosystem</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Ecosystem</h3>
                     <p className="text-stone-600 text-sm leading-relaxed">{selectedHabitat.detailedInfo.ecosystem}</p>
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Characteristics</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Characteristics</h3>
                     <p className="text-stone-600 text-sm leading-relaxed">{selectedHabitat.detailedInfo.characteristics}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Best Season</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Best Season</h3>
                     <p className="text-stone-600 text-sm">{selectedHabitat.detailedInfo.bestSeason}</p>
                   </div>
                 </div>
                 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-3">Wildlife</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-3">Wildlife</h3>
                     <div className="grid grid-cols-1 gap-2">
                       {selectedHabitat.detailedInfo.wildlife.map((animal, idx) => (
                         <div key={idx} className="flex items-center">
@@ -199,7 +199,7 @@ export default function Habitats({ className = "" }: HabitatsProps) {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-3">Activities</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-3">Activities</h3>
                     <div className="grid grid-cols-1 gap-2">
                       {selectedHabitat.detailedInfo.activities.map((activity, idx) => (
                         <div key={idx} className="flex items-center">
@@ -211,7 +211,7 @@ export default function Habitats({ className = "" }: HabitatsProps) {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-medium text-stone-900 mb-2">Regions</h3>
+                    <h3 className="text-lg font-light text-stone-900 mb-2">Regions</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedHabitat.regions.map((region, idx) => (
                         <span key={idx} className="px-3 py-1 bg-stone-100 text-stone-700 text-xs rounded-full border">

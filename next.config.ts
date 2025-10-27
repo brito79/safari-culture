@@ -30,6 +30,21 @@ const nextConfig: NextConfig = {
     // This is a common solution for external image sources
     unoptimized: true,
   },
+  
+  async redirects() {
+    return [
+      {
+        source: '/camps/hoanib-skeleton',
+        destination: '/camps/hoanib-skeleton-coast',
+        permanent: true,
+      },
+      {
+        source: '/camps/hoanib-skeleton/:path*',
+        destination: '/camps/hoanib-skeleton-coast/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -40,13 +40,13 @@ export default function KeyFacts({ className = "" }: KeyFactsProps) {
             
             {/* Label */}
             <div className="mb-2">
-              <span className="text-xs text-stone-500 uppercase tracking-wider font-medium">
+              <span className="text-xs text-stone-500 uppercase tracking-wider font-normal">
                 {fact.label}
               </span>
             </div>
             
             {/* Value */}
-            <div className="text-lg font-medium text-stone-900">
+            <div className="text-lg font-light text-stone-900">
               {fact.value}
             </div>
           </div>

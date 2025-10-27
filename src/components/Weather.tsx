@@ -57,13 +57,13 @@ export default function Weather({ className = "" }: WeatherProps) {
                         
                         {/* Season Label */}
                         <div className="mb-3">
-                            <span className="text-xs text-stone-500 uppercase tracking-wider font-medium">
+                            <span className="text-xs text-stone-500 uppercase tracking-wider font-normal">
                                 {season.label}
                             </span>
                         </div>
                         
                         {/* Period */}
-                        <h4 className="text-lg font-medium text-stone-900 mb-3">
+                        <h4 className="text-lg font-light text-stone-900 mb-3">
                             {season.period}
                         </h4>
                         
@@ -73,7 +73,7 @@ export default function Weather({ className = "" }: WeatherProps) {
                                 <span className="w-2 h-2 bg-sunset-400 rounded-full"></span>
                                 <span>Days: {season.dayTemp}</span>
                             </div>
-                            <div className="flex justify-center items-center gap-2 text-sm text-stone-600">
+                            <div className="flex justify-center items-center gap-2 text-sm text-stone-300">
                                 <span className="w-2 h-2 bg-stone-400 rounded-full"></span>
                                 <span>Nights: {season.nightTemp}</span>
                             </div>

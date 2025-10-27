@@ -159,13 +159,17 @@ export default function WhatYouNeedToKnow() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(index)}
-                className={`safari-accent text-xs sm:text-sm tracking-wider transition-all duration-300 pb-2 sm:pb-3 border-b-2 touch-manipulation min-w-0 ${
+                className={`relative safari-accent text-xs sm:text-sm font-semibold tracking-wider transition-all duration-500 ease-out pb-2 sm:pb-3 px-3 sm:px-4 border-b-2 touch-manipulation min-w-0 group ${
                   activeTab === index
-                    ? 'text-sunset-400 border-sunset-400'
-                    : 'text-stone-800 border-transparent hover:text-stone-600 active:text-stone-500'
+                    ? 'text-sunset-500 border-sunset-500 scale-110 drop-shadow-[0_0_8px_rgba(251,146,60,0.4)]'
+                    : 'text-stone-800 border-transparent hover:text-orange-600 hover:border-orange-400 hover:scale-125 hover:drop-shadow-[0_0_15px_rgba(251,146,60,0.5)] active:text-stone-500'
                 }`}
               >
-                {tab.title}
+                {/* Hover background effect */}
+                <span className={`absolute inset-0 -top-2 bg-gradient-to-r from-orange-50 via-sunset-50 to-red-50 dark:from-orange-900/20 dark:via-sunset-900/20 dark:to-red-900/20 rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out ${
+                  activeTab === index ? 'opacity-0' : ''
+                }`} />
+                <span className="relative z-10">{tab.title}</span>
               </button>
             ))}
           </div>

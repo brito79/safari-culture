@@ -1,47 +1,42 @@
 import CampNavigation from "@/components/ui/CampNavigation";
-import DoroHero from "@/components/doro/DoroHero";
-import DoroOverview from "@/components/doro/DoroOverview";
-import DoroAccommodation from "@/components/doro/DoroAccommodation";
-import DoroActivities from "@/components/doro/DoroActivities";
-import DoroGallery from "@/components/doro/DoroGallery";
-import DoroContact from "@/components/doro/DoroContact";
+import CampHero from "@/components/camps/doro-nawas/CampHero";
+import CampOverview from "@/components/camps/doro-nawas/CampOverview";
+import CampAccommodation from "@/components/camps/doro-nawas/CampAccommodation";
+import CampActivities from "@/components/camps/doro-nawas/CampActivities";
+import CampGallery from "@/components/camps/doro-nawas/CampGallery";
+
 import Link from "next/link";
+import CampContact from "@/components/camps/doro-nawas/CampContact";
 
 export default function DoroNawasPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-100 via-neutral-50 to-neutral-100">
-      <CampNavigation 
-        campName="Doro Nawas" 
-        brandText="WILDERNESS DAMARALAND"
-        logoLetter="D"
-      />
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
+      <CampNavigation campName="Doro Nawas" />
       
       {/* Breadcrumb */}
-      <div className="px-6 sm:px-8 py-4 bg-white/80 backdrop-blur-sm border-b border-sand-200">
+      <div className="px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-white/95 backdrop-blur-md border-b-2 border-sand-200 dark:border-stone-700 shadow-sm">
         <div className="max-w-7xl mx-auto">
-          <nav className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-stone-500 hover:text-sunset-600 transition-colors">
+          <nav className="flex items-center space-x-2 text-xs sm:text-sm">
+            <Link href="/" className="text-stone-600 hover:text-sunset-600 hover:scale-110 transition-all duration-300 font-medium">
               Home
             </Link>
-            <span className="text-stone-300">/</span>
-            <Link href="/camps" className="text-stone-500 hover:text-sunset-600 transition-colors">
+            <span className="text-stone-400">/</span>
+            <Link href="/camps" className="text-stone-600 hover:text-sunset-600 hover:scale-110 transition-all duration-300 font-medium">
               Camps
             </Link>
-            <span className="text-stone-300">/</span>
-            <span className="text-stone-900 font-medium">Doro Nawas</span>
+            <span className="text-stone-400">/</span>
+            <span className="text-stone-900 font-semibold">Doro Nawas</span>
           </nav>
         </div>
       </div>
 
       {/* Page Sections */}
-      <DoroHero />
-      <DoroOverview />
-      <DoroAccommodation />
-      <DoroActivities />
-      <DoroGallery />
-      <DoroContact />
-      
-    
+      <CampHero />
+      <CampOverview />
+      <CampAccommodation />
+      <CampActivities />
+      <CampGallery />
+      <CampContact />
     </div>
   );
 }

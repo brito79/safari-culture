@@ -72,26 +72,25 @@ export default function Navigation({ className = "" }: NavigationProps) {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 bg-neutral-600 dark:bg-neutral-900/90 backdrop-blur-md border-b border-stone-200 dark:border-stone-700 ${className}`}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
+    <nav className={`sticky top-0 z-50 bg-stone-100 dark:bg-stone-800 backdrop-blur-md border-b-2 border-stone-200 dark:border-stone-700 shadow-md ${className}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <h1 className="safari-heading text-2xl sm:text-3xl text-neutral-100 dark:text-neutral-100">
+          <Link href="/" className="flex items-center space-x-2 group transition-transform duration-200 hover:scale-105">
+            <h1 className="safari-heading text-xl sm:text-2xl lg:text-3xl text-stone-900 dark:text-white font-bold tracking-tight group-hover:text-sunset-600 dark:group-hover:text-sunset-400 transition-colors duration-200">
               Namibian Wilderness
             </h1>
-            <span className="safari-accent text-sm text-black- dark:text-earth-400">Namibia</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {/* Main Navigation */}
-            <nav className="flex space-x-6">
+            <nav className="flex space-x-2 lg:space-x-4">
               {navigationItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <Button
                     variant="ghost"
-                    className="safari-body text-stone-100 text-lg hover:text-sunset-500 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md"
+                    className="safari-body text-stone-700 dark:text-stone-200 text-base lg:text-lg font-medium hover:text-stone-900 dark:hover:text-stone-900 hover:bg-sunset-600 dark:hover:bg-sunset-600 hover:scale-110 hover:shadow-lg transition-all duration-300 px-4 py-2 rounded-lg"
                   >
                     {item.label}
                   </Button>
@@ -101,12 +100,12 @@ export default function Navigation({ className = "" }: NavigationProps) {
             
             {/* Admin Link - Show for authenticated users */}
             {user && (
-              <div className="border-l border-stone-200 pl-6">
+              <div className="border-l-2 border-stone-300 dark:border-stone-600 pl-4 lg:pl-6">
                 <Button
                   variant="ghost"
                   onClick={handleAdminClick}
                   disabled={isLoading}
-                  className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
+                  className="safari-body text-sunset-600 dark:text-sunset-400 text-base lg:text-lg font-bold hover:text-stone-900 dark:hover:text-stone-900 hover:bg-sunset-600 dark:hover:bg-sunset-600 hover:scale-110 hover:shadow-xl transition-all duration-300 px-4 py-2 rounded-lg"
                 >
                   Dashboard
                 </Button>
@@ -115,11 +114,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
             
             {/* Login Button - Show for unauthenticated users */}
             {!user && !isLoading && (
-              <div className="border-l border-stone-200 pl-6">
+              <div className="border-l-2 border-stone-300 dark:border-stone-600 pl-4 lg:pl-6">
                 <Button
                   variant="ghost"
                   asChild
-                  className="safari-body text-sunset-600 text-lg hover:text-sunset-700 dark:hover:text-sunset-400 hover:bg-sunset-50 dark:hover:bg-sunset-950/20 transition-all duration-200 px-4 py-2 rounded-md font-medium"
+                  className="safari-body text-sunset-600 dark:text-sunset-400 text-base lg:text-lg font-bold hover:text-stone-900 dark:hover:text-stone-900 hover:bg-gradient-to-r hover:from-sunset-600 hover:to-sunset-700 hover:scale-110 hover:shadow-xl transition-all duration-300 px-5 py-2 rounded-lg"
                 >
                   <Link href="/auth/login?returnTo=/dashboard">Login</Link>
                 </Button>
@@ -132,11 +131,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 variant="outline"
                 size="sm"
                 onClick={toggleTheme}
-                className="border-blue-500 bg-blue-50 text-blue-900 hover:bg-blue-100 transition-all shadow-md min-w-[100px]"
+                className="border-2 border-blue-500 bg-blue-50 dark:bg-blue-900 text-blue-900 dark:text-blue-100 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 hover:scale-110 hover:shadow-lg transition-all duration-300 min-w-[100px] font-medium"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} theme`}
               >
                 {getThemeIcon()}
-                <span className="ml-2 text-xs capitalize">{theme || 'system'}</span>
+                <span className="ml-2 text-xs font-semibold capitalize">{theme || 'system'}</span>
               </Button>
             ) : (
               <div className="w-[100px] h-8 bg-gray-200 animate-pulse rounded"></div>
@@ -151,7 +150,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 variant="outline"
                 size="sm"
                 onClick={toggleTheme}
-                className="border-blue-500 bg-blue-50 text-blue-900 hover:bg-blue-100 transition-all shadow-md"
+                className="border-2 border-blue-500 bg-blue-50 dark:bg-blue-900 text-blue-900 dark:text-blue-100 hover:bg-blue-600 hover:text-white hover:scale-110 hover:shadow-lg transition-all duration-300"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} theme`}
               >
                 {getThemeIcon()}
@@ -162,11 +161,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
             
             {/* Mobile Menu Button */}
             <button
-              className="p-2 text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors"
+              className="p-2 text-stone-700 dark:text-stone-200 hover:text-sunset-600 dark:hover:text-sunset-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg hover:scale-110 transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                 {isMobileMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -179,14 +178,14 @@ export default function Navigation({ className = "" }: NavigationProps) {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-stone-200 dark:border-stone-700">
-            <div className="px-4 py-4 space-y-3">
+          <div className="md:hidden border-t-2 border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-neutral-800 shadow-inner">
+            <div className="px-4 py-4 space-y-2">
               {/* Main Navigation */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block safari-body text-stone-600 dark:text-stone-300 hover:text-sunset-500 dark:hover:text-sunset-400 transition-colors py-2"
+                  className="block safari-body text-stone-800 dark:text-stone-100 font-medium hover:text-stone-900 dark:hover:text-stone-900 hover:bg-sunset-600 dark:hover:bg-sunset-600 hover:pl-4 hover:scale-105 hover:shadow-md transition-all duration-300 py-3 px-3 rounded-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -195,14 +194,14 @@ export default function Navigation({ className = "" }: NavigationProps) {
               
               {/* Admin Link - Show for authenticated users */}
               {user && (
-                <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                <div className="border-t-2 border-stone-300 dark:border-stone-600 pt-3 mt-2">
                   <button
                     onClick={() => {
                       handleAdminClick();
                       setIsMobileMenuOpen(false);
                     }}
                     disabled={isLoading}
-                    className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
+                    className="block w-full text-left safari-body text-sunset-600 dark:text-sunset-400 font-bold hover:text-stone-900 dark:hover:text-stone-900 hover:bg-sunset-600 dark:hover:bg-sunset-600 hover:pl-4 hover:scale-105 hover:shadow-md transition-all duration-300 py-3 px-3 rounded-lg"
                   >
                     Dashboard
                   </button>
@@ -211,11 +210,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
               
               {/* Login Button - Show for unauthenticated users */}
               {!user && !isLoading && (
-                <div className="border-t border-stone-200 dark:border-stone-700 pt-3">
+                <div className="border-t-2 border-stone-300 dark:border-stone-600 pt-3 mt-2">
                   <Link
                     href="/auth/login?returnTo=/dashboard"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block safari-body text-sunset-600 dark:text-sunset-400 hover:text-sunset-700 dark:hover:text-sunset-300 transition-colors py-2 font-medium"
+                    className="block safari-body text-sunset-600 dark:text-sunset-400 font-bold hover:text-stone-900 dark:hover:text-stone-900 hover:bg-gradient-to-r hover:from-sunset-600 hover:to-sunset-700 hover:pl-4 hover:scale-105 hover:shadow-md transition-all duration-300 py-3 px-3 rounded-lg"
                   >
                     Login
                   </Link>
@@ -223,9 +222,9 @@ export default function Navigation({ className = "" }: NavigationProps) {
               )}
 
               {/* Mobile Theme Options */}
-              <div className="pt-3 border-t border-stone-200 dark:border-stone-700">
-                <p className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2">Theme</p>
-                <div className="flex space-x-2">
+              <div className="pt-3 mt-2 border-t-2 border-stone-300 dark:border-stone-600">
+                <p className="text-sm font-bold text-stone-700 dark:text-stone-300 mb-3">Theme</p>
+                <div className="flex flex-wrap gap-2">
                   <Button
                     variant={theme === 'light' ? 'default' : 'outline'}
                     size="sm"
@@ -233,9 +232,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
                       setTheme('light');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="text-xs"
+                    className={`text-sm font-medium flex-1 hover:scale-105 hover:shadow-md transition-all duration-300 ${
+                      theme === 'light' ? 'bg-sunset-600 hover:bg-sunset-700' : 'hover:bg-stone-200 dark:hover:bg-stone-700'
+                    }`}
                   >
-                    <Sun className="h-3 w-3 mr-1" />
+                    <Sun className="h-4 w-4 mr-1" />
                     Light
                   </Button>
                   <Button
@@ -245,9 +246,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
                       setTheme('dark');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="text-xs"
+                    className={`text-sm font-medium flex-1 hover:scale-105 hover:shadow-md transition-all duration-300 ${
+                      theme === 'dark' ? 'bg-sunset-600 hover:bg-sunset-700' : 'hover:bg-stone-200 dark:hover:bg-stone-700'
+                    }`}
                   >
-                    <Moon className="h-3 w-3 mr-1" />
+                    <Moon className="h-4 w-4 mr-1" />
                     Dark
                   </Button>
                   <Button
@@ -257,7 +260,9 @@ export default function Navigation({ className = "" }: NavigationProps) {
                       setTheme('system');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="text-xs"
+                    className={`text-sm font-medium flex-1 hover:scale-105 hover:shadow-md transition-all duration-300 ${
+                      theme === 'system' ? 'bg-sunset-600 hover:bg-sunset-700' : 'hover:bg-stone-200 dark:hover:bg-stone-700'
+                    }`}
                   >
                     System
                   </Button>

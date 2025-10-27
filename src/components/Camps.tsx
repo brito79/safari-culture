@@ -38,7 +38,7 @@ const camps = [
     fromPrice: "R16,260"
   },
   {
-    id: "hoanib-skeleton",
+    id: "hoanib-skeleton-coast",
     name: "Wilderness Hoanib Skeleton Coast",
     region: "Skeleton Coast",
     description: "Remote wilderness at the edge of the world. Explore the mysterious Skeleton Coast where desert meets ocean in dramatic, windswept landscapes.",

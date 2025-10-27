@@ -124,7 +124,7 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
   return (
     <div className={`relative ${className}`}>
       {/* Main Carousel Container */}
-      <div className="relative h-[70vh] sm:h-[80vh] rounded-2xl overflow-hidden">
+      <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -135,54 +135,54 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
             className="object-cover transition-all duration-1000 ease-in-out"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/70 via-neutral-900/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-neutral-900/80 via-neutral-900/50 to-transparent" />
         </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+          className="absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white/25 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/40 hover:scale-110 transition-all duration-300 shadow-xl"
           aria-label="Previous camp"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+          className="absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white/25 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/40 hover:scale-110 transition-all duration-300 shadow-xl"
           aria-label="Next camp"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         {/* Content Overlay */}
-        <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
-            <div className="max-w-2xl">
-              <div className="space-y-6">
+        <div className="absolute inset-0 flex items-end sm:items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 sm:pb-0">
+            <div className="max-w-full sm:max-w-2xl">
+              <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                 <div>
-                  <p className="safari-accent text-sm sm:text-base text-sand-200 tracking-widest mb-2">
+                  <p className="safari-accent text-xs sm:text-sm lg:text-base text-sand-200 tracking-widest mb-2 font-semibold">
                     {currentCamp.region}
                   </p>
-                  <h2 className="safari-heading text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
+                  <h2 className="safari-heading text-2xl sm:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight font-bold drop-shadow-2xl">
                     {currentCamp.name.replace("Wilderness ", "")}
                   </h2>
                 </div>
                 
-                <p className="safari-body text-lg sm:text-xl text-white/90 leading-relaxed">
+                <p className="safari-body text-sm sm:text-base lg:text-lg xl:text-xl text-white/95 leading-relaxed drop-shadow-lg">
                   {currentCamp.description}
                 </p>
 
                 {/* Highlights */}
-                <div className="flex flex-wrap gap-3">
+                <div className="hidden sm:flex flex-wrap gap-2 sm:gap-3">
                   {currentCamp.highlights.slice(0, 3).map((highlight, index) => (
                     <span
                       key={index}
-                      className="safari-accent text-xs px-3 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full tracking-wider"
+                      className="safari-accent text-xs px-3 py-1.5 bg-white/25 backdrop-blur-md text-white rounded-full tracking-wider font-medium shadow-lg"
                     >
                       {highlight.toUpperCase()}
                     </span>
@@ -190,16 +190,16 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
                   <Link
                     href={currentCamp.href}
-                    className="safari-body px-8 py-4 bg-sunset-500 text-white rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+                    className="safari-body text-sm sm:text-base font-semibold px-6 sm:px-8 py-3 sm:py-4 bg-sunset-500 text-white rounded-full hover:bg-sunset-600 hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl text-center"
                   >
                     Explore {currentCamp.name.replace("Wilderness ", "")}
                   </Link>
                   <Link
                     href="/contact"
-                    className="safari-body px-8 py-4 border-2 border-white/60 text-white rounded-full hover:bg-white/20 hover:border-white transition-all duration-300 text-center backdrop-blur-sm"
+                    className="safari-body text-sm sm:text-base font-semibold px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/80 text-white rounded-full hover:bg-white hover:text-stone-900 hover:scale-105 transition-all duration-500 text-center backdrop-blur-md shadow-lg hover:shadow-2xl"
                   >
                     Request Quote
                   </Link>
@@ -210,15 +210,15 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
         </div>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 sm:space-x-3 z-20">
           {camps.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "bg-white scale-125"
-                  : "bg-white/50 hover:bg-white/70"
+                  ? "w-8 sm:w-10 h-2.5 sm:h-3 bg-white scale-110 shadow-lg"
+                  : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-white/60 hover:bg-white/80 hover:scale-110"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -227,15 +227,15 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
       </div>
 
       {/* Thumbnail Navigation */}
-      <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-6 sm:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {camps.map((camp, index) => (
           <button
             key={camp.id}
             onClick={() => goToSlide(index)}
-            className={`group relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 ${
+            className={`group relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-500 shadow-md hover:shadow-xl ${
               index === currentSlide
-                ? "ring-4 ring-sunset-500 ring-offset-2"
-                : "hover:ring-2 hover:ring-sunset-300 hover:ring-offset-2"
+                ? "ring-3 sm:ring-4 ring-sunset-500 ring-offset-2 scale-105"
+                : "hover:ring-2 hover:ring-sunset-400 hover:ring-offset-2 hover:scale-105"
             }`}
           >
             <Image
@@ -245,12 +245,12 @@ export default function CampCarousel({ className = "" }: CampCarouselProps) {
               sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-cover group-hover:scale-110 transition-transform duration-300"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 to-transparent" />
-            <div className="absolute bottom-2 left-2 right-2">
-              <h3 className="safari-heading text-sm text-white leading-tight">
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/70 via-neutral-900/20 to-transparent" />
+            <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
+              <h3 className="safari-heading text-xs sm:text-sm text-white leading-tight font-bold drop-shadow-lg">
                 {camp.name.replace("Wilderness ", "")}
               </h3>
-              <p className="safari-accent text-xs text-sand-200 tracking-wider">
+              <p className="safari-accent text-[10px] sm:text-xs text-sand-200 tracking-wider font-medium mt-0.5">
                 {camp.region}
               </p>
             </div>
