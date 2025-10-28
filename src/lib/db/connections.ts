@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 
 // Create connection pool
-const pool = mysql.createPool({
+const db = mysql.createPool({
   host: process.env.RDS_HOST,
   port: parseInt(process.env.RDS_PORT || '3306'),
   user: process.env.RDS_USER,
@@ -15,7 +15,7 @@ const pool = mysql.createPool({
 });
 
 // Test connection on startup
-pool.getConnection()
+db.getConnection()
   .then(connection => {
     console.log('✅ Database connected successfully');
     connection.release();
@@ -24,4 +24,4 @@ pool.getConnection()
     console.error('❌ Database connection failed:', err);
   });
 
-export default pool;
+export default db;

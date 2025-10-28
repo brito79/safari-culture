@@ -1,15 +1,10 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db/connections';
+import { db } from '@/lib/db/db';
 
 export async function GET() {
   try {
-    // Test connection
-    const connection = await pool.getConnection();
-    
     // Test query
-    const [rows] = await connection.execute('SELECT 1 + 1 AS result');
-    
-    connection.release();
+    const [rows] = await db.query('SELECT 1 + 1 AS result');
     
     return NextResponse.json({
       success: true,
