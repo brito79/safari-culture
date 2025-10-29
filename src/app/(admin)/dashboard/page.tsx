@@ -6,7 +6,7 @@ import AccessDenied from '@/components/auth/AccessDenied'
 import LogoutButton from '@/components/auth/logout-button'
 import { useEffect, useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
-import { isAdmin } from '@/app/actions/isAdmin'
+import { isAdmin } from '@/app/actions/auth/isAdmin'
 import { useRouter } from 'next/navigation'
 
 export default function DashboardPage() {

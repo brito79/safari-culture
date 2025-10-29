@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Navigation from "@/components/shared/Navigation";
+import { Rate, ApiResponse } from "@/lib/db/types";
 
 type RatePeriod = "6-Jun-26 to 31-May-26" | "1-Apr-26 to 31-May-26" | "1-Jun-26 to 31-Oct-26" | "1-Nov-26 to 19-Dec-26" | "20-Dec-26 to 5-Jan-27";
 
@@ -17,149 +20,125 @@ interface CampData {
 }
 
 export default function RatesPage() {
-  const rateData: CampData[] = [
-    {
-      category: "Adventures",
-      camp: "Doro Nawas",
-      name: "Wilderness-Doro-Nawas",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R7 318", supplement: "R2 194" },
-        "1-Apr-26 to 31-May-26": { sharing: "R8 932", supplement: "R2 668" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R11 351", supplement: "R3 388" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R9 429", supplement: "R2 814" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R10 603", supplement: "R3 165" }
-      }
-    },
-    {
-      category: "Adventures",
-      camp: "Sossusvlei",
-      name: "Wilderness Kulala Desert Lodge",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R6 835", supplement: "R2 046" },
-        "1-Apr-26 to 31-May-26": { sharing: "R8 215", supplement: "R2 462" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R10 976", supplement: "R3 276" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R8 215", supplement: "R2 462" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R10 976", supplement: "R3 276" }
-      }
-    },
-    {
-      category: "Classic",
-      camp: "Damaraland",
-      name: "Wilderness Damaraland Camp",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R9 131", supplement: "R2 725" },
-        "1-Apr-26 to 31-May-26": { sharing: "R12 133", supplement: "R3 368" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R16 019", supplement: "R4 781" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R11 283", supplement: "R3 368" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R16 019", supplement: "R4 781" }
-      }
-    },
-    {
-      category: "Classic",
-      camp: "Desert Rhino",
-      name: "Wilderness Desert Rhino Camp",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R11 067", supplement: "R3 309" },
-        "1-Apr-26 to 31-May-26": { sharing: "R14 486", supplement: "R4 328" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R18 235", supplement: "R5 443" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R11 486", supplement: "R3 428" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R18 235", supplement: "R5 443" }
-      }
-    },
-    {
-      category: "Classic",
-      camp: "Kulene",
-      name: "Wilderness Serra Cafema",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R17 023", supplement: "R5 081" },
-        "1-Apr-26 to 31-May-26": { sharing: "R17 150", supplement: "R5 119" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R28 372", supplement: "R8 469" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R17 150", supplement: "R5 119" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R28 372", supplement: "R8 469" }
-      }
-    },
-    {
-      category: "Classic",
-      camp: "Skeleton Coast",
-      name: "Wilderness Hoanib Skeleton Coast Camp",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R19 055", supplement: "R5 688" },
-        "1-Apr-26 to 31-May-26": { sharing: "R20 655", supplement: "R6 165" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R31 881", supplement: "R9 516" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R20 659", supplement: "R6 166" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R31 881", supplement: "R9 516" }
-      }
-    },
-    {
-      category: "Classic",
-      camp: "Sossusvlei",
-      name: "Wilderness-Little-Kulala",
-      type: "FI",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R16 260", supplement: "R4 854" },
-        "1-Apr-26 to 31-May-26": { sharing: "R16 846", supplement: "R5 028" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R26 747", supplement: "R7 984" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R16 846", supplement: "R5 028" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R26 747", supplement: "R7 984" }
-      }
-    }
-  ];
+  const [rateData, setRateData] = useState<CampData[]>([]);
+  const [dbbRates, setDbbRates] = useState<CampData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const dbbRates: CampData[] = [
-    {
-      category: "Adventures",
-      camp: "Doro Nawas",
-      name: "Wilderness-Doro-Nawas",
-      type: "DBB",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R4 503", supplement: "R1 344" },
-        "1-Apr-26 to 31-May-26": { sharing: "R5 804", supplement: "R1 733" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R8 561", supplement: "R2 555" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R5 755", supplement: "R1 718" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R6 138", supplement: "R1 832" }
-      }
-    },
-    {
-      category: "Adventures",
-      camp: "Sossusvlei",
-      name: "Wilderness Kulala Desert Lodge",
-      type: "DBB",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R4 219", supplement: "R1 259" },
-        "1-Apr-26 to 31-May-26": { sharing: "R5 340", supplement: "R1 594" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R7 876", supplement: "R2 351" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R5 451", supplement: "R1 627" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R5 905", supplement: "R1 763" }
-      }
-    },
-    {
-      category: "Classic",
-      camp: "Damaraland",
-      name: "Wilderness Damaraland Camp",
-      type: "DBB",
-      rates: {
-        "6-Jun-26 to 31-May-26": { sharing: "R5 662", supplement: "R1 690" },
-        "1-Apr-26 to 31-May-26": { sharing: "R7 111", supplement: "R2 122" },
-        "1-Jun-26 to 31-Oct-26": { sharing: "R12 755", supplement: "R3 807" },
-        "1-Nov-26 to 19-Dec-26": { sharing: "R7 315", supplement: "R2 184" },
-        "20-Dec-26 to 5-Jan-27": { sharing: "R8 178", supplement: "R2 441" }
-      }
-    }
-  ];
+  // Transform flat database data into nested structure for display
+  const transformRateData = (rates: Rate[]): { fi: CampData[], dbb: CampData[] } => {
+    const fiRates: CampData[] = [];
+    const dbbRates: CampData[] = [];
 
-  const periods: RatePeriod[] = [
+    // Group rates by camp and type
+    const groupedRates = rates.reduce((acc, rate) => {
+      const key = `${rate.category}-${rate.camp}-${rate.name}-${rate.type}`;
+      if (!acc[key]) {
+        acc[key] = {
+          category: rate.category,
+          camp: rate.camp,
+          name: rate.name,
+          type: rate.type,
+          rates: {} as Record<RatePeriod, CampRate>
+        };
+      }
+      
+      // Map rate_period to our expected format and add sharing/supplement rates
+      const period = rate.rate_period as RatePeriod;
+      acc[key].rates[period] = {
+        sharing: rate.sharing_rate,
+        supplement: rate.supplement_rate
+      };
+      
+      return acc;
+    }, {} as Record<string, CampData>);
+
+    // Separate FI and DBB rates
+    Object.values(groupedRates).forEach(camp => {
+      if (camp.type === 'FI') {
+        fiRates.push(camp);
+      } else if (camp.type === 'DBB') {
+        dbbRates.push(camp);
+      }
+    });
+
+    return { fi: fiRates, dbb: dbbRates };
+  };
+
+  useEffect(() => {
+    const fetchRates = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/rates');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data: ApiResponse<Rate[]> = await response.json();
+        
+        if (!data.success || !data.data) {
+          throw new Error(data.error || 'Failed to fetch rates');
+        }
+
+        const { fi, dbb } = transformRateData(data.data);
+        setRateData(fi);
+        setDbbRates(dbb);
+        
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+        console.error('Error fetching rates:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRates();
+  }, []);
+
+  const ratePeriods: RatePeriod[] = [
     "6-Jun-26 to 31-May-26",
     "1-Apr-26 to 31-May-26", 
     "1-Jun-26 to 31-Oct-26",
     "1-Nov-26 to 19-Dec-26",
     "20-Dec-26 to 5-Jan-27"
   ];
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-stone-50">
+        <Navigation />
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-stone-900 mx-auto"></div>
+            <p className="mt-4 text-stone-600">Loading rates...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-stone-50">
+        <Navigation />
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+          <div className="text-center">
+            <div className="text-red-600">
+              <h2 className="text-2xl font-bold mb-4">Error Loading Rates</h2>
+              <p>{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-4 px-4 py-2 bg-stone-900 text-white rounded hover:bg-stone-800"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -193,7 +172,7 @@ export default function RatesPage() {
                     <th className="px-4 py-3 text-left text-sm font-medium text-stone-700 w-48">Property Name</th>
                     <th className="px-4 py-3 text-center text-sm font-medium text-stone-700 w-12">Type</th>
                     <th className="px-4 py-3 text-center text-sm font-medium text-stone-700 w-24">Rate Type</th>
-                    {periods.map((period) => (
+                    {ratePeriods.map((period: RatePeriod) => (
                       <th key={period} className="px-3 py-3 text-center text-xs font-medium text-stone-700 min-w-32">
                         {period}
                       </th>
@@ -220,7 +199,7 @@ export default function RatesPage() {
                         <td className="px-4 py-3 text-center text-sm text-stone-700">
                           Per person, sharing
                         </td>
-                        {periods.map((period) => (
+                        {ratePeriods.map((period: RatePeriod) => (
                           <td key={period} className="px-3 py-3 text-center text-sm font-medium text-stone-900">
                             {camp.rates[period]?.sharing || '-'}
                           </td>
@@ -235,7 +214,7 @@ export default function RatesPage() {
                         <td className="px-4 py-3 text-center text-sm text-stone-700">
                           Single supplement
                         </td>
-                        {periods.map((period) => (
+                        {ratePeriods.map((period: RatePeriod) => (
                           <td key={period} className="px-3 py-3 text-center text-sm text-stone-700">
                             {camp.rates[period]?.supplement || '-'}
                           </td>
@@ -264,7 +243,7 @@ export default function RatesPage() {
                     <th className="px-4 py-3 text-left text-sm font-medium text-stone-700 w-48">Property Name</th>
                     <th className="px-4 py-3 text-center text-sm font-medium text-stone-700 w-12">Type</th>
                     <th className="px-4 py-3 text-center text-sm font-medium text-stone-700 w-24">Rate Type</th>
-                    {periods.map((period) => (
+                    {ratePeriods.map((period: RatePeriod) => (
                       <th key={period} className="px-3 py-3 text-center text-xs font-medium text-stone-700 min-w-32">
                         {period}
                       </th>
@@ -291,7 +270,7 @@ export default function RatesPage() {
                         <td className="px-4 py-3 text-center text-sm text-stone-700">
                           Per person, sharing
                         </td>
-                        {periods.map((period) => (
+                        {ratePeriods.map((period: RatePeriod) => (
                           <td key={period} className="px-3 py-3 text-center text-sm font-medium text-stone-900">
                             {camp.rates[period]?.sharing || '-'}
                           </td>
@@ -306,7 +285,7 @@ export default function RatesPage() {
                         <td className="px-4 py-3 text-center text-sm text-stone-700">
                           Single supplement
                         </td>
-                        {periods.map((period) => (
+                        {ratePeriods.map((period: RatePeriod) => (
                           <td key={period} className="px-3 py-3 text-center text-sm text-stone-700">
                             {camp.rates[period]?.supplement || '-'}
                           </td>

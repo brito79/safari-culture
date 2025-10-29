@@ -40,21 +40,21 @@ function AdminDashboardContent({isAdmin}: {isAdmin: boolean}) {
       title: 'Rate Management',
       description: 'Update pricing and rate sheets',
       icon: '💰',
-      href: '/admin/rates',
+      href: '/dashboard/rates',
       permission: canManageRates
     },
     {
       title: 'Image Gallery',
       description: 'Manage camp and experience images',
       icon: '📸',
-      href: '/admin/images',
+      href: '/dashboard/images',
       permission: canManageImages
     },
     {
       title: 'Guest Inquiries',
       description: 'View and respond to contact form submissions',
       icon: '📧',
-      href: '/admin/inquiries',
+      href: '/dashboard/inquiries',
       permission: canViewInquiries
     },
     {
@@ -191,7 +191,7 @@ function AdminDashboardContent({isAdmin}: {isAdmin: boolean}) {
           <h2 className="text-xl font-medium text-gray-900 mb-6">Quick Actions</h2>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/admin/camps/new"
+              href="/dashboard/camps/new"
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               Add New Camp
@@ -203,7 +203,7 @@ function AdminDashboardContent({isAdmin}: {isAdmin: boolean}) {
               View Rate Sheet
             </Link>
             <Link
-              href="/admin/inquiries"
+              href="/dashboard/inquiries"
               className="px-6 py-3 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300 transition-colors"
             >
               Check Messages

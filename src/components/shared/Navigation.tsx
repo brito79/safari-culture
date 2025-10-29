@@ -25,7 +25,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
   const handleAdminClick = () => {
     if (!user) {
       // Redirect to login with returnTo dashboard
-      window.location.href = "/auth/login?returnTo=/dashboard";
+      window.location.href = "/auth/login";
     } else {
       // User is logged in, go to dashboard
       window.location.href = "/dashboard";

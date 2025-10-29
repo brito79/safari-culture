@@ -1,7 +1,7 @@
 "use server";
 
 import { auth0 } from "@/lib/auth0";
-import { createAccessToken } from "./creatAccessTokens";
+import { createAccessToken } from "../auth/creatAccessTokens";
 
 
 
