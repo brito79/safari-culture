@@ -1,79 +1,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { getCampsData, type Camp } from "@/app/actions/camps/camps";
 
-const camps = [
-  {
-    id: "doro-nawas",
-    name: "Wilderness-Doro-Nawas",
-    region: "Damaraland",
-    description: "A fortress on a rocky outcrop with sweeping views across ancient plains. Track desert-adapted elephants and black rhinos in this UNESCO World Heritage landscape.",
-    features: ["Desert-adapted wildlife", "Black rhino tracking", "Ancient rock art", "Cultural experiences"],
-    images: {
-      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_1.jpg`,
-      gallery: [
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_2.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_3.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/doro-nawas/Wilderness-Doro-Nawas_4.jpg`
-      ]
-    },
-    accommodation: "16 suites",
-    fromPrice: "R7,318"
-  },
-  {
-    id: "little-kulala",
-    name: "Wilderness-Little-Kulala",
-    region: "Sossusvlei",
-    description: "Gateway to the towering red dunes of Sossusvlei. Wake to sunrise over the Namib Desert, the world's oldest desert stretching endlessly to the horizon.",
-    features: ["Sossusvlei access", "Desert dune climbing", "Star gazing", "Desert luxury"],
-    images: {
-      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_1.jpg`,
-      gallery: [
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_2.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_3.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/Wilderness-Little-Kulala_4.jpg`
-      ]
-    },
-    accommodation: "11 suites",
-    fromPrice: "R16,260"
-  },
-  {
-    id: "hoanib-skeleton-coast",
-    name: "Wilderness Hoanib Skeleton Coast",
-    region: "Skeleton Coast",
-    description: "Remote wilderness at the edge of the world. Explore the mysterious Skeleton Coast where desert meets ocean in dramatic, windswept landscapes.",
-    features: ["Skeleton Coast excursions", "Wildlife research", "Seal colonies", "Remote wilderness"],
-    images: {
-      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_1.jpg`,
-      gallery: [
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_2.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/Wilderness-Hoanib-Skeleton-Coast-Camp_3.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/hoanib-skeleton/day-excursions/1741347436974_Final-Hoanib-64.jpg`
-      ]
-    },
-    accommodation: "8 tents",
-    fromPrice: "R19,055"
-  },
-  {
-    id: "damaraland-camp",
-    name: "Wilderness Damaraland Camp",
-    region: "Damaraland",
-    description: "Cultural immersion in ancient landscapes. Discover San rock art, learn from local communities, and witness wildlife thriving in this remarkable semi-desert environment.",
-    features: ["Cultural immersion", "San rock art", "Community visits", "Desert elephants"],
-    images: {
-      hero: `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_1.jpg`,
-      gallery: [
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_2.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_3.jpg`,
-        `${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/damaraland/Wilderness-Damaraland-Camp_4.jpg`
-      ]
-    },
-    accommodation: "10 tents",
-    fromPrice: "R9,931"
+export default async function CampsPage() {
+  // Fetch camps data from the database via server action
+  const camps: Camp[] = await getCampsData();
+  
+  // Debug: Log the camps data structure in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Camps data received:', camps.length, 'camps');
+    camps.forEach((camp, index) => {
+      console.log(`Camp ${index + 1}:`, {
+        id: camp.id,
+        name: camp.name,
+        featuresCount: camp.features?.length || 0,
+        features: camp.features,
+        galleryCount: camp.images?.gallery?.length || 0,
+        galleryUrls: camp.images?.gallery
+      });
+    });
   }
-];
 
-export default function CampsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-sand to-neutral-50">
       {/* Page Header */}
@@ -109,7 +57,7 @@ export default function CampsPage() {
                 <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                   <div className="relative overflow-hidden rounded-2xl aspect-[4/3] group">
                     <Image
-                      src={camp.images.hero}
+                      src={camp.images?.hero || ''}
                       alt={`${camp.name} - ${camp.description.slice(0, 100)}...`}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -125,7 +73,7 @@ export default function CampsPage() {
                   
                   {/* Image Gallery Preview */}
                   <div className="grid grid-cols-3 gap-4 mt-4">
-                    {camp.images.gallery.slice(0, 3).map((image, imgIndex) => (
+                    {camp.images?.gallery?.slice(0, 3).map((image, imgIndex) => (
                       <div key={imgIndex} className="relative aspect-[4/3] overflow-hidden rounded-lg">
                         <Image
                           src={image}
@@ -135,7 +83,7 @@ export default function CampsPage() {
                           className="object-cover hover:scale-110 transition-transform duration-500"
                         />
                       </div>
-                    ))}
+                    )) || []}
                   </div>
                 </div>
 
@@ -156,14 +104,14 @@ export default function CampsPage() {
                       Experiences
                     </h3>
                     <div className="grid grid-cols-2 gap-3">
-                      {camp.features.map((feature, featureIndex) => (
+                      {camp.features?.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-sunset-500 rounded-full" />
                           <span className="safari-body text-stone-600 text-sm">
                             {feature}
                           </span>
                         </div>
-                      ))}
+                      )) || []}
                     </div>
                   </div>
 

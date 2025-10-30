@@ -2,8 +2,11 @@ import CampNavigation from "@/components/ui/CampNavigation";
 import CampHero from "@/components/camps/doro-nawas/CampHero";
 import CampOverview from "@/components/camps/doro-nawas/CampOverview";
 import CampAccommodation from "@/components/camps/doro-nawas/CampAccommodation";
-import CampActivities from "@/components/camps/doro-nawas/CampActivities";
 import CampGallery from "@/components/camps/doro-nawas/CampGallery";
+import Cuisine from '@/components/camps/doro-nawas/Cuisine';
+import CampFacts from '@/components/camps/doro-nawas/CampFacts';
+import CampExperiences from '@/components/camps/doro-nawas/CampExperiences';
+import CampMap from '@/components/camps/doro-nawas/CampMap';
 
 import Link from "next/link";
 import CampContact from "@/components/camps/doro-nawas/CampContact";
@@ -33,9 +36,12 @@ export default function DoroNawasPage() {
       {/* Page Sections */}
       <CampHero />
       <CampOverview />
-      <CampAccommodation />
-      <CampActivities />
       <CampGallery />
+      <CampAccommodation />
+      <Cuisine />
+      <CampFacts />
+      <CampExperiences />
+      <CampMap />
       <CampContact />
     </div>
   );

@@ -91,11 +91,6 @@ safari-culture/
 
 ```
 
-### Database Schema Rules
-- Use UUIDs for primary keys
-- Implement proper foreign key constraints
-- Handle seasonal rate gaps validation
-
 ## 🎨 UI/UX Standards
 
 ### Design Principles
@@ -114,37 +109,12 @@ safari-culture/
 - Dark/light mode support
 ```
 
-### Image Guidelines
-- Use Next.js Image component with S3 loader
-- Implement proper alt tags for SEO
-- Support multiple formats (WebP preferred)
-- Lazy loading for galleries
-
-## 🔐 Authentication & Authorization
-
-### User Roles
-```typescript
-interface UserRoles {
-  public: 'VIEW_CAMPS' | 'VIEW_RATES' | 'SUBMIT_INQUIRY'
-  admin: 'MANAGE_CAMPS' | 'MANAGE_RATES' | 'MANAGE_IMAGES' | 'VIEW_INQUIRIES'
-}
-```
 
 ### Auth Implementation (REQUIRED PATTERN)
 ```typescript
 // Must use Auth0 as specified in test
 // App Router components use getServerSession()
 ```
-
-## 💻 Development Standards
-
-### Code Quality
-```typescript
-// TypeScript Rules
-- Strict mode enabled
-- No 'any' types
-- Proper interface definitions
-- Use Zod for runtime validation
 
 // Component Standards
 - Functional components only
@@ -183,50 +153,6 @@ interface UserRoles {
 - Functions: camelCase (`calculateRate()`)
 - Constants: UPPER_SNAKE_CASE (`MAX_UPLOAD_SIZE`)
 
-### Import Organization
-```typescript
-// Import order
-1. React/Next.js imports
-2. Third-party libraries
-3. Internal components
-4. Types/interfaces
-5. Utilities/helpers
-```
-
-## 🚨 Critical Don'ts
-
-### Technical Don'ts
-- ❌ Don't over-engineer the solution
-- ❌ Don't add unnecessary dependencies
-- ❌ Don't build complex booking systems
-- ❌ Don't implement real payment processing
-- ❌ Don't create overly complex admin workflows
-- ❌ Don't use client-side state management libraries
-- ❌ Don't bypass the required Auth0 + NextAuth.js pattern
-
-### Business Don'ts
-- ❌ Don't assume real booking functionality
-- ❌ Don't build inventory management
-- ❌ Don't create customer accounts beyond admin
-- ❌ Don't implement complex pricing calculations
-- ❌ Don't build multi-currency support initially
-
-## 🌍 AWS Deployment Standards
-
-### Required AWS Services (Per Test)
-- **Amplify Gen 2**: Hosting & CI/CD
-- **RDS MySQL**: Database
-- **S3**: Image storage with public-read ACLs
-- **CloudWatch**: Logging & monitoring
-- **Parameter Store**: Environment variables
-
-## 📚 Documentation Standards
-
-### Code Documentation
-- JSDoc for complex functions
-- README with setup instructions
-- Component prop documentation
-- API endpoint documentation
 
 ### Comments
 - Explain "why" not "what"

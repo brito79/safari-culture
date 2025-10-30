@@ -62,7 +62,7 @@ export default function CampGallery() {
     : galleryImages.filter(img => img.category === activeCategory);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-neutral-50 to-white">
+    <section id="gallery" className="py-20 bg-gradient-to-b from-neutral-50 to-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="text-center mb-12">
           <h2 className="safari-heading text-4xl sm:text-5xl font-light text-stone-900 mb-6">
