@@ -42,7 +42,7 @@ export default function DoroNawasPage() {
       <CampFacts />
       <CampExperiences />
       <CampMap />
-      <CampContact />
+      {/* <CampContact /> */}
     </div>
   );
 }
