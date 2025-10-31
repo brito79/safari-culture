@@ -149,7 +149,7 @@ export default function ExperiencesPage() {
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed px-4">
               From desert drives to coastal expeditions, each experience offers intimate encounters 
-              with Namibia's pristine wilderness and remarkable wildlife.
+              with Namibia&apos;s pristine wilderness and remarkable wildlife.
             </p>
           </motion.div>
 

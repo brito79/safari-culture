@@ -36,7 +36,7 @@ export default function HoanibSkeletonCoastPage() {
       <CampAccommodation />
       <CampActivities />
       <CampGallery />
-      <CampContact />
+      {/* <CampContact /> */}
     </div>
   );
 }
