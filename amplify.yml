@@ -1,17 +1,29 @@
 version: 1
 
+backend:
+  phases:
+    build:
+      commands:
+        # Executes the Amplify CLI to deploy backend resources
+        - '# Execute Amplify CLI with the helper script'
+        - amplifyPush --simple
+
+---
+# The frontend block must start at the same level as 'backend'
+
 frontend:
   phases:
     preBuild:
       commands:
-        # These echo commands are now quoted to avoid YAML parsing issues with the colon (:)
+        # Commands containing colons (:) are correctly quoted to avoid syntax errors
         - 'echo "🏕️ Building Safari Culture - Wilderness Namibia Platform"'
         - 'echo "📦 Next.js 15.5.3 with Turbopack"'
         - 'echo "🔐 Auth0 Authentication"'
         - 'echo "💾 AWS RDS MySQL Database"'
         - echo ""
         - echo "📥 Installing dependencies..."
-        - npm ci --legacy-peer-deps
+        # Combining npm ci flags for compatibility and caching
+        - npm ci --legacy-peer-deps --cache .npm --prefer-offline
         - echo "✅ Dependencies installed"
         - echo ""
         - echo "🔍 Validating environment configuration..."
@@ -22,13 +34,11 @@ frontend:
         - echo "DB_HOST=$DB_HOST"
         - echo ""
         - echo "📋 Checking installed versions..."
-        # CRITICAL FIX: The entire command is wrapped in single quotes ('...') 
-        # to escape the colons inside the string for YAML.
         - 'node -p '"React: " + require("./node_modules/react/package.json").version"'
         - 'node -p '"Next.js: " + require("./node_modules/next/package.json").version"'
         - echo ""
         - echo "✅ Environment setup complete"
-        
+
     build:
       commands:
         - echo "🚀 Starting production build with Turbopack..."
