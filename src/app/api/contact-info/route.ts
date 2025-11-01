@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getContactInfo } from '@/app/actions/contact/get-contact-info';
 import { updateContactInfo } from '@/app/actions/contact/update-contact-info';
 import { auth0 } from '@/lib/auth0';
@@ -6,7 +6,7 @@ import { auth0 } from '@/lib/auth0';
 export const dynamic = 'force-dynamic';
 export const revalidate = 60; // Revalidate every 60 seconds
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     console.log('📞 API: Fetching contact information...');
     
@@ -49,7 +49,7 @@ export async function GET() {
   }
 }
 
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
   try {
     console.log('✏️ API: Updating contact information...');
     

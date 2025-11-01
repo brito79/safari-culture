@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 interface ContactFormData {
   phone: string;
@@ -13,6 +14,7 @@ interface ContactFormData {
 }
 
 export default function EditContactInfoForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState<ContactFormData>({
     phone: '',
     phone_hours: '',
@@ -80,6 +82,11 @@ export default function EditContactInfoForm() {
         setMessage({ type: 'success', text: 'Contact information updated successfully!' });
         // Refresh the data
         await fetchContactInfo();
+        
+        // Clear success message after 3 seconds
+        setTimeout(() => {
+          setMessage(null);
+        }, 3000);
       } else {
         setMessage({ type: 'error', text: result.message || 'Failed to update contact information' });
       }
@@ -111,8 +118,22 @@ export default function EditContactInfoForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-xl shadow-lg p-8"
+      className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8"
     >
+      {/* Back Button */}
+      <div className="mb-6">
+        <button
+          type="button"
+          onClick={() => router.push('/dashboard')}
+          className="flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="font-medium">Back to Dashboard</span>
+        </button>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Success/Error Message */}
         {message && (
@@ -241,13 +262,14 @@ export default function EditContactInfoForm() {
         </div>
 
         {/* Submit Button */}
-        <div className="flex items-center justify-between pt-6 border-t border-stone-200">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-6 border-t border-stone-200">
           <button
             type="button"
             onClick={fetchContactInfo}
             disabled={saving}
             className="px-6 py-3 border border-stone-300 text-stone-700 rounded-lg
-                       hover:bg-stone-50 transition-colors disabled:opacity-50"
+                       hover:bg-stone-50 transition-colors disabled:opacity-50
+                       text-sm sm:text-base"
           >
             Reset
           </button>
@@ -255,11 +277,11 @@ export default function EditContactInfoForm() {
           <button
             type="submit"
             disabled={saving}
-            className="px-8 py-3 bg-gradient-to-r from-sunset-500 to-orange-600
+            className="px-6 sm:px-8 py-3 bg-gradient-to-r from-sunset-500 to-orange-600
                        text-white rounded-lg hover:from-sunset-600 hover:to-orange-700
                        transition-all duration-300 font-semibold shadow-lg
                        hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed
-                       flex items-center gap-2"
+                       flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             {saving ? (
               <>
@@ -282,9 +304,9 @@ export default function EditContactInfoForm() {
       </form>
 
       {/* Preview Section */}
-      <div className="mt-8 pt-8 border-t border-stone-200">
-        <h3 className="text-lg font-semibold text-stone-900 mb-4">Preview</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-stone-200">
+        <h3 className="text-base sm:text-lg font-semibold text-stone-900 mb-3 sm:mb-4">Preview</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {/* Phone Preview */}
           <div className="p-4 bg-stone-50 rounded-lg border border-stone-200">
             <div className="flex items-center gap-2 mb-2">

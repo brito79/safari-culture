@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
+import Link from 'next/link';
 
 interface FAQItem {
   id: string;
@@ -374,7 +375,9 @@ export default function FAQ() {
               transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
               className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-sunset-500 to-sunset-600 text-neutral-700 font-medium rounded-xl hover:from-sunset-600 hover:to-sunset-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
-              Contact Our Experts
+              <Link href="/contact">
+                Contact Our Experts
+              </Link>
             </motion.button>
           </div>
         </motion.div>

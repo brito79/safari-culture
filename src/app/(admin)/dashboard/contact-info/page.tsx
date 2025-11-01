@@ -15,14 +15,14 @@ export default async function EditContactInfoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 py-8">
+    <div className="min-h-screen bg-stone-50 py-4 sm:py-6 lg:py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-light text-stone-900 mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-light text-stone-900 mb-2">
             Edit Contact Information
           </h1>
-          <p className="text-stone-600">
+          <p className="text-sm sm:text-base text-stone-600">
             Update the contact details displayed on the contact page
           </p>
         </div>

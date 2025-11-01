@@ -21,7 +21,7 @@ export default function ContactPage() {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/skeleton-coast.jpg)` 
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/little-kulala/hot-air-balloon/nam_balloon_saf_2014-12-6e.jpg)` 
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />

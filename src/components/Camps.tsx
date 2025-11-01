@@ -168,7 +168,7 @@ export default async function CampsPage() {
             combining luxury accommodation with authentic desert adventures.
           </p>
           <Link 
-            href="/contact"
+            href="/apply"
             className="inline-block safari-body px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-sunset-500 text-neutral-900 rounded-full hover:bg-sunset-600 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Start Planning
