@@ -1,8 +1,13 @@
 
-
 import { query } from '@/lib/db/db';
 import { NextResponse } from 'next/server';
 import { Rate, ApiResponse } from '@/lib/db/types';
+
+// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+export const revalidate = 60;
+
+// Disable static optimization for dynamic data
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -14,7 +19,12 @@ export async function GET() {
       count: rows.length
     };
     
-    return NextResponse.json(response);
+    // Add cache control headers for better control
+    return NextResponse.json(response, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+      },
+    });
   } catch (error) {
     console.error('DB error:', error);
     

@@ -24,20 +24,23 @@ interface ApiResponse {
 
 /**
  * Server action to fetch camps data from the database
+ * Uses Next.js cache with 60-second revalidation
  */
 export async function getCampsData(): Promise<Camp[]> {
     try {
         // Get the base URL for API calls
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
         
-        // Make API call to our camps endpoint
-        const response = await fetch(`${baseUrl}/api/camps?t=${Date.now()}`, {
+        // Make API call to our camps endpoint with revalidation
+        const response = await fetch(`${baseUrl}/api/camps`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            // Disable caching to ensure fresh data
-            cache: 'no-store'
+            next: { 
+                revalidate: 60, // Revalidate every 60 seconds
+                tags: ['camps'] // Cache tag for targeted revalidation
+            }
         });
 
         if (!response.ok) {

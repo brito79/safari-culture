@@ -11,20 +11,11 @@ const ContactResources = () => {
   const quickLinks = [
     { label: "Rate Sheet", href: "/rates" },
     { label: "Camp Availability", href: "#" },
-    { label: "Group Bookings", href: "#" }
+    { label: "Group Bookings", href: "/apply" }
   ];
 
   return (
-    <section ref={ref} className="py-16 relative">
-      {/* Background Image with Low Opacity */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-8"
-        style={{ 
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_BASE_URL}/images/experiences/hot-air-balloon.jpg)` 
-        }}
-      />
-      <div className="absolute inset-0 bg-stone-50/90" />
-      
+    <section ref={ref} className="py-20 relative bg-stone-50">
       <div className="relative max-w-4xl mx-auto px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -32,11 +23,14 @@ const ContactResources = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-light text-stone-900 mb-4">
-            Quick Links
+          <div className="inline-block px-4 py-2 bg-sunset-100 rounded-full mb-4">
+            <span className="text-sunset-700 text-sm font-semibold tracking-wide">RESOURCES</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-light text-stone-900 mb-4">
+            Helpful Resources
           </h2>
-          <p className="text-stone-600 max-w-2xl mx-auto">
-            Access important resources for your safari planning.
+          <p className="text-stone-600 max-w-2xl mx-auto text-lg">
+            Access important information to help plan your perfect safari experience.
           </p>
         </motion.div>
 

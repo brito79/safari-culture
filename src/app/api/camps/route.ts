@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db/db';
+import { revalidatePath } from 'next/cache';
+
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
+// Force dynamic rendering for fresh data
+export const dynamic = 'force-dynamic';
 
 // Type definitions
 interface CampRow {
@@ -119,6 +126,10 @@ export async function POST(request: NextRequest) {
       image_hero_url,
       image_gallery_urls
     ]);
+
+    // Revalidate camps pages to reflect new data
+    revalidatePath('/camps');
+    revalidatePath('/api/camps');
 
     return NextResponse.json({
       success: true,

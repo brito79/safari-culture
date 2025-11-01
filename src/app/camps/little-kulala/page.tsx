@@ -8,6 +8,9 @@ import CampGallery from "@/components/little-kulala/CampGallery";
 import Link from "next/link";
 import CampContact from "@/components/little-kulala/CampContact";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 export default function LittleKulalaPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">

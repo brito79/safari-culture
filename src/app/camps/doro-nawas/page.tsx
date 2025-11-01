@@ -11,6 +11,9 @@ import CampMap from '@/components/camps/doro-nawas/CampMap';
 import Link from "next/link";
 import CampContact from "@/components/camps/doro-nawas/CampContact";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 export default function DoroNawasPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">
