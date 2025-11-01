@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { query } from '@/lib/db/db';
 
-// Revalidate every 60 seconds
+// Enable ISR with 60 second revalidation
 export const revalidate = 60;
-export const dynamic = 'force-dynamic';
+// Use 'force-static' for better caching performance
+export const dynamic = 'force-static';
 
 interface ExperienceRow {
   id: number;

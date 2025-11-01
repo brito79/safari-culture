@@ -3,8 +3,10 @@ import { getContactInfo } from '@/app/actions/contact/get-contact-info';
 import { updateContactInfo } from '@/app/actions/contact/update-contact-info';
 import { auth0 } from '@/lib/auth0';
 
+// Enable ISR with 60 second revalidation for GET requests
+export const revalidate = 60;
+// Keep dynamic for this route since it has authenticated PUT requests
 export const dynamic = 'force-dynamic';
-export const revalidate = 60; // Revalidate every 60 seconds
 
 export async function GET() {
   try {

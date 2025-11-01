@@ -3,11 +3,11 @@ import { query } from '@/lib/db/db';
 import { NextResponse } from 'next/server';
 import { Rate, ApiResponse } from '@/lib/db/types';
 
-// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+// Enable ISR with 60 second revalidation
 export const revalidate = 60;
 
-// Disable static optimization for dynamic data
-export const dynamic = 'force-dynamic';
+// Use 'force-static' for better caching performance
+export const dynamic = 'force-static';
 
 export async function GET() {
   try {

@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db/db';
 import { revalidatePath } from 'next/cache';
 
-// Revalidate every 60 seconds
+// Enable ISR with 60 second revalidation
 export const revalidate = 60;
 
-// Force dynamic rendering for fresh data
-export const dynamic = 'force-dynamic';
+// Use 'force-static' for better performance with revalidation
+// This allows Next.js to cache and serve static responses
+export const dynamic = 'force-static';
 
 // Type definitions
 interface CampRow {
@@ -73,10 +74,17 @@ ORDER BY
       };
     });
 
-    return NextResponse.json({
-      success: true,
-      data: transformedCamps
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        data: transformedCamps
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      }
+    );
 
   } catch (error) {
     console.error('Database error:', error);
