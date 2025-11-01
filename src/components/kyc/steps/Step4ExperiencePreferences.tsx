@@ -42,7 +42,7 @@ export default function Step4ExperiencePreferences() {
     });
   };
   
-  const updateField = (field: string, value: any) => {
+  const updateField = (field: string, value: string | string[]) => {
     dispatch({
       type: 'UPDATE_DATA',
       payload: {
@@ -70,7 +70,7 @@ export default function Step4ExperiencePreferences() {
       {/* Experiences */}
       <div>
         <label className="block text-sm font-medium text-stone-700 mb-3">
-          Select Activities You're Interested In
+          Select Activities You&apos;re Interested In
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {experiences.map(exp => (
@@ -96,7 +96,7 @@ export default function Step4ExperiencePreferences() {
       {/* Wildlife Interests */}
       <div>
         <label className="block text-sm font-medium text-stone-700 mb-3">
-          Wildlife You'd Like to See
+          Wildlife You&apos;d Like to See
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {wildlife.map(animal => (

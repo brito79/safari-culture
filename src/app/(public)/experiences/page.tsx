@@ -19,7 +19,7 @@ async function ExperiencesData() {
           <div className="text-stone-600">
             <h2 className="text-2xl sm:text-3xl font-light text-stone-900 mb-4">No Experiences Available</h2>
             <p className="text-base sm:text-lg mb-6">
-              We're currently updating our experiences. Please check back soon!
+              We&apos;re currently updating our experiences. Please check back soon!
             </p>
           </div>
         </div>

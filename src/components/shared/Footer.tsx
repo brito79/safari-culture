@@ -26,7 +26,7 @@ export default async function Footer({ className = "" }: FooterProps) {
               Wilderness Namibia
             </h3>
             <p className="text-stone-400 text-sm leading-relaxed">
-              Experience the untamed beauty of Namibia's wilderness through luxury safari adventures.
+              Experience the untamed beauty of Namibia&apos;s wilderness through luxury safari adventures.
             </p>
             {/* Social Links */}
             <div className="flex gap-4 pt-2">

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
-import { KYCState, KYCAction, KYCFormData } from '@/types/kyc';
+import { KYCState, KYCAction, KYCStep } from '@/types/kyc';
 
 const initialState: KYCState = {
   currentStep: 1,
@@ -69,7 +69,10 @@ export function KYCProvider({ children }: { children: ReactNode }) {
     }
     
     if (savedStep) {
-      dispatch({ type: 'SET_STEP', payload: parseInt(savedStep) as any });
+      const stepNumber = parseInt(savedStep);
+      if (stepNumber >= 1 && stepNumber <= 7) {
+        dispatch({ type: 'SET_STEP', payload: stepNumber as KYCStep });
+      }
     }
   }, []);
   

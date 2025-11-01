@@ -181,7 +181,7 @@ export default function Step7ReviewSubmit() {
                        focus:ring-2 focus:ring-sunset-500"
           />
           <label htmlFor="marketing" className="text-sm text-stone-700 cursor-pointer">
-            I'd like to receive updates about special offers and safari experiences
+            I&apos;d like to receive updates about special offers and safari experiences
           </label>
         </div>
       </div>

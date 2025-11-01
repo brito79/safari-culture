@@ -3,11 +3,12 @@ import { getCampRates } from '@/app/actions/camps/camp-rate';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { camp_id: string[] } }
+  { params }: { params: Promise<{ camp_id: string }> }
 ) {
   try {
     // Extract camp_id from the dynamic route
-    const campId = params.camp_id[0];
+    const { camp_id } = await params;
+    const campId = camp_id;
     
     if (!campId) {
       return NextResponse.json(
@@ -47,10 +48,11 @@ export async function GET(
 // Support for POST requests to add new rates (admin functionality)
 export async function POST(
   request: NextRequest,
-  { params }: { params: { camp_id: string[] } }
+  { params }: { params: Promise<{ camp_id: string }> }
 ) {
   try {
-    const campId = params.camp_id[0];
+    const { camp_id } = await params;
+    const campId = camp_id;
     const body = await request.json();
     const { sharing_rate, single_rate } = body;
 

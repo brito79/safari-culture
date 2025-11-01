@@ -32,7 +32,7 @@ export default function ContactPage() {
             Submit Your Inquiry
           </h1>
           <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Begin your journey to Namibia's wilderness. Our safari specialists will craft a personalized experience just for you.
+            Begin your journey to Namibia&apos;s wilderness. Our safari specialists will craft a personalized experience just for you.
           </p>
         </div>
         

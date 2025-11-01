@@ -28,7 +28,7 @@ export default async function SuccessPage({
           </h1>
           
           <p className="text-lg text-stone-600 mb-6">
-            Thank you for your safari application. We've received your information and will review it shortly.
+            Thank you for your safari application. We&apos;ve received your information and will review it shortly.
           </p>
           
           {applicationId && (

@@ -11,7 +11,7 @@ interface CampNavigationProps {
 
 export default function CampNavigation({ 
   campName, 
-  brandText = "WILDERNESS NAMIBIA",
+  // brandText = "WILDERNESS NAMIBIA",
   logoLetter = "W"
 }: CampNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

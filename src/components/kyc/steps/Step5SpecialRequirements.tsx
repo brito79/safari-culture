@@ -19,8 +19,8 @@ export default function Step5SpecialRequirements() {
     mobilityNeeds: [],
   };
   
-  const toggleSelection = (field: string, value: string) => {
-    const current = (data as any)[field] || [];
+  const toggleSelection = (field: 'dietaryRestrictions' | 'medicalConditions' | 'mobilityNeeds', value: string) => {
+    const current = data[field] || [];
     const updated = current.includes(value)
       ? current.filter((item: string) => item !== value)
       : [...current, value];
@@ -33,7 +33,7 @@ export default function Step5SpecialRequirements() {
     });
   };
   
-  const updateField = (field: string, value: string) => {
+  const updateField = (field: 'otherDietary' | 'otherMedical' | 'accessibilityRequirements' | 'specialRequests', value: string) => {
     dispatch({
       type: 'UPDATE_DATA',
       payload: {

@@ -3,7 +3,7 @@
 import { Rate, ApiResponse } from '@/lib/db/types';
 import { CampData, CampRate, RatePeriod } from '@/types/types';
 import { findMatchingCampName } from '@/lib/utils/camp-utils';
-import { unstable_cache } from 'next/cache';
+
 
 /**
  * Fetches camp rates by camp name from the rates API
@@ -123,7 +123,7 @@ export async function getAllCampRates(): Promise<CampData[]> {
     // Transform each camp's rates into CampData format
     const allCampData: CampData[] = [];
 
-    campMap.forEach((rates, campName) => {
+    campMap.forEach((rates) => {
       const firstRate = rates[0];
       const ratesRecord: Record<RatePeriod, CampRate> = {} as Record<RatePeriod, CampRate>;
 

@@ -83,7 +83,7 @@ export default function Step3CampSelection() {
     }
   };
   
-  const updateBooking = (campId: string, field: string, value: any) => {
+  const updateBooking = (campId: string, field: string, value: string | number) => {
     setCampBookings({
       ...campBookings,
       [campId]: {
@@ -152,7 +152,7 @@ export default function Step3CampSelection() {
           Select Your Camps
         </h2>
         <p className="text-stone-600">
-          Choose the camps you'd like to visit during your safari adventure
+          Choose the camps you&apos;d like to visit during your safari adventure
         </p>
       </div>
       

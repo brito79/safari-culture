@@ -1,8 +1,9 @@
 "use client";
 
 import { useKYC } from './KYCContext';
+import { KYCStep } from '@/types/kyc';
 
-const steps = [
+const steps: Array<{ number: KYCStep; title: string; icon: string }> = [
   { number: 1, title: 'Personal Info', icon: '👤' },
   { number: 2, title: 'Travel Details', icon: '✈️' },
   { number: 3, title: 'Camp Selection', icon: '🏕️' },
@@ -48,13 +49,13 @@ export default function KYCProgress() {
                   ${
                     state.currentStep === step.number
                       ? 'bg-sunset-600 text-white scale-110 shadow-lg'
-                      : state.completedSteps.has(step.number as any)
+                      : state.completedSteps.has(step.number)
                       ? 'bg-green-500 text-white'
                       : 'bg-gray-200 text-gray-500'
                   }
                 `}
               >
-                {state.completedSteps.has(step.number as any) ? '✓' : step.icon}
+                {state.completedSteps.has(step.number) ? '✓' : step.icon}
               </div>
               <span className={`text-xs mt-2 transition-colors ${
                 state.currentStep === step.number 
@@ -71,7 +72,7 @@ export default function KYCProgress() {
                 className={`
                   flex-1 h-1 mx-2 transition-all duration-300
                   ${
-                    state.completedSteps.has(step.number as any)
+                    state.completedSteps.has(step.number)
                       ? 'bg-green-500'
                       : 'bg-gray-200'
                   }

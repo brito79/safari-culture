@@ -9,7 +9,7 @@ import CampExperiences from '@/components/camps/doro-nawas/CampExperiences';
 import CampMap from '@/components/camps/doro-nawas/CampMap';
 
 import Link from "next/link";
-import CampContact from "@/components/camps/doro-nawas/CampContact";
+
 
 // Revalidate every 60 seconds
 export const revalidate = 60;

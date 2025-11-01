@@ -6,7 +6,7 @@ import CampActivities from "@/components/camps/hoanib-skeleton-coast/CampActivit
 import CampGallery from "@/components/camps/hoanib-skeleton-coast/CampGallery";
 
 import Link from "next/link";
-import CampContact from "@/components/camps/hoanib-skeleton-coast/CampContact";
+
 
 // Revalidate every 60 seconds
 export const revalidate = 60;

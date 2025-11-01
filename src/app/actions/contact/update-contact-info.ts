@@ -11,7 +11,23 @@ export interface UpdateContactInfoData {
   office_details: string;
 }
 
-export async function updateContactInfo(data: UpdateContactInfoData) {
+interface ContactInfoRecord {
+  id: number;
+  phone: string;
+  phone_hours: string;
+  email: string;
+  email_response: string;
+  office: string;
+  office_details: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export async function updateContactInfo(data: UpdateContactInfoData): Promise<{
+  success: boolean;
+  message: string;
+  data: ContactInfoRecord | null;
+}> {
   try {
     console.log('✏️ Updating contact information in database...');
     
@@ -39,12 +55,12 @@ export async function updateContactInfo(data: UpdateContactInfoData) {
     console.log('✅ Contact information updated successfully');
     
     // Fetch the updated data
-    const [results] = await query('SELECT * FROM contact_us ORDER BY id DESC LIMIT 1') as [any[], any];
+    const [results] = await query<ContactInfoRecord>('SELECT * FROM contact_us ORDER BY id DESC LIMIT 1');
     
     return {
       success: true,
       message: 'Contact information updated successfully',
-      data: results[0]
+      data: results[0] || null
     };
     
   } catch (error) {

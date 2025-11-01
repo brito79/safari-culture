@@ -31,7 +31,7 @@ export default function Step2TravelDetails() {
     dispatch({ type: 'SET_ERRORS', payload: {} });
   };
   
-  const updateField = (field: string, value: any) => {
+  const updateField = (field: string, value: string | boolean | number | number[]) => {
     dispatch({
       type: 'UPDATE_DATA',
       payload: {

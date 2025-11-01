@@ -43,7 +43,7 @@ function KYCFormContent() {
             Safari Application
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-stone-600">
-            Complete your application to experience Namibia's wilderness
+            Complete your application to experience Namibia`&apos;`s wilderness
           </p>
         </div>
         

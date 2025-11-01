@@ -6,7 +6,7 @@ import { auth0 } from '@/lib/auth0';
 export const dynamic = 'force-dynamic';
 export const revalidate = 60; // Revalidate every 60 seconds
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     console.log('📞 API: Fetching contact information...');
     

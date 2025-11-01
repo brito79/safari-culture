@@ -73,7 +73,7 @@ export default function CampGallery() {
           </h2>
           <p className="safari-accent text-xl text-stone-700 max-w-3xl mx-auto leading-relaxed">
             Discover the beauty of Damaraland through our curated collection of images showcasing 
-            the camp's unique accommodations, diverse activities, and stunning natural landscapes.
+            the camp&apos;s unique accommodations, diverse activities, and stunning natural landscapes.
           </p>
         </div>
 

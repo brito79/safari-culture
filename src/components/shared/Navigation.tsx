@@ -20,7 +20,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { user, isLoading, error } = useUser();
+  const { user, isLoading } = useUser();
 
   const handleAdminClick = () => {
     if (!user) {

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/format";
 import { CampRate } from "@/types/rates";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Table, TableHead, TableRow, TableCell, TableBody } from "@/components/ui/table";
+import { Table, TableHeader, TableRow, TableCell, TableBody, TableHead } from "@/components/ui/table";
 
 // Props for CampRates
 interface CampRatesProps {
@@ -37,15 +37,15 @@ const CampRates: React.FC<CampRatesProps> = ({ campName, rates, className }) => 
             </CardHeader>
             <CardContent>
                 <Table>
-                    <TableHead>
+                    <TableHeader>
                         <TableRow>
-                            <TableCell>Season</TableCell>
-                            <TableCell>Start Date</TableCell>
-                            <TableCell>End Date</TableCell>
-                            <TableCell>Rate (pppn)</TableCell>
-                            <TableCell>Currency</TableCell>
+                            <TableHead>Season</TableHead>
+                            <TableHead>Start Date</TableHead>
+                            <TableHead>End Date</TableHead>
+                            <TableHead>Rate (pppn)</TableHead>
+                            <TableHead>Currency</TableHead>
                         </TableRow>
-                    </TableHead>
+                    </TableHeader>
                     <TableBody>
                         {campRates.map((rate) => (
                             <TableRow key={rate.id}>
