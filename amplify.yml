@@ -1,224 +1,278 @@
 version: 1
-# =====================================================
-# Safari Culture - Wilderness Namibia Platform
-# Amplify Build Configuration
-# =====================================================
-# Tech Stack: Next.js 15.5.3 + Turbopack + Auth0 + MySQL + AWS RDS
-# Build Time: ~2-3 minutes (optimized with caching)
-# =====================================================
-
-backend:
-  phases:
-    build:
-      commands:
-        - '# Amplify Gen 2 Backend (if using Amplify backend)'
-        - amplifyPush --simple
+# This build spec is optimized for a Next.js application using npm/node environment.
 
 frontend:
   phases:
-    # =====================================================
-    # PRE-BUILD PHASE
-    # =====================================================
     preBuild:
       commands:
-        - '# ========================================='
-        - '# Safari Culture - Pre-Build Setup'
-        - '# ========================================='
-        - echo "🏕️  Building Safari Culture - Wilderness Namibia Platform"
-        - echo "📦 Next.js 15.5.3 with Turbopack"
-        - echo "🔐 Auth0 Authentication"
-        - echo "💾 AWS RDS MySQL Database"
-        - echo ""
-        
-        - '# ========================================='
-        - '# Install Dependencies (with caching)'
-        - '# ========================================='
-        - echo "📥 Installing dependencies..."
-        - npm ci --cache .npm --prefer-offline --legacy-peer-deps
-        - echo "✅ Dependencies installed"
-        - echo ""
-        
-        - '# ========================================='
-        - '# Environment Validation'
-        - '# ========================================='
-        - echo "🔍 Validating environment configuration..."
-        - echo "NODE_ENV=$NODE_ENV"
-        - echo "NEXT_PUBLIC_S3_BASE_URL=$NEXT_PUBLIC_S3_BASE_URL"
-        - echo "AUTH0_ISSUER=$AUTH0_ISSUER"
-        - echo "AUTH0_CLIENT_ID=$AUTH0_CLIENT_ID"
-        - echo "DB_HOST=$DB_HOST"
-        - echo ""
-        
-        - '# ========================================='
-        - '# Verify Dependencies'
-        - '# ========================================='
-        - echo "📋 Checking installed versions..."
+        - echo "✅ Starting Build: PreBuild Phase"
+        - echo "Installing dependencies (npm ci with legacy-peer-deps for compatibility)..."
+        # Using npm ci ensures a clean install based on package-lock.json.
+        # --legacy-peer-deps is used for compatibility with older libraries or newer npm versions.
+        - npm ci --legacy-peer-deps
+        - echo "Checking installed versions..."
         - node --version
         - npm --version
-        - node -p '"React: " + require("./node_modules/react/package.json").version'
-        - node -p '"Next.js: " + require("./node_modules/next/package.json").version'
-        - echo ""
-        
-        - '# ========================================='
-        - '# Database Connection Test (Optional)'
-        - '# ========================================='
-        - echo "🔌 Testing database connectivity..."
-        - '# Add your DB connection test here if needed'
-        - echo "✅ Environment setup complete"
-        - echo ""
+        - echo "✅ PreBuild Phase Complete"
 
-    # =====================================================
-    # BUILD PHASE
-    # =====================================================
     build:
       commands:
-        - '# ========================================='
-        - '# Safari Culture - Production Build'
-        - '# ========================================='
-        - echo "🚀 Starting production build with Turbopack..."
-        - echo "⏱️  Build started at $(date)"
-        - echo ""
-        
-        - '# Build with Turbopack (Next.js 15)'
+        - echo "🚀 Starting Next.js Production Build..."
+        # Running the standard build command defined in package.json
         - npm run build
-        
-        - echo ""
-        - echo "✅ Build completed at $(date)"
-        - echo "📊 Build artifacts ready for deployment"
-        - echo ""
-        
-        - '# ========================================='
-        - '# Post-Build Verification'
-        - '# ========================================='
-        - echo "🔍 Verifying build output..."
+        - echo "🔍 Verifying build output in .next/ directory..."
         - ls -lah .next/
-        - echo "✅ Build verification complete"
-        
+        - echo "✅ Build Phase Complete"
+
       environment:
         variables:
-          # ========================================
-          # Next.js Build Optimizations
-          # ========================================
+          # Next.js optimization variables
           NEXT_TELEMETRY_DISABLED: 1
           NODE_OPTIONS: "--max-old-space-size=4096"
-          
-          # ========================================
-          # Safari Culture Environment
-          # ========================================
-          APP_ENV: production
+          # Explicitly set production environment
           NODE_ENV: production
-          
-          # ========================================
-          # React 19 Compatibility
-          # ========================================
+          # Re-specify the peer-deps configuration for Next.js build internals if needed
           NPM_CONFIG_LEGACY_PEER_DEPS: true
-          
-          # ========================================
-          # Turbopack Build Flags
-          # ========================================
+          # Explicitly enable Turbopack (often the default in recent Next.js, but good to ensure)
           TURBOPACK: 1
 
-  # =====================================================
-  # BUILD ARTIFACTS
-  # =====================================================
   artifacts:
+    # Next.js build output directory
     baseDirectory: .next
     files:
       - '**/*'
 
-  # =====================================================
-  # BUILD CACHE (Speeds up subsequent builds)
-  # =====================================================
   cache:
+    # Cache large directories to speed up subsequent builds
     paths:
-      # Next.js build cache (critical for fast rebuilds)
       - .next/cache/**/*
-      
-      # npm cache (speeds up dependency installation)
       - .npm/**/*
-      
-      # Node modules (if dependencies haven't changed)
       - node_modules/**/*
-      
-      # Turbopack cache
       - .turbo/**/*
 
-  # =====================================================
-  # CUSTOM HEADERS (Security & Performance)
-  # =====================================================
-  customHeaders:
-    # ========================================
-    # Security Headers (All Routes)
-    # ========================================
-    - pattern: '**/*'
-      headers:
-        # Prevent clickjacking attacks
-        - key: 'X-Frame-Options'
-          value: 'DENY'
-        
-        # Prevent MIME type sniffing
-        - key: 'X-Content-Type-Options'
-          value: 'nosniff'
-        
-        # Control referrer information
-        - key: 'Referrer-Policy'
-          value: 'strict-origin-when-cross-origin'
-        
-        # Restrict browser features
-        - key: 'Permissions-Policy'
-          value: 'camera=(), microphone=(), geolocation=()'
-        
-        # XSS Protection
-        - key: 'X-XSS-Protection'
-          value: '1; mode=block'
-        
-        # Strict Transport Security (HTTPS only)
-        - key: 'Strict-Transport-Security'
-          value: 'max-age=31536000; includeSubDomains; preload'
 
-    # ========================================
-    # API Routes Caching (ISR optimized)
-    # ========================================
-    - pattern: '/api/camps'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, s-maxage=60, stale-while-revalidate=300'
-    
-    - pattern: '/api/experiences'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, s-maxage=60, stale-while-revalidate=300'
-    
-    - pattern: '/api/rates'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, s-maxage=60, stale-while-revalidate=300'
 
-    # ========================================
-    # Static Assets Caching (1 year)
-    # ========================================
-    - pattern: '/images/**'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=31536000, immutable'
-    
-    - pattern: '**/*.{js,css,woff,woff2,ttf,eot}'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=31536000, immutable'
-    
-    - pattern: '**/*.{jpg,jpeg,png,gif,webp,svg,ico}'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=31536000, immutable'
+# version: 1
+# # =====================================================
+# # Safari Culture - Wilderness Namibia Platform
+# # Amplify Build Configuration
+# # =====================================================
+# # Tech Stack: Next.js 15.5.3 + Turbopack + Auth0 + MySQL + AWS RDS
+# # Build Time: ~2-3 minutes (optimized with caching)
+# # =====================================================
 
-    # ========================================
-    # Next.js Static Pages (1 hour cache)
-    # ========================================
-    - pattern: '/_next/static/**'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=3600, immutable'
+# backend:
+#   phases:
+#     build:
+#       commands:
+#         - '# Amplify Gen 2 Backend (if using Amplify backend)'
+#         - amplifyPush --simple
+
+# frontend:
+#   phases:
+#     # =====================================================
+#     # PRE-BUILD PHASE
+#     # =====================================================
+#     preBuild:
+#       commands:
+#         - '# ========================================='
+#         - '# Safari Culture - Pre-Build Setup'
+#         - '# ========================================='
+#         - echo "🏕️  Building Safari Culture - Wilderness Namibia Platform"
+#         - echo "📦 Next.js 15.5.3 with Turbopack"
+#         - echo "🔐 Auth0 Authentication"
+#         - echo "💾 AWS RDS MySQL Database"
+#         - echo ""
+        
+#         - '# ========================================='
+#         - '# Install Dependencies (with caching)'
+#         - '# ========================================='
+#         - echo "📥 Installing dependencies..."
+#         - npm ci --cache .npm --prefer-offline --legacy-peer-deps
+#         - echo "✅ Dependencies installed"
+#         - echo ""
+        
+#         - '# ========================================='
+#         - '# Environment Validation'
+#         - '# ========================================='
+#         - echo "🔍 Validating environment configuration..."
+#         - echo "NODE_ENV=$NODE_ENV"
+#         - echo "NEXT_PUBLIC_S3_BASE_URL=$NEXT_PUBLIC_S3_BASE_URL"
+#         - echo "AUTH0_ISSUER=$AUTH0_ISSUER"
+#         - echo "AUTH0_CLIENT_ID=$AUTH0_CLIENT_ID"
+#         - echo "DB_HOST=$DB_HOST"
+#         - echo ""
+        
+#         - '# ========================================='
+#         - '# Verify Dependencies'
+#         - '# ========================================='
+#         - echo "📋 Checking installed versions..."
+#         - node --version
+#         - npm --version
+#         - node -p '"React: " + require("./node_modules/react/package.json").version'
+#         - node -p '"Next.js: " + require("./node_modules/next/package.json").version'
+#         - echo ""
+        
+#         - '# ========================================='
+#         - '# Database Connection Test (Optional)'
+#         - '# ========================================='
+#         - echo "🔌 Testing database connectivity..."
+#         - '# Add your DB connection test here if needed'
+#         - echo "✅ Environment setup complete"
+#         - echo ""
+
+#     # =====================================================
+#     # BUILD PHASE
+#     # =====================================================
+#     build:
+#       commands:
+#         - '# ========================================='
+#         - '# Safari Culture - Production Build'
+#         - '# ========================================='
+#         - echo "🚀 Starting production build with Turbopack..."
+#         - echo "⏱️  Build started at $(date)"
+#         - echo ""
+        
+#         - '# Build with Turbopack (Next.js 15)'
+#         - npm run build
+        
+#         - echo ""
+#         - echo "✅ Build completed at $(date)"
+#         - echo "📊 Build artifacts ready for deployment"
+#         - echo ""
+        
+#         - '# ========================================='
+#         - '# Post-Build Verification'
+#         - '# ========================================='
+#         - echo "🔍 Verifying build output..."
+#         - ls -lah .next/
+#         - echo "✅ Build verification complete"
+        
+#       environment:
+#         variables:
+#           # ========================================
+#           # Next.js Build Optimizations
+#           # ========================================
+#           NEXT_TELEMETRY_DISABLED: 1
+#           NODE_OPTIONS: "--max-old-space-size=4096"
+          
+#           # ========================================
+#           # Safari Culture Environment
+#           # ========================================
+#           APP_ENV: production
+#           NODE_ENV: production
+          
+#           # ========================================
+#           # React 19 Compatibility
+#           # ========================================
+#           NPM_CONFIG_LEGACY_PEER_DEPS: true
+          
+#           # ========================================
+#           # Turbopack Build Flags
+#           # ========================================
+#           TURBOPACK: 1
+
+#   # =====================================================
+#   # BUILD ARTIFACTS
+#   # =====================================================
+#   artifacts:
+#     baseDirectory: .next
+#     files:
+#       - '**/*'
+
+#   # =====================================================
+#   # BUILD CACHE (Speeds up subsequent builds)
+#   # =====================================================
+#   cache:
+#     paths:
+#       # Next.js build cache (critical for fast rebuilds)
+#       - .next/cache/**/*
+      
+#       # npm cache (speeds up dependency installation)
+#       - .npm/**/*
+      
+#       # Node modules (if dependencies haven't changed)
+#       - node_modules/**/*
+      
+#       # Turbopack cache
+#       - .turbo/**/*
+
+#   # =====================================================
+#   # CUSTOM HEADERS (Security & Performance)
+#   # =====================================================
+#   customHeaders:
+#     # ========================================
+#     # Security Headers (All Routes)
+#     # ========================================
+#     - pattern: '**/*'
+#       headers:
+#         # Prevent clickjacking attacks
+#         - key: 'X-Frame-Options'
+#           value: 'DENY'
+        
+#         # Prevent MIME type sniffing
+#         - key: 'X-Content-Type-Options'
+#           value: 'nosniff'
+        
+#         # Control referrer information
+#         - key: 'Referrer-Policy'
+#           value: 'strict-origin-when-cross-origin'
+        
+#         # Restrict browser features
+#         - key: 'Permissions-Policy'
+#           value: 'camera=(), microphone=(), geolocation=()'
+        
+#         # XSS Protection
+#         - key: 'X-XSS-Protection'
+#           value: '1; mode=block'
+        
+#         # Strict Transport Security (HTTPS only)
+#         - key: 'Strict-Transport-Security'
+#           value: 'max-age=31536000; includeSubDomains; preload'
+
+#     # ========================================
+#     # API Routes Caching (ISR optimized)
+#     # ========================================
+#     - pattern: '/api/camps'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, s-maxage=60, stale-while-revalidate=300'
+    
+#     - pattern: '/api/experiences'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, s-maxage=60, stale-while-revalidate=300'
+    
+#     - pattern: '/api/rates'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, s-maxage=60, stale-while-revalidate=300'
+
+#     # ========================================
+#     # Static Assets Caching (1 year)
+#     # ========================================
+#     - pattern: '/images/**'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, max-age=31536000, immutable'
+    
+#     - pattern: '**/*.{js,css,woff,woff2,ttf,eot}'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, max-age=31536000, immutable'
+    
+#     - pattern: '**/*.{jpg,jpeg,png,gif,webp,svg,ico}'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, max-age=31536000, immutable'
+
+#     # ========================================
+#     # Next.js Static Pages (1 hour cache)
+#     # ========================================
+#     - pattern: '/_next/static/**'
+#       headers:
+#         - key: 'Cache-Control'
+#           value: 'public, max-age=3600, immutable'
 
 # =====================================================
 # NOTES & BEST PRACTICES
