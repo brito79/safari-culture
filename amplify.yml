@@ -1,55 +1,62 @@
 version: 1
-# This build spec is optimized for a Next.js application using npm/node environment.
 
 frontend:
   phases:
     preBuild:
       commands:
-        - echo "✅ Starting Build: PreBuild Phase"
-        - echo "Installing dependencies (npm ci with legacy-peer-deps for compatibility)..."
-        # Using npm ci ensures a clean install based on package-lock.json.
-        # --legacy-peer-deps is used for compatibility with older libraries or newer npm versions.
+        # These echo commands are now quoted to avoid YAML parsing issues with the colon (:)
+        - 'echo "🏕️ Building Safari Culture - Wilderness Namibia Platform"'
+        - 'echo "📦 Next.js 15.5.3 with Turbopack"'
+        - 'echo "🔐 Auth0 Authentication"'
+        - 'echo "💾 AWS RDS MySQL Database"'
+        - echo ""
+        - echo "📥 Installing dependencies..."
         - npm ci --legacy-peer-deps
-        - echo "Checking installed versions..."
-        - node --version
-        - npm --version
-        - echo "✅ PreBuild Phase Complete"
-
+        - echo "✅ Dependencies installed"
+        - echo ""
+        - echo "🔍 Validating environment configuration..."
+        - echo "NODE_ENV=$NODE_ENV"
+        - echo "NEXT_PUBLIC_S3_BASE_URL=$NEXT_PUBLIC_S3_BASE_URL"
+        - echo "AUTH0_ISSUER=$AUTH0_ISSUER"
+        - echo "AUTH0_CLIENT_ID=$AUTH0_CLIENT_ID"
+        - echo "DB_HOST=$DB_HOST"
+        - echo ""
+        - echo "📋 Checking installed versions..."
+        # CRITICAL FIX: The entire command is wrapped in single quotes ('...') 
+        # to escape the colons inside the string for YAML.
+        - 'node -p '"React: " + require("./node_modules/react/package.json").version"'
+        - 'node -p '"Next.js: " + require("./node_modules/next/package.json").version"'
+        - echo ""
+        - echo "✅ Environment setup complete"
+        
     build:
       commands:
-        - echo "🚀 Starting Next.js Production Build..."
-        # Running the standard build command defined in package.json
+        - echo "🚀 Starting production build with Turbopack..."
         - npm run build
-        - echo "🔍 Verifying build output in .next/ directory..."
+        - echo "✅ Build completed"
+        - echo "🔍 Verifying build output..."
         - ls -lah .next/
-        - echo "✅ Build Phase Complete"
-
+        - echo "✅ Build verification complete"
       environment:
         variables:
-          # Next.js optimization variables
           NEXT_TELEMETRY_DISABLED: 1
           NODE_OPTIONS: "--max-old-space-size=4096"
-          # Explicitly set production environment
+          APP_ENV: production
           NODE_ENV: production
-          # Re-specify the peer-deps configuration for Next.js build internals if needed
           NPM_CONFIG_LEGACY_PEER_DEPS: true
-          # Explicitly enable Turbopack (often the default in recent Next.js, but good to ensure)
           TURBOPACK: 1
 
   artifacts:
-    # Next.js build output directory
     baseDirectory: .next
     files:
       - '**/*'
 
   cache:
-    # Cache large directories to speed up subsequent builds
     paths:
       - .next/cache/**/*
       - .npm/**/*
       - node_modules/**/*
       - .turbo/**/*
-
 
 
 # version: 1
