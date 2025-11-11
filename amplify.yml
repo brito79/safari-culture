@@ -3,15 +3,132 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Install dependencies with caching
+        - echo "📦 Installing dependencies..."
         - npm ci --cache .npm --prefer-offline
+        
+        # Verify Node.js and npm versions
+        - echo "🔍 Node version:" && node --version
+        - echo "🔍 npm version:" && npm --version
+        
+        # Fetch secrets from AWS Secrets Manager (if SECRET_NAME is set)
+        - |
+          if [ ! -z "$SECRET_NAME" ]; then
+            echo "🔐 Fetching database credentials from Secrets Manager..."
+            SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id $SECRET_NAME --query SecretString --output text --region ${AWS_REGION:-us-east-1} || echo "")
+            if [ ! -z "$SECRET_VALUE" ]; then
+              export RDS_USER=$(echo $SECRET_VALUE | jq -r '.username // empty')
+              export RDS_PASSWORD=$(echo $SECRET_VALUE | jq -r '.password // empty')
+              echo "✅ Secrets fetched successfully"
+            else
+              echo "⚠️  Failed to fetch secrets, will use environment variables"
+            fi
+          else
+            echo "ℹ️  SECRET_NAME not set, using environment variables"
+          fi
+        
+        # Validate required environment variables
+        - |
+          echo "🔍 Validating environment variables..."
+          MISSING_VARS=""
+          [ -z "$RDS_HOST" ] && MISSING_VARS="$MISSING_VARS RDS_HOST"
+          [ -z "$RDS_DATABASE" ] && MISSING_VARS="$MISSING_VARS RDS_DATABASE"
+          [ -z "$AUTH0_SECRET" ] && MISSING_VARS="$MISSING_VARS AUTH0_SECRET"
+          [ -z "$AUTH0_DOMAIN" ] && MISSING_VARS="$MISSING_VARS AUTH0_DOMAIN"
+          [ -z "$AUTH0_CLIENT_ID" ] && MISSING_VARS="$MISSING_VARS AUTH0_CLIENT_ID"
+          [ -z "$AUTH0_CLIENT_SECRET" ] && MISSING_VARS="$MISSING_VARS AUTH0_CLIENT_SECRET"
+          
+          if [ ! -z "$MISSING_VARS" ]; then
+            echo "❌ Missing required environment variables:$MISSING_VARS"
+            exit 1
+          fi
+          echo "✅ All required environment variables are set"
+        
+        # Test database connectivity (optional, can be disabled)
+        - |
+          if [ "$SKIP_DB_CHECK" != "true" ]; then
+            echo "🔍 Testing database connectivity..."
+            if command -v mysql &> /dev/null; then
+              mysql -h $RDS_HOST -u ${RDS_USER:-admin} -p$RDS_PASSWORD -e "SELECT 1" 2>&1 | grep -q "ERROR" && echo "⚠️  Database connection test failed (non-blocking)" || echo "✅ Database connection successful"
+            else
+              echo "ℹ️  MySQL client not available, skipping connection test"
+            fi
+          fi
+    
     build:
       commands:
+        # Set production environment
+        - export NODE_ENV=production
+        
+        # Build the Next.js application
+        - echo "🏗️  Building Next.js application..."
         - npm run build
+        
+        # Verify build output
+        - |
+          if [ -d ".next" ]; then
+            echo "✅ Build completed successfully"
+            echo "📊 Build size:"
+            du -sh .next
+          else
+            echo "❌ Build failed - .next directory not found"
+            exit 1
+          fi
+        
+        # Generate build info
+        - |
+          echo "📝 Generating build metadata..."
+          cat > .next/build-info.json << EOF
+          {
+            "buildTime": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+            "commitSha": "${AWS_COMMIT_ID:-unknown}",
+            "branch": "${AWS_BRANCH:-unknown}",
+            "nodeVersion": "$(node --version)",
+            "environment": "production"
+          }
+          EOF
+          echo "✅ Build metadata generated"
+  
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
+  
   cache:
     paths:
+      # Next.js build cache
       - .next/cache/**/*
+      # npm cache
       - .npm/**/*
+      # Node modules (if needed)
+      - node_modules/**/*
+
+# Environment variables configuration
+# Note: Set these in the Amplify Console under App Settings > Environment Variables
+# 
+# Required Variables:
+# - RDS_HOST
+# - RDS_DATABASE  
+# - RDS_USER (or use SECRET_NAME)
+# - RDS_PASSWORD (or use SECRET_NAME)
+# - AUTH0_SECRET
+# - AUTH0_DOMAIN
+# - AUTH0_CLIENT_ID
+# - AUTH0_CLIENT_SECRET
+# - AUTH0_ISSUER_BASE_URL
+# - APP_BASE_URL
+# - S3_BUCKET_NAME
+# - S3_REGION
+# - NEXT_PUBLIC_S3_BASE_URL
+#
+# Optional Variables:
+# - SECRET_NAME (AWS Secrets Manager secret ID)
+# - DB_CONNECTION_LIMIT (default: 10)
+# - RDS_PORT (default: 3306)
+# - AWS_REGION (default: us-east-1)
+# - SKIP_DB_CHECK (set to "true" to skip database connectivity test)
+#
+# AWS Credentials (automatically provided by Amplify):
+# - AWS_ACCESS_KEY_ID
+# - AWS_SECRET_ACCESS_KEY
+# - AWS_REGION
