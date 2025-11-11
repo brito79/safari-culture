@@ -65,14 +65,12 @@ export default function Navigation({ className = "" }: NavigationProps) {
             {/* Admin Link - Show for authenticated users */}
             {user && (
               <div className="border-l-2 border-stone-300 pl-4 lg:pl-6">
-                <Button
-                  variant="ghost"
-                  onClick={handleAdminClick}
-                  disabled={isLoading}
+                <a
+                  href="/dashboard"
                   className="safari-body text-sunset-600 text-base lg:text-lg font-bold hover:text-stone-900 hover:bg-sunset-600 hover:scale-110 hover:shadow-xl transition-all duration-300 px-4 py-2 rounded-lg"
-                >
+                > 
                   Dashboard
-                </Button>
+                </a>
               </div>
             )}
             
@@ -84,7 +82,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
                   asChild
                   className="safari-body text-sunset-600 text-base lg:text-lg font-bold hover:text-stone-900 hover:bg-gradient-to-r hover:from-sunset-600 hover:to-sunset-700 hover:scale-110 hover:shadow-xl transition-all duration-300 px-5 py-2 rounded-lg"
                 >
-                  <Link href="/auth/login?returnTo=/dashboard">Login</Link>
+                  <a href="/auth/login">Login</a>
                 </Button>
               </div>
             )}
