@@ -3,8 +3,8 @@ import { query } from '@/lib/db/db';
 
 // Enable ISR with 60 second revalidation
 export const revalidate = 60;
-// Use 'force-static' for better caching performance
-export const dynamic = 'force-static';
+// Database queries require dynamic rendering
+export const dynamic = 'force-dynamic';
 
 interface ExperienceRow {
   id: number;
@@ -25,9 +25,12 @@ interface ApiResponse<T> {
   data?: T;
   error?: string;
   details?: string;
+  count?: number;
 }
 
 export async function GET() {
+  const startTime = Date.now();
+  
   try {
     console.log('📊 Fetching experiences from database...');
     
@@ -50,6 +53,11 @@ export async function GET() {
 
     const [rows] = await query<ExperienceRow>(sql);
     
+    // Validate query results
+    if (!Array.isArray(rows)) {
+      throw new Error('Invalid database response: expected array');
+    }
+    
     console.log(`✅ Found ${rows.length} experiences in database`);
 
     // Helper function to parse comma/pipe-separated values
@@ -62,9 +70,14 @@ export async function GET() {
         .filter(item => item.length > 0);
     };
 
-    // Transform database rows to match frontend format
+    // Transform database rows to match frontend format with validation
     const experiences = rows.map(row => {
       try {
+        // Validate required fields
+        if (!row.id || !row.title || !row.description) {
+          throw new Error(`Missing required fields for experience ${row.id}`);
+        }
+
         return {
           id: row.id,
           title: row.title,
@@ -84,29 +97,44 @@ export async function GET() {
       }
     });
 
+    const duration = Date.now() - startTime;
+    console.log(`⏱️  Query completed in ${duration}ms`);
+
     const response: ApiResponse<typeof experiences> = {
       success: true,
       data: experiences,
+      count: experiences.length,
     };
 
     return NextResponse.json(response, {
+      status: 200,
       headers: {
         'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+        'X-Response-Time': `${duration}ms`,
       },
     });
   } catch (error) {
-    console.error('❌ DB error:', error);
-    console.error('Error details:', {
+    const duration = Date.now() - startTime;
+    
+    console.error('❌ Database error in GET /api/experiences:', {
       message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
+      duration: `${duration}ms`,
+      stack: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined,
     });
     
     const errorResponse: ApiResponse<never> = {
       success: false,
       error: 'Failed to fetch experiences',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: process.env.NODE_ENV === 'development' 
+        ? (error instanceof Error ? error.message : 'Unknown error')
+        : 'An error occurred while fetching experiences',
     };
     
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { 
+      status: 500,
+      headers: {
+        'X-Response-Time': `${duration}ms`,
+      },
+    });
   }
 }

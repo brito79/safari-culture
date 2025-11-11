@@ -1,5 +1,8 @@
 'use server';
 
+import { query } from '@/lib/db/db';
+import { unstable_cache } from 'next/cache';
+
 export interface Experience {
   id: number;
   title: string;
@@ -14,42 +17,115 @@ export interface Experience {
   camps: string[];
 }
 
-interface ApiResponse<T> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  details?: string;
+interface ExperienceRow {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  long_description: string;
+  image_url: string;
+  duration: string;
+  difficulty: string;
+  best_time: string;
+  highlights: string;
+  camps: string;
 }
 
 /**
- * Fetch all camp experiences from the database
- * Uses ISR with 60-second revalidation
+ * Helper function to parse comma/pipe-separated values
+ */
+function parseList(value: string | null | undefined): string[] {
+  if (!value) return [];
+  return value
+    .split(/[,|]/)
+    .map(item => item.trim())
+    .filter(item => item.length > 0);
+}
+
+/**
+ * Fetch all camp experiences directly from database
+ * Production-optimized with caching and error handling
+ * Uses Next.js unstable_cache for 60-second revalidation
+ */
+async function fetchExperiencesFromDb(): Promise<Experience[]> {
+  try {
+    console.log('📊 [Server Action] Fetching experiences from database...');
+    
+    const sql = `
+      SELECT 
+        id,
+        title,
+        subtitle,
+        description,
+        long_description,
+        image_url,
+        duration,
+        difficulty,
+        best_time,
+        highlights,
+        camps
+      FROM experiences_camps
+      ORDER BY id ASC
+    `;
+
+    const [rows] = await query<ExperienceRow>(sql);
+    
+    if (!Array.isArray(rows)) {
+      throw new Error('Invalid database response');
+    }
+
+    console.log(`✅ [Server Action] Found ${rows.length} experiences`);
+
+    // Transform and validate
+    const experiences = rows.map(row => {
+      if (!row.id || !row.title || !row.description) {
+        throw new Error(`Missing required fields for experience ${row.id}`);
+      }
+
+      return {
+        id: row.id,
+        title: row.title,
+        subtitle: row.subtitle || '',
+        description: row.description,
+        longDescription: row.long_description || '',
+        image: row.image_url || '',
+        duration: row.duration || '',
+        difficulty: row.difficulty || '',
+        bestTime: row.best_time || '',
+        highlights: parseList(row.highlights),
+        camps: parseList(row.camps),
+      };
+    });
+
+    return experiences;
+  } catch (error) {
+    console.error('❌ [Server Action] Error fetching experiences:', error);
+    throw error;
+  }
+}
+
+/**
+ * Cached version of experiences fetch
+ * Revalidates every 60 seconds
+ */
+const getCachedExperiences = unstable_cache(
+  async () => fetchExperiencesFromDb(),
+  ['camp-experiences'],
+  {
+    revalidate: 60,
+    tags: ['experiences', 'camp-experiences']
+  }
+);
+
+/**
+ * Public API: Fetch all camp experiences
+ * Returns empty array on error to prevent page crashes
  */
 export async function getCampExperiences(): Promise<Experience[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.APP_BASE_URL || 'http://localhost:3000';
-    
-    const response = await fetch(`${baseUrl}/api/experiences`, {
-      method: 'GET',
-      next: { 
-        revalidate: 60,
-        tags: ['experiences', 'camp-experiences']
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: ApiResponse<Experience[]> = await response.json();
-
-    if (!data.success || !data.data) {
-      throw new Error(data.error || 'Failed to fetch experiences');
-    }
-
-    return data.data;
+    return await getCachedExperiences();
   } catch (error) {
-    console.error('Error fetching camp experiences:', error);
+    console.error('❌ Error in getCampExperiences:', error);
     // Return empty array instead of throwing to prevent page crashes
     return [];
   }

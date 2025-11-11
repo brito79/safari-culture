@@ -5,9 +5,8 @@ import { revalidatePath } from 'next/cache';
 // Enable ISR with 60 second revalidation
 export const revalidate = 60;
 
-// Use 'force-static' for better performance with revalidation
-// This allows Next.js to cache and serve static responses
-export const dynamic = 'force-static';
+// Database queries require dynamic rendering
+export const dynamic = 'force-dynamic';
 
 // Type definitions
 interface CampRow {

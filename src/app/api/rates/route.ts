@@ -6,8 +6,8 @@ import { Rate, ApiResponse } from '@/lib/db/types';
 // Enable ISR with 60 second revalidation
 export const revalidate = 60;
 
-// Use 'force-static' for better caching performance
-export const dynamic = 'force-static';
+// Database queries require dynamic rendering
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
