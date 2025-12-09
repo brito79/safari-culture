@@ -1,3 +1,5 @@
+USE wilderness_namibia_db;
+
 CREATE TABLE camps (
     camp_id VARCHAR(50) PRIMARY KEY, -- Corresponds to JavaScript 'id' (e.g., 'doro-nawas')
     name VARCHAR(255) NOT NULL UNIQUE, -- Corresponds to JavaScript 'name' (e.g., 'Wilderness-Doro-Nawas')
