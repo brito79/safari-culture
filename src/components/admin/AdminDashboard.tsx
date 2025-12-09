@@ -208,6 +208,12 @@ function AdminDashboardContent({isAdmin}: {isAdmin: boolean}) {
             >
               Check Messages
             </Link>
+            <Link
+              href="/dashboard/contact-info"
+              className="px-6 py-3 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300 transition-colors"
+            >
+              Edit Contact Info
+            </Link>
           </div>
         </div>
       </div>

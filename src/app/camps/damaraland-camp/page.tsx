@@ -7,6 +7,9 @@ import CampGallery from "@/components/camps/damaraland/CampGallery";
 import CampContact from "@/components/camps/damaraland/CampContact";
 import Link from "next/link";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 export default function DamaralandCampPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sand-50 via-neutral-50 to-stone-50">

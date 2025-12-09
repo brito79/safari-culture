@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db/db';
+import { revalidatePath } from 'next/cache';
+
+// Enable ISR with 60 second revalidation
+export const revalidate = 60;
+
+// Database queries require dynamic rendering
+export const dynamic = 'force-dynamic';
 
 // Type definitions
 interface CampRow {
@@ -66,10 +73,17 @@ ORDER BY
       };
     });
 
-    return NextResponse.json({
-      success: true,
-      data: transformedCamps
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        data: transformedCamps
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      }
+    );
 
   } catch (error) {
     console.error('Database error:', error);
@@ -119,6 +133,10 @@ export async function POST(request: NextRequest) {
       image_hero_url,
       image_gallery_urls
     ]);
+
+    // Revalidate camps pages to reflect new data
+    revalidatePath('/camps');
+    revalidatePath('/api/camps');
 
     return NextResponse.json({
       success: true,

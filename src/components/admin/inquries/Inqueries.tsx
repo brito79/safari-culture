@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Contact } from "@/lib/db/types";
 import { getInquiries, deleteInquiry, getInquiryStats } from "@/app/actions/dashboard/inquries";
 
@@ -33,35 +33,57 @@ const Inquiries = ({ className = "" }: InquiriesProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCountry, setFilterCountry] = useState("");
   const [filterExperience, setFilterExperience] = useState("");
+  
+  // Ref to prevent double-loading in React Strict Mode
+  const hasLoadedRef = useRef(false);
 
   // Load inquiries and stats
   useEffect(() => {
+    // Prevent double-loading in React Strict Mode (development only)
+    if (hasLoadedRef.current) {
+      console.log('⏭️ Skipping duplicate load (React Strict Mode)');
+      return;
+    }
+    
+    console.log('🔄 Inquiries component mounted - loading data...');
+    hasLoadedRef.current = true;
     loadData();
+    
+    return () => {
+      console.log('🔚 Inquiries component unmounting');
+    };
   }, []);
 
   const loadData = async () => {
     try {
+      console.log('📊 Starting data load...');
       setLoading(true);
       setError(null);
 
       // Load inquiries
+      console.log('📥 Fetching inquiries...');
       const inquiriesResult = await getInquiries();
       if (inquiriesResult.success && inquiriesResult.data) {
+        console.log(`✅ Loaded ${inquiriesResult.data.length} inquiries`);
         setInquiries(inquiriesResult.data);
       } else {
+        console.error('❌ Failed to load inquiries:', inquiriesResult.message);
         setError(inquiriesResult.message);
       }
 
       // Load stats
+      console.log('📈 Fetching stats...');
       const statsResult = await getInquiryStats();
       if (statsResult.success && statsResult.data) {
+        console.log('✅ Stats loaded successfully');
         setStats(statsResult.data);
       }
 
     } catch (err) {
       setError('Failed to load inquiries');
-      console.error('Error loading inquiries:', err);
+      console.error('❌ Error loading inquiries:', err);
     } finally {
+      console.log('✅ Data load complete');
       setLoading(false);
     }
   };

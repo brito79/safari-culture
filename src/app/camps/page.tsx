@@ -1,10 +1,10 @@
-import CampsPage from '@/components/Camps'
+import Camps from '@/components/Camps'
 import React from 'react'
 
 export default function CampsHomePage() {
   return (
     <div className=''>
-        <CampsPage />
+        <Camps />
     </div>
   )
 }

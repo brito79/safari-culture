@@ -3,7 +3,6 @@ import { Montserrat } from "next/font/google";
 
 
 import "./globals.css";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from 'sonner';
 import { auth0 } from "@/lib/auth0";
 import { Auth0Provider } from "@auth0/nextjs-auth0";
@@ -30,20 +29,14 @@ export default async function RootLayout({
   const user = session?.user;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${montserrat.variable} font-sans antialiased`}
       >
-        <ThemeProvider 
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-        >
-          <Auth0Provider user={user}>
-            {children}
-          </Auth0Provider>
-          <Toaster position="top-right" />
-        </ThemeProvider>
+        <Auth0Provider user={user}>
+          {children}
+        </Auth0Provider>
+        <Toaster position="top-right" />
       </body>
     </html>
   );
