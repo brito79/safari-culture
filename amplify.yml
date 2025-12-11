@@ -108,31 +108,31 @@ frontend:
 env:
   variables:
     # Node Environment
-    NODE_ENV: production
+    # NODE_ENV: production
     
-    # AWS Region
-    AWS_REGION: us-east-1
+    # # AWS Region
+    # AWS_REGION: us-east-1
     
-    # Database Configuration (RDS MySQL)
-    RDS_HOST: wilderness-namibia-db.c36sfitmdma7.us-east-1.rds.amazonaws.com
-    RDS_PORT: 3306
-    RDS_USER: admin
-    RDS_DATABASE: wilderness_namibia_db
-    DB_CONNECTION_LIMIT: 10
+    # # Database Configuration (RDS MySQL)
+    # RDS_HOST: wilderness-namibia-db.c36sfitmdma7.us-east-1.rds.amazonaws.com
+    # RDS_PORT: 3306
+    # RDS_USER: admin
+    # RDS_DATABASE: wilderness_namibia_db
+    # DB_CONNECTION_LIMIT: 10
     
-    # AWS Secrets Manager
-    SECRET_NAME: rds!db-05691dcc-5c83-428e-b276-8fbc64918262
+    # # AWS Secrets Manager
+    # SECRET_NAME: rds!db-05691dcc-5c83-428e-b276-8fbc64918262
     
-    # Auth0 Configuration
-    AUTH0_DOMAIN: dev-shniij0xphbh3psa.us.auth0.com
-    AUTH0_CLIENT_ID: Jm61o072UI6ullylNacOQw7mQaDlxPt5
-    AUTH0_ISSUER_BASE_URL: https://dev-shniij0xphbh3psa.us.auth0.com
-    AUTH0_AUDIENCE: your_auth_api_identifier
-    AUTH0_SCOPE: openid profile email read:shows
+    # # Auth0 Configuration
+    # AUTH0_DOMAIN: dev-shniij0xphbh3psa.us.auth0.com
+    # AUTH0_CLIENT_ID: Jm61o072UI6ullylNacOQw7mQaDlxPt5
+    # AUTH0_ISSUER_BASE_URL: https://dev-shniij0xphbh3psa.us.auth0.com
+    # AUTH0_AUDIENCE: your_auth_api_identifier
+    # AUTH0_SCOPE: openid profile email read:shows
     
-    # S3 Configuration
-    S3_BUCKET_NAME: namibiawilderness-image-store
-    S3_REGION: us-east-1
-    S3_BASE_URL: https://namibiawilderness-image-store.s3.us-east-1.amazonaws.com
-    NEXT_PUBLIC_S3_BASE_URL: https://namibiawilderness-image-store.s3.us-east-1.amazonaws.com
+    # # S3 Configuration
+    # S3_BUCKET_NAME: namibiawilderness-image-store
+    # S3_REGION: us-east-1
+    # S3_BASE_URL: https://namibiawilderness-image-store.s3.us-east-1.amazonaws.com
+    # NEXT_PUBLIC_S3_BASE_URL: https://namibiawilderness-image-store.s3.us-east-1.amazonaws.com
     
