@@ -67,7 +67,6 @@ Safari Culture is a technical assessment project that demonstrates modern web de
 - npm or yarn
 - AWS Account (for deployment)
 - Auth0 Account
-
 ### Environment Variables
 Create a `.env.local` file in the root directory:
 
