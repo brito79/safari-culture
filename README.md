@@ -19,7 +19,7 @@ Safari Culture is a technical assessment project that demonstrates modern web de
 
 ## ✨ Features
 
-### 🎯 Core Features
+### 🎯 Core Featuress
 - **🏕️ Camp Showcase** - Beautiful galleries and detailed information
 - **💰 Rate Management** - Seasonal pricing with admin controls
 - **🔐 Authentication** - Secure Auth0 integration with role-based access
