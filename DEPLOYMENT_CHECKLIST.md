@@ -11,7 +11,7 @@ Use this checklist to ensure a smooth deployment to AWS Amplify.
 - [ ] Error handling implemented
 - [ ] Loading states added
 - [ ] Mobile responsive
-- [ ] Images optimized
+- [ ] Images optimizing
 
 ### 2. Environment Files ✅
 - [ ] `.env.example` updated with all variables
