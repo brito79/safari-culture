@@ -8,7 +8,7 @@ interface DatabaseCredentials {
   password: string;
 }
 
-const client = new SecretsManagerClient({ region: process.env.S3_REGION || "us-east-1" });
+const client = new SecretsManagerClient({ region: process.env.NEXT_PUBLIC_S3_REGION || "us-east-1" });
 
 /**
  * Get database credentials from AWS Secrets Manager with fallback to environment variables
@@ -16,11 +16,11 @@ const client = new SecretsManagerClient({ region: process.env.S3_REGION || "us-e
  */
 export async function getDatabaseCredentials(): Promise<DatabaseCredentials> {
   // Fallback to environment variables if Secrets Manager is not configured
-  if (!process.env.SECRET_NAME) {
-    console.warn('⚠️  SECRET_NAME not configured, using environment variables for database credentials');
+  if (!process.env.NEXT_PUBLIC_SECRET_NAME) {
+    console.warn('⚠️  NEXT_PUBLIC_SECRET_NAME not configured, using environment variables for database credentials');
     return {
-      username: process.env.RDS_USER || 'admin',
-      password: process.env.RDS_PASSWORD || '',
+      username: process.env.NEXT_PUBLIC_RDS_USER || 'admin',
+      password: process.env.NEXT_PUBLIC_RDS_PASSWORD || '',
     };
   }
 
@@ -32,7 +32,7 @@ export async function getDatabaseCredentials(): Promise<DatabaseCredentials> {
     try {
       const response = await client.send(
         new GetSecretValueCommand({
-          SecretId: process.env.SECRET_NAME,
+          SecretId: process.env.NEXT_PUBLIC_SECRET_NAME,
           VersionStage: "AWSCURRENT",
         })
       );
@@ -67,7 +67,7 @@ export async function getDatabaseCredentials(): Promise<DatabaseCredentials> {
   console.error('Last error:', lastError?.message);
   
   return {
-    username: process.env.RDS_USER || 'admin',
-    password: process.env.RDS_PASSWORD || '',
+    username: process.env.NEXT_PUBLIC_RDS_USER || 'admin',
+    password: process.env.NEXT_PUBLIC_RDS_PASSWORD || '',
   };
 }

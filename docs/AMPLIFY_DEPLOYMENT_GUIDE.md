@@ -69,8 +69,8 @@ Navigate to: **Amplify Console > App Settings > Environment Variables**
 AUTH0_SECRET=<your-auth0-secret-32-chars-min>
 AUTH0_BASE_URL=https://your-app.amplifyapp.com
 AUTH0_ISSUER=https://your-tenant.auth0.com
-AUTH0_CLIENT_ID=<your-auth0-client-id>
-AUTH0_CLIENT_SECRET=<your-auth0-client-secret>
+AUTH0_CLIENT_ID_ID=<your-auth0-client-id>
+AUTH0_CLIENT_ID_SECRET=<your-auth0-client-secret>
 AUTH0_AUDIENCE=<your-auth0-api-audience>
 ```
 

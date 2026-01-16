@@ -73,8 +73,8 @@ Building a luxury safari tourism platform for Wilderness Namibia showcasing 4 pr
 
 2. **Environment Variables Setup**
    ```env
-   AUTH0_CLIENT_ID=your_client_id
-   AUTH0_CLIENT_SECRET=your_client_secret
+   AUTH0_CLIENT_ID_ID=your_client_id
+   AUTH0_CLIENT_ID_SECRET=your_client_secret
    AUTH0_ISSUER=https://your-domain.auth0.com
    NEXTAUTH_SECRET=generate_random_secret
    NEXTAUTH_URL=http://localhost:3000
@@ -502,8 +502,8 @@ model User {
 DATABASE_URL="mysql://admin:password@your-rds-endpoint:3306/safari_culture"
 
 # Authentication
-AUTH0_CLIENT_ID="your_auth0_client_id"
-AUTH0_CLIENT_SECRET="your_auth0_client_secret"
+AUTH0_CLIENT_ID_ID="your_AUTH0_CLIENT_ID_id"
+AUTH0_CLIENT_ID_SECRET="your_AUTH0_CLIENT_ID_secret"
 AUTH0_ISSUER="https://your-domain.auth0.com"
 NEXTAUTH_SECRET="your_nextauth_secret"
 NEXTAUTH_URL="http://localhost:3000"
@@ -512,7 +512,7 @@ NEXTAUTH_URL="http://localhost:3000"
 AWS_ACCESS_KEY_ID="your_aws_access_key"
 AWS_SECRET_ACCESS_KEY="your_aws_secret_key"
 AWS_REGION="us-east-1"
-S3_BUCKET_NAME="safari-culture-images"
+NEXT_PUBLIC_S3_BUCKET_NAME="safari-culture-images"
 
 # Email (optional)
 AWS_SES_FROM_EMAIL="info@safari-culture.com"

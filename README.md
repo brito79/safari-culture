@@ -74,8 +74,8 @@ Create a `.env.local` file in the root directory:
 ```bash
 # Auth0 Configuration
 AUTH0_ISSUER=https://your-domain.auth0.com
-AUTH0_CLIENT_ID=your_client_id
-AUTH0_CLIENT_SECRET=your_client_secret
+AUTH0_CLIENT_ID_ID=your_client_id
+AUTH0_CLIENT_ID_SECRET=your_client_secret
 NEXTAUTH_SECRET=your_nextauth_secret
 NEXTAUTH_URL=http://localhost:3000
 
@@ -83,7 +83,7 @@ NEXTAUTH_URL=http://localhost:3000
 AWS_ACCESS_KEY_ID=your_access_key
 AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_REGION=us-east-1
-S3_BUCKET_NAME=your_s3_bucket
+NEXT_PUBLIC_S3_BUCKET_NAME=your_s3_bucket
 
 # Database Configuration
 DATABASE_URL=mysql://user:password@host:port/database

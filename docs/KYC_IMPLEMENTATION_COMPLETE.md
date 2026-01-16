@@ -390,10 +390,10 @@ Track these metrics:
 ### Environment Variables Required
 ```env
 # Database
-RDS_HOST=your-host
-RDS_DATABASE=your-database
-RDS_USER=your-user
-RDS_PASSWORD=your-password
+NEXT_PUBLIC_RDS_HOST=your-host
+NEXT_PUBLIC_RDS_DATABASE=your-database
+NEXT_PUBLIC_RDS_USER=your-user
+NEXT_PUBLIC_RDS_PASSWORD=your-password
 
 # S3 (for camp images)
 NEXT_PUBLIC_S3_BASE_URL=https://your-bucket.s3.amazonaws.com

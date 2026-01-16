@@ -184,10 +184,10 @@ Ensure these are set in `.env.local`:
 
 ```env
 # Database
-RDS_HOST=your-rds-endpoint.rds.amazonaws.com
-RDS_DATABASE=safari_culture
-RDS_USER=admin
-RDS_PASSWORD=your-password
+NEXT_PUBLIC_RDS_HOST=your-rds-endpoint.rds.amazonaws.com
+NEXT_PUBLIC_RDS_DATABASE=safari_culture
+NEXT_PUBLIC_RDS_USER=admin
+NEXT_PUBLIC_RDS_PASSWORD=your-password
 
 # API Base URL
 NEXT_PUBLIC_BASE_URL=http://localhost:3000

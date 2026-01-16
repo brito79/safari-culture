@@ -20,7 +20,7 @@ Add to `.env.local`:
 AWS_ACCESS_KEY_ID=your_key_here
 AWS_SECRET_ACCESS_KEY=your_secret_here
 AWS_REGION=us-east-1
-DB_SECRET_NAME=wilderness-namibia-db
+DB_NEXT_PUBLIC_SECRET_NAME=wilderness-namibia-db
 ```
 
 ---

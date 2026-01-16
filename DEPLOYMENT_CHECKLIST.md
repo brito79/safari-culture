@@ -55,24 +55,24 @@ Use this checklist to ensure a smooth deployment to AWS Amplify.
 Copy from [ENV_VARIABLES_REFERENCE.md](docs/ENV_VARIABLES_REFERENCE.md)
 
 #### Required Variables
-- [ ] `RDS_HOST`
-- [ ] `RDS_DATABASE`
-- [ ] `RDS_USER` (or use SECRET_NAME)
-- [ ] `RDS_PASSWORD` (or use SECRET_NAME)
+- [ ] `NEXT_PUBLIC_RDS_HOST`
+- [ ] `NEXT_PUBLIC_RDS_DATABASE`
+- [ ] `NEXT_PUBLIC_RDS_USER` (or use NEXT_PUBLIC_SECRET_NAME)
+- [ ] `NEXT_PUBLIC_RDS_PASSWORD` (or use NEXT_PUBLIC_SECRET_NAME)
 - [ ] `AUTH0_SECRET` (generate with `openssl rand -hex 32`)
 - [ ] `AUTH0_DOMAIN`
-- [ ] `AUTH0_CLIENT_ID`
-- [ ] `AUTH0_CLIENT_SECRET`
+- [ ] `AUTH0_CLIENT_ID_ID`
+- [ ] `AUTH0_CLIENT_ID_SECRET`
 - [ ] `AUTH0_ISSUER_BASE_URL`
 - [ ] `APP_BASE_URL`
-- [ ] `S3_BUCKET_NAME`
-- [ ] `S3_REGION`
+- [ ] `NEXT_PUBLIC_S3_BUCKET_NAME`
+- [ ] `NEXT_PUBLIC_S3_REGION`
 - [ ] `NEXT_PUBLIC_S3_BASE_URL`
 
 #### Optional Variables
-- [ ] `SECRET_NAME` (if using Secrets Manager)
-- [ ] `DB_CONNECTION_LIMIT` (default: 10)
-- [ ] `RDS_PORT` (default: 3306)
+- [ ] `NEXT_PUBLIC_SECRET_NAME` (if using Secrets Manager)
+- [ ] `NEXT_PUBLIC_DB_CONNECTION_LIMIT` (default: 10)
+- [ ] `NEXT_PUBLIC_RDS_PORT` (default: 3306)
 - [ ] `NODE_ENV` (set to `production`)
 - [ ] `AUTH0_AUDIENCE`
 - [ ] `AUTH0_SCOPE`
@@ -188,7 +188,7 @@ Watch build logs for:
 
 **Missing Environment Variables**
 ```bash
-❌ Missing required environment variables: RDS_HOST
+❌ Missing required environment variables: NEXT_PUBLIC_RDS_HOST
 ```
 → Add missing variables in Amplify Console
 

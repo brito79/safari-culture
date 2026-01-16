@@ -296,18 +296,18 @@ ORDER BY (data_length + index_length) DESC;
 
 1. **Check database connectivity**
    ```bash
-   mysql -h $RDS_HOST -u $RDS_USER -p$RDS_PASSWORD
+   mysql -h $NEXT_PUBLIC_RDS_HOST -u $NEXT_PUBLIC_RDS_USER -p$NEXT_PUBLIC_RDS_PASSWORD
    ```
 
 2. **Verify environment variables**
    ```bash
-   echo $RDS_HOST
-   echo $RDS_DATABASE
+   echo $NEXT_PUBLIC_RDS_HOST
+   echo $NEXT_PUBLIC_RDS_DATABASE
    ```
 
 3. **Check AWS Secrets Manager**
    ```bash
-   aws secretsmanager get-secret-value --secret-id $SECRET_NAME
+   aws secretsmanager get-secret-value --secret-id $NEXT_PUBLIC_SECRET_NAME
    ```
 
 4. **Review application logs**

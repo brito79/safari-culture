@@ -19,8 +19,8 @@ AUTH0_BASE_URL=https://your-app.amplifyapp.com
 AUTH0_ISSUER=https://your-tenant.auth0.com
 
 # Auth0 Application Credentials
-AUTH0_CLIENT_ID=your-auth0-client-id
-AUTH0_CLIENT_SECRET=your-auth0-client-secret
+AUTH0_CLIENT_ID_ID=your-auth0-client-id
+AUTH0_CLIENT_ID_SECRET=your-auth0-client-secret
 
 # Auth0 API Audience (optional)
 AUTH0_AUDIENCE=https://your-api-audience

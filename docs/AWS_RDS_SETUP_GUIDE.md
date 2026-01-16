@@ -53,7 +53,7 @@ AWS_SECRET_ACCESS_KEY=your_secret_key_here
 AWS_REGION=us-east-1
 
 # Database Secret Configuration
-DB_SECRET_NAME=wilderness-namibia-db
+DB_NEXT_PUBLIC_SECRET_NAME=wilderness-namibia-db
 ```
 
 ### **Option C: AWS Credentials File**
@@ -333,7 +333,7 @@ export async function GET() {
 
 **Solution:**
 1. Verify secret name in AWS Secrets Manager
-2. Update `DB_SECRET_NAME` in `.env.local` or code
+2. Update `DB_NEXT_PUBLIC_SECRET_NAME` in `.env.local` or code
 3. Ensure you're in the correct AWS region
 
 ---
@@ -380,7 +380,7 @@ export async function GET() {
 3. Add:
    ```
    AWS_REGION=us-east-1
-   DB_SECRET_NAME=wilderness-namibia-db
+   DB_NEXT_PUBLIC_SECRET_NAME=wilderness-namibia-db
    ```
 
 ### For Amplify, AWS Credentials are Automatic

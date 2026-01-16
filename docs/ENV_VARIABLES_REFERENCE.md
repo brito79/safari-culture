@@ -8,16 +8,16 @@ These **must** be set for the application to function:
 
 | Variable | Description | Example | Where Used |
 |----------|-------------|---------|------------|
-| `RDS_HOST` | MySQL database hostname | `db.region.rds.amazonaws.com` | Database connection |
-| `RDS_DATABASE` | Database name | `wilderness_namibia_db` | Database connection |
+| `NEXT_PUBLIC_RDS_HOST` | MySQL database hostname | `db.region.rds.amazonaws.com` | Database connection |
+| `NEXT_PUBLIC_RDS_DATABASE` | Database name | `wilderness_namibia_db` | Database connection |
 | `AUTH0_SECRET` | Auth0 session secret | `openssl rand -hex 32` | Authentication |
 | `AUTH0_DOMAIN` | Auth0 tenant domain | `your-domain.auth0.com` | Authentication |
-| `AUTH0_CLIENT_ID` | Auth0 application client ID | `abc123...` | Authentication |
-| `AUTH0_CLIENT_SECRET` | Auth0 application secret | `xyz789...` | Authentication |
+| `AUTH0_CLIENT_ID_ID` | Auth0 application client ID | `abc123...` | Authentication |
+| `AUTH0_CLIENT_ID_SECRET` | Auth0 application secret | `xyz789...` | Authentication |
 | `AUTH0_ISSUER_BASE_URL` | Auth0 issuer URL | `https://your-domain.auth0.com` | Authentication |
 | `APP_BASE_URL` | Application base URL | `https://your-app.com` | Auth callbacks |
-| `S3_BUCKET_NAME` | S3 bucket for images | `safari-images` | Image storage |
-| `S3_REGION` | S3 bucket region | `us-east-1` | Image storage |
+| `NEXT_PUBLIC_S3_BUCKET_NAME` | S3 bucket for images | `safari-images` | Image storage |
+| `NEXT_PUBLIC_S3_REGION` | S3 bucket region | `us-east-1` | Image storage |
 | `NEXT_PUBLIC_S3_BASE_URL` | Public S3 URL | `https://bucket.s3.region.amazonaws.com` | Client-side image loading |
 
 ## 🟡 Recommended Variables
@@ -26,9 +26,9 @@ Highly recommended for production:
 
 | Variable | Description | Default | Example |
 |----------|-------------|---------|---------|
-| `SECRET_NAME` | AWS Secrets Manager secret ID | None | `rds!db-secret-id` |
-| `RDS_USER` | Database username | `admin` | `admin` |
-| `RDS_PASSWORD` | Database password | None | `SecurePass123!` |
+| `NEXT_PUBLIC_SECRET_NAME` | AWS Secrets Manager secret ID | None | `rds!db-secret-id` |
+| `NEXT_PUBLIC_RDS_USER` | Database username | `admin` | `admin` |
+| `NEXT_PUBLIC_RDS_PASSWORD` | Database password | None | `SecurePass123!` |
 | `NODE_ENV` | Environment mode | `development` | `production` |
 
 ## 🟢 Optional Variables
@@ -37,8 +37,8 @@ Can be omitted, have sensible defaults:
 
 | Variable | Description | Default | Example |
 |----------|-------------|---------|---------|
-| `RDS_PORT` | Database port | `3306` | `3306` |
-| `DB_CONNECTION_LIMIT` | Max DB connections | `10` | `20` |
+| `NEXT_PUBLIC_RDS_PORT` | Database port | `3306` | `3306` |
+| `NEXT_PUBLIC_DB_CONNECTION_LIMIT` | Max DB connections | `10` | `20` |
 | `AWS_REGION` | AWS region | `us-east-1` | `us-east-1` |
 | `SKIP_DB_CHECK` | Skip build-time DB test | `false` | `true` |
 | `AUTH0_AUDIENCE` | Auth0 API audience | None | `https://api.example.com` |
@@ -63,12 +63,12 @@ The build process validates required variables in `amplify.yml`:
 
 ```bash
 # These are checked during preBuild:
-✅ RDS_HOST
-✅ RDS_DATABASE
+✅ NEXT_PUBLIC_RDS_HOST
+✅ NEXT_PUBLIC_RDS_DATABASE
 ✅ AUTH0_SECRET
 ✅ AUTH0_DOMAIN
-✅ AUTH0_CLIENT_ID
-✅ AUTH0_CLIENT_SECRET
+✅ AUTH0_CLIENT_ID_ID
+✅ AUTH0_CLIENT_ID_SECRET
 ```
 
 **Build fails if any are missing!**
@@ -80,8 +80,8 @@ The build process validates required variables in `amplify.yml`:
 Set all variables directly in Amplify Console:
 
 ```bash
-RDS_USER=admin
-RDS_PASSWORD=your_password
+NEXT_PUBLIC_RDS_USER=admin
+NEXT_PUBLIC_RDS_PASSWORD=your_password
 ```
 
 **Pros:** Simple, no additional AWS services  
@@ -93,7 +93,7 @@ Store credentials in Secrets Manager:
 
 ```bash
 # Only set in Amplify:
-SECRET_NAME=rds!db-secret-id
+NEXT_PUBLIC_SECRET_NAME=rds!db-secret-id
 
 # Stored in Secrets Manager:
 {
@@ -111,23 +111,23 @@ SECRET_NAME=rds!db-secret-id
 
 ```bash
 # Database
-RDS_HOST=localhost
-RDS_PORT=3306
-RDS_USER=root
-RDS_PASSWORD=password
-RDS_DATABASE=wilderness_namibia_db
+NEXT_PUBLIC_RDS_HOST=localhost
+NEXT_PUBLIC_RDS_PORT=3306
+NEXT_PUBLIC_RDS_USER=root
+NEXT_PUBLIC_RDS_PASSWORD=password
+NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_db
 
 # Auth0
 AUTH0_SECRET=development_secret_min_32_chars
 AUTH0_DOMAIN=dev-xxxxx.auth0.com
-AUTH0_CLIENT_ID=dev_client_id
-AUTH0_CLIENT_SECRET=dev_client_secret
+AUTH0_CLIENT_ID_ID=dev_client_id
+AUTH0_CLIENT_ID_SECRET=dev_client_secret
 AUTH0_ISSUER_BASE_URL=https://dev-xxxxx.auth0.com
 APP_BASE_URL=http://localhost:3000
 
 # S3
-S3_BUCKET_NAME=dev-safari-images
-S3_REGION=us-east-1
+NEXT_PUBLIC_S3_BUCKET_NAME=dev-safari-images
+NEXT_PUBLIC_S3_REGION=us-east-1
 NEXT_PUBLIC_S3_BASE_URL=https://dev-safari-images.s3.us-east-1.amazonaws.com
 
 # Environment
@@ -138,21 +138,21 @@ NODE_ENV=development
 
 ```bash
 # Database
-RDS_HOST=staging-db.region.rds.amazonaws.com
-RDS_DATABASE=wilderness_namibia_staging
-SECRET_NAME=staging-db-credentials
+NEXT_PUBLIC_RDS_HOST=staging-db.region.rds.amazonaws.com
+NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_staging
+NEXT_PUBLIC_SECRET_NAME=staging-db-credentials
 
 # Auth0
 AUTH0_SECRET=staging_secret_generated_with_openssl
 AUTH0_DOMAIN=staging-xxxxx.auth0.com
-AUTH0_CLIENT_ID=staging_client_id
-AUTH0_CLIENT_SECRET=staging_client_secret
+AUTH0_CLIENT_ID_ID=staging_client_id
+AUTH0_CLIENT_ID_SECRET=staging_client_secret
 AUTH0_ISSUER_BASE_URL=https://staging-xxxxx.auth0.com
 APP_BASE_URL=https://staging.safari-culture.amplifyapp.com
 
 # S3
-S3_BUCKET_NAME=staging-safari-images
-S3_REGION=us-east-1
+NEXT_PUBLIC_S3_BUCKET_NAME=staging-safari-images
+NEXT_PUBLIC_S3_REGION=us-east-1
 NEXT_PUBLIC_S3_BASE_URL=https://staging-safari-images.s3.us-east-1.amazonaws.com
 
 # Environment
@@ -164,26 +164,26 @@ SKIP_DB_CHECK=false
 
 ```bash
 # Database
-RDS_HOST=prod-db.region.rds.amazonaws.com
-RDS_DATABASE=wilderness_namibia_db
-SECRET_NAME=prod-db-credentials
+NEXT_PUBLIC_RDS_HOST=prod-db.region.rds.amazonaws.com
+NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_db
+NEXT_PUBLIC_SECRET_NAME=prod-db-credentials
 
 # Auth0
 AUTH0_SECRET=production_secret_generated_with_openssl
 AUTH0_DOMAIN=auth.safari-culture.com
-AUTH0_CLIENT_ID=prod_client_id
-AUTH0_CLIENT_SECRET=prod_client_secret
+AUTH0_CLIENT_ID_ID=prod_client_id
+AUTH0_CLIENT_ID_SECRET=prod_client_secret
 AUTH0_ISSUER_BASE_URL=https://auth.safari-culture.com
 APP_BASE_URL=https://safari-culture.com
 
 # S3
-S3_BUCKET_NAME=safari-culture-images
-S3_REGION=us-east-1
+NEXT_PUBLIC_S3_BUCKET_NAME=safari-culture-images
+NEXT_PUBLIC_S3_REGION=us-east-1
 NEXT_PUBLIC_S3_BASE_URL=https://safari-culture-images.s3.us-east-1.amazonaws.com
 
 # Environment
 NODE_ENV=production
-DB_CONNECTION_LIMIT=20
+NEXT_PUBLIC_DB_CONNECTION_LIMIT=20
 SKIP_DB_CHECK=false
 ```
 
@@ -209,22 +209,22 @@ openssl rand -base64 32
 
 ```typescript
 // Check if variable is set
-if (!process.env.RDS_HOST) {
-  throw new Error('RDS_HOST is required');
+if (!process.env.NEXT_PUBLIC_RDS_HOST) {
+  throw new Error('NEXT_PUBLIC_RDS_HOST is required');
 }
 
 // Use with fallback
-const port = parseInt(process.env.RDS_PORT || '3306', 10);
+const port = parseInt(process.env.NEXT_PUBLIC_RDS_PORT || '3306', 10);
 ```
 
 ### During Build (amplify.yml)
 
 ```bash
 # Check variable
-[ -z "$RDS_HOST" ] && echo "Missing RDS_HOST" && exit 1
+[ -z "$NEXT_PUBLIC_RDS_HOST" ] && echo "Missing NEXT_PUBLIC_RDS_HOST" && exit 1
 
 # Use variable
-echo "Connecting to $RDS_HOST"
+echo "Connecting to $NEXT_PUBLIC_RDS_HOST"
 ```
 
 ### At Runtime (Health Check)
@@ -266,7 +266,7 @@ curl https://your-app.com/api/health
 
 **Solution:**
 1. Check IAM role has `secretsmanager:GetSecretValue`
-2. Verify `SECRET_NAME` is correct
+2. Verify `NEXT_PUBLIC_SECRET_NAME` is correct
 3. Ensure secret exists in correct region
 
 ### NEXT_PUBLIC_ Variables Not Working
@@ -299,19 +299,19 @@ NEXT_PUBLIC_S3_BASE_URL=https://...
 
 ```bash
 # Copy to .env.local and fill in values
-RDS_HOST=
-RDS_PORT=3306
-RDS_USER=
-RDS_PASSWORD=
-RDS_DATABASE=wilderness_namibia_db
+NEXT_PUBLIC_RDS_HOST=
+NEXT_PUBLIC_RDS_PORT=3306
+NEXT_PUBLIC_RDS_USER=
+NEXT_PUBLIC_RDS_PASSWORD=
+NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_db
 AUTH0_SECRET=
 AUTH0_DOMAIN=
-AUTH0_CLIENT_ID=
-AUTH0_CLIENT_SECRET=
+AUTH0_CLIENT_ID_ID=
+AUTH0_CLIENT_ID_SECRET=
 AUTH0_ISSUER_BASE_URL=
 APP_BASE_URL=http://localhost:3000
-S3_BUCKET_NAME=
-S3_REGION=us-east-1
+NEXT_PUBLIC_S3_BUCKET_NAME=
+NEXT_PUBLIC_S3_REGION=us-east-1
 NEXT_PUBLIC_S3_BASE_URL=
 NODE_ENV=development
 ```
@@ -320,17 +320,17 @@ NODE_ENV=development
 
 ```bash
 # Copy to Amplify Console Environment Variables
-RDS_HOST=
-RDS_DATABASE=wilderness_namibia_db
-SECRET_NAME=
+NEXT_PUBLIC_RDS_HOST=
+NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_db
+NEXT_PUBLIC_SECRET_NAME=
 AUTH0_SECRET=
 AUTH0_DOMAIN=
-AUTH0_CLIENT_ID=
-AUTH0_CLIENT_SECRET=
+AUTH0_CLIENT_ID_ID=
+AUTH0_CLIENT_ID_SECRET=
 AUTH0_ISSUER_BASE_URL=
 APP_BASE_URL=
-S3_BUCKET_NAME=
-S3_REGION=us-east-1
+NEXT_PUBLIC_S3_BUCKET_NAME=
+NEXT_PUBLIC_S3_REGION=us-east-1
 NEXT_PUBLIC_S3_BASE_URL=
 NODE_ENV=production
 ```

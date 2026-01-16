@@ -8,7 +8,7 @@ let isShuttingDown = false;
  * Validate required environment variables for database connection
  */
 function validateEnvironment(): void {
-  const required = ['RDS_HOST', 'RDS_DATABASE'];
+  const required = ['NEXT_PUBLIC_RDS_HOST', 'NEXT_PUBLIC_RDS_DATABASE'];
   const missing = required.filter(key => !process.env[key]);
   
   if (missing.length > 0) {
@@ -43,13 +43,13 @@ export async function initDb(): Promise<mysql.Pool> {
     console.log('🔌 Initializing database connection pool...');
 
     pool = mysql.createPool({
-      host: process.env.RDS_HOST!,
+      host: process.env.NEXT_PUBLIC_RDS_HOST!,
       user: username,
       password: password,
-      database: process.env.RDS_DATABASE!.replace(/'/g, ''), // Remove quotes if present
-      port: parseInt(process.env.RDS_PORT || '3306', 10),
+      database: process.env.NEXT_PUBLIC_RDS_DATABASE!.replace(/'/g, ''), // Remove quotes if present
+      port: parseInt(process.env.NEXT_PUBLIC_RDS_PORT || '3306', 10),
       waitForConnections: true,
-      connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT || '10', 10),
+      connectionLimit: parseInt(process.env.NEXT_PUBLIC_DB_CONNECTION_LIMIT || '10', 10),
       queueLimit: 0,
       enableKeepAlive: true,
       keepAliveInitialDelay: 0,

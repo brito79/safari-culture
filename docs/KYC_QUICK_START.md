@@ -22,10 +22,10 @@ mysql -h YOUR_HOST -u YOUR_USER -p YOUR_DATABASE < database/create_kyc_applicati
 ### Step 2: Verify Environment Variables
 Check `.env.local` has:
 ```env
-RDS_HOST=your-host
-RDS_DATABASE=your-database
-RDS_USER=your-user
-RDS_PASSWORD=your-password
+NEXT_PUBLIC_RDS_HOST=your-host
+NEXT_PUBLIC_RDS_DATABASE=your-database
+NEXT_PUBLIC_RDS_USER=your-user
+NEXT_PUBLIC_RDS_PASSWORD=your-password
 NEXT_PUBLIC_S3_BASE_URL=https://your-bucket.s3.amazonaws.com
 ```
 

@@ -49,25 +49,25 @@ Go to **Amplify Console** → **App Settings** → **Environment Variables** and
 
 ```bash
 # Database Configuration
-RDS_HOST=your-db-instance.region.rds.amazonaws.com
-RDS_DATABASE=wilderness_namibia_db
-RDS_PORT=3306
+NEXT_PUBLIC_RDS_HOST=your-db-instance.region.rds.amazonaws.com
+NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_db
+NEXT_PUBLIC_RDS_PORT=3306
 
 # Database Credentials (Option 1: Direct)
-RDS_USER=admin
-RDS_PASSWORD=your_secure_password
+NEXT_PUBLIC_RDS_USER=admin
+NEXT_PUBLIC_RDS_PASSWORD=your_secure_password
 
 # Database Credentials (Option 2: Secrets Manager - Recommended)
-SECRET_NAME=rds!db-e723523c-73e0-4627-af0f-e024a025e859
+NEXT_PUBLIC_SECRET_NAME=rds!db-e723523c-73e0-4627-af0f-e024a025e859
 
 # Database Connection Pool
-DB_CONNECTION_LIMIT=10
+NEXT_PUBLIC_DB_CONNECTION_LIMIT=10
 
 # Auth0 Configuration
 AUTH0_SECRET=use_openssl_rand_hex_32_to_generate
 AUTH0_DOMAIN=your-domain.auth0.com
-AUTH0_CLIENT_ID=your_auth0_client_id
-AUTH0_CLIENT_SECRET=your_auth0_client_secret
+AUTH0_CLIENT_ID_ID=your_AUTH0_CLIENT_ID_id
+AUTH0_CLIENT_ID_SECRET=your_AUTH0_CLIENT_ID_secret
 AUTH0_ISSUER_BASE_URL=https://your-domain.auth0.com
 AUTH0_AUDIENCE=your_auth_api_identifier
 AUTH0_SCOPE=openid profile email read:shows
@@ -77,8 +77,8 @@ APP_BASE_URL=https://your-app.amplifyapp.com
 NEXT_PUBLIC_BASE_URL=https://your-app.amplifyapp.com
 
 # S3 Configuration
-S3_BUCKET_NAME=your-s3-bucket-name
-S3_REGION=us-east-1
+NEXT_PUBLIC_S3_BUCKET_NAME=your-s3-bucket-name
+NEXT_PUBLIC_S3_REGION=us-east-1
 S3_BASE_URL=https://your-s3-bucket-name.s3.us-east-1.amazonaws.com
 NEXT_PUBLIC_S3_BASE_URL=https://your-s3-bucket-name.s3.us-east-1.amazonaws.com
 
@@ -102,8 +102,8 @@ SKIP_DB_CHECK=false
 aws amplify update-app \
   --app-id YOUR_APP_ID \
   --environment-variables \
-    RDS_HOST=your-db-instance.region.rds.amazonaws.com \
-    RDS_DATABASE=wilderness_namibia_db \
+    NEXT_PUBLIC_RDS_HOST=your-db-instance.region.rds.amazonaws.com \
+    NEXT_PUBLIC_RDS_DATABASE=wilderness_namibia_db \
     AUTH0_SECRET=your_secret \
     # ... add all variables
 ```
@@ -142,7 +142,7 @@ aws secretsmanager create-secret \
 }
 ```
 
-4. Set `SECRET_NAME` environment variable in Amplify to the secret name
+4. Set `NEXT_PUBLIC_SECRET_NAME` environment variable in Amplify to the secret name
 
 ### 5. Configure Database Access
 
@@ -246,7 +246,7 @@ preBuild:
 
 **What happens:**
 - Dependencies are installed from `package-lock.json`
-- If `SECRET_NAME` is set, credentials are fetched and exported
+- If `NEXT_PUBLIC_SECRET_NAME` is set, credentials are fetched and exported
 - Required env vars are checked (fails build if missing)
 - Database connection is tested (non-blocking warning if fails)
 
@@ -314,7 +314,7 @@ SKIP_DB_CHECK=false
 
 **Error:**
 ```
-❌ Missing required environment variables: RDS_HOST AUTH0_SECRET
+❌ Missing required environment variables: NEXT_PUBLIC_RDS_HOST AUTH0_SECRET
 ```
 
 **Solution:**
@@ -331,7 +331,7 @@ SKIP_DB_CHECK=false
 
 **Solution:**
 1. Check IAM role has `secretsmanager:GetSecretValue` permission
-2. Verify `SECRET_NAME` is correct
+2. Verify `NEXT_PUBLIC_SECRET_NAME` is correct
 3. Ensure secret exists in the same region
 
 ### Build Fails: Database Connection Test
