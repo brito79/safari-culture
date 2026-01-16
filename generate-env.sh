@@ -4,17 +4,6 @@
 # Purpose: Load environment variables from .env.local and generate .env.production
 # Usage: ./generate-env.sh
 
-# Check if .env.local exists
-if [ ! -f ".env.local" ]; then
-  echo "Error: .env.local file not found!"
-  exit 1
-fi
-
-# Load variables from .env.local
-set -a
-source .env.local
-set +a
-
 # Create/clear the .env.production file
 > .env.production
 
